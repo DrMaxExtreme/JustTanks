@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 8994878320769049551}
   - component: {fileID: 4720775768997387515}
   - component: {fileID: 757749807367133355}
-  - component: {fileID: 4424755574985050899}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Muzzle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4424755574985050899
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4805366731266837850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6469911827522999814
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7205512072995244172}
-  m_Layer: 0
+  - component: {fileID: 7813362983057178331}
+  m_Layer: 7
   m_Name: Tank 5 lvl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6469911827522999814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -132,6 +119,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7813362983057178331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469911827522999814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626e8e29e8dc6224aa04acf7f4d05d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6593879500086082664
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,8 +142,7 @@ GameObject:
   - component: {fileID: 3837077712921167893}
   - component: {fileID: 7793240838726068624}
   - component: {fileID: 1472240171835767962}
-  - component: {fileID: 512456769739013357}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,19 +214,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &512456769739013357
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593879500086082664}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6665226880585814837
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,8 +225,7 @@ GameObject:
   - component: {fileID: 5493188943278704395}
   - component: {fileID: 4702237812160851206}
   - component: {fileID: 8807448783710395154}
-  - component: {fileID: 1022112152768655496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Muzzle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,19 +297,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1022112152768655496
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6665226880585814837}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7788188632096105784
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,8 +308,7 @@ GameObject:
   - component: {fileID: 8667243254902689505}
   - component: {fileID: 8868425725936741194}
   - component: {fileID: 5677368716139108602}
-  - component: {fileID: 2039153789250687017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,16 +380,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2039153789250687017
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7788188632096105784}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
