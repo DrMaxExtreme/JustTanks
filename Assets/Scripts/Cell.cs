@@ -14,7 +14,8 @@ public class Cell : MonoBehaviour
 
     private Box _currentBox;
     private Tank _currentTank;
-    private float _delayOpenBox = 0.02f;
+    
+    private const float SecondsDelayOpenBox = 0.02f;
 
     private void OnDisable()
     {
@@ -23,13 +24,10 @@ public class Cell : MonoBehaviour
 
     public bool TryFindHaveObject()
     {
-        if (_currentBox == null && _currentTank == null)
-            return false;
-        else 
-            return true;
+        return _currentBox == null && _currentTank == null;
     }
 
-    public void InstatiateBox()
+    public void InstantiateBox()
     {
         _currentBox = Instantiate(_boxPrefab, _spawnPoint);
     }
@@ -48,6 +46,17 @@ public class Cell : MonoBehaviour
         _currentTank.transform.position = tempPosition;
     }
 
+    public Tank GiveTank()
+    {
+        return _currentTank;
+    }
+
+    public void TakeTank(Tank tank)
+    {
+        _currentTank = tank;
+        _currentTank.transform.position = _spawnPoint.position;
+    }
+
     private void OpenBox()
     {
         StartCoroutine(DelayOpenBox());
@@ -60,9 +69,9 @@ public class Cell : MonoBehaviour
 
     private IEnumerator DelayOpenBox()
     {
-        var WaitForDelaySeconds = new WaitForSeconds(_delayOpenBox);
+        var waitForDelaySeconds = new WaitForSeconds(SecondsDelayOpenBox);
 
-        yield return WaitForDelaySeconds;
+        yield return waitForDelaySeconds;
 
         _currentTank = Instantiate(_tankPrefab, _spawnPoint);
         Destroy(_currentBox.gameObject);

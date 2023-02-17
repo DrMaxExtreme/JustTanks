@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -25,11 +26,11 @@ public class Spawner : MonoBehaviour
     {
         while (_isActive)
         {
-            var WaitForDelaySeconds = new WaitForSeconds(_delayActivate);
+            var waitForDelaySeconds = new WaitForSeconds(_delayActivate);
 
             GenerateBox();
 
-            yield return WaitForDelaySeconds;
+            yield return waitForDelaySeconds;
         }
     }
 
@@ -37,25 +38,19 @@ public class Spawner : MonoBehaviour
     {
         _freeCells.Clear();
 
-        foreach (var cell in _allCells)
+        foreach (var cell in _allCells.Where(cell => cell.TryFindHaveObject() == false))
         {
-            if (cell.TryFindHaveObject() == false)
-            {
-                _freeCells.Add(cell);
-            }
+            _freeCells.Add(cell);
         }
 
-        if (_freeCells.Count > 0)
-            return true;
-        else
-            return false;
+        return _freeCells.Count > 0;
     }
 
     private void GenerateBox()
     {
         if (TryFindFreeCell())
         {
-            _freeCells[Random.RandomRange(0, _freeCells.Count)].InstatiateBox();
+            _freeCells[Random.RandomRange(0, _freeCells.Count)].InstantiateBox();
         }
     }
 }

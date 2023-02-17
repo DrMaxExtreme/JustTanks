@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class Box : MonoBehaviour
 {
-    [SerializeField] private Tank _tankPrefab;
     [SerializeField] private float _delayDestroy;
 
     private void Start()
@@ -21,9 +20,9 @@ public class Box : MonoBehaviour
     private IEnumerator DelayOpen()
     {
         float delaySeconds = _delayDestroy;
-        var WaitForDelaySeconds = new WaitForSeconds(delaySeconds);
+        var waitForDelaySeconds = new WaitForSeconds(delaySeconds);
 
-        yield return WaitForDelaySeconds;
+        yield return waitForDelaySeconds;
 
         Destroy(gameObject);
     }
