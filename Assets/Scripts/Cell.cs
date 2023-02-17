@@ -10,19 +10,23 @@ public class Cell : MonoBehaviour
     [SerializeField] private Box _boxPrefab;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Tank _tankPrefab;
-    [SerializeField] private UnityEvent _opened;
+    [SerializeField] private UnityEvent _selectedTank;
 
-    private bool _isHaveObject = false;
     private Box _currentBox;
     private Tank _currentTank;
+    private float _delayOpenBox = 0.02f;
 
-    public bool IsHaveObject => _isHaveObject;
-
-    private void Awake()
+    private void OnDisable()
     {
-        var rigidbody = GetComponent<Rigidbody>();
-        var meshCollider = GetComponent<MeshCollider>();
-        SetPreferences(rigidbody, meshCollider);
+        StopCoroutine(DelayOpenBox());
+    }
+
+    public bool TryFindHaveObject()
+    {
+        if (_currentBox == null && _currentTank == null)
+            return false;
+        else 
+            return true;
     }
 
     public void InstatiateBox()
@@ -30,26 +34,37 @@ public class Cell : MonoBehaviour
         _currentBox = Instantiate(_boxPrefab, _spawnPoint);
     }
 
-    public void OpenBox()
+    public void Select()
     {
-        Destroy(_currentBox);
+        if(_currentBox != null)
+            OpenBox();
+
+        if (_currentTank != null)
+            SelectTank();
+    }
+
+    public void SetPositionTank(Vector3 tempPosition)
+    {
+        _currentTank.transform.position = tempPosition;
+    }
+
+    private void OpenBox()
+    {
+        StartCoroutine(DelayOpenBox());
+    }
+
+    private void SelectTank()
+    {
+        _selectedTank?.Invoke();
+    }
+
+    private IEnumerator DelayOpenBox()
+    {
+        var WaitForDelaySeconds = new WaitForSeconds(_delayOpenBox);
+
+        yield return WaitForDelaySeconds;
+
         _currentTank = Instantiate(_tankPrefab, _spawnPoint);
-    }
-
-    public bool TryFindHaveObject()
-    {
-        if (_currentBox == null && _currentTank == null)
-            return true;
-        else 
-            return false;
-    }
-
-    private void SetPreferences(Rigidbody rigidbody, MeshCollider meshCollider)
-    {
-        rigidbody.useGravity = false;
-        rigidbody.isKinematic = true;
-
-        meshCollider.convex = true;
-        meshCollider.isTrigger = true;
+        Destroy(_currentBox.gameObject);
     }
 }

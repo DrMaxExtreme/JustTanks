@@ -25,8 +25,7 @@ public class Spawner : MonoBehaviour
     {
         while (_isActive)
         {
-            float delaySeconds = _delayActivate;
-            var WaitForDelaySeconds = new WaitForSeconds(delaySeconds);
+            var WaitForDelaySeconds = new WaitForSeconds(_delayActivate);
 
             GenerateBox();
 

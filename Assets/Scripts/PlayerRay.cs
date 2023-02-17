@@ -5,42 +5,53 @@ using UnityEngine;
 public class PlayerRay : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMaskCells;
-    [SerializeField] private LayerMask _layerMaskBoxes;
-    [SerializeField] private LayerMask _layerMaskTanks;
 
     private Ray _ray;
     private RaycastHit _hit;
     private float _rayDistance = 100f;
+    private Vector3 _oldTankPosition;
+    private Cell _selectedCell;
+    private bool _isSelectedTank = false;
 
     private void LateUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (_isSelectedTank)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(_ray, out _hit, _rayDistance))
+                    _selectedCell.SetPositionTank(_hit.point);
+                else
+                    _selectedCell.SetPositionTank(_oldTankPosition);
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                _selectedCell.SetPositionTank(_oldTankPosition);
+                _isSelectedTank = false;
+            }
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             ActivateRay();
 
-            if (Physics.Raycast(_ray, out _hit, _rayDistance, _layerMaskCells))
-            {
-                Cell cell = _hit.collider.gameObject.GetComponent<Cell>();
-
-                print(cell);
-            }
+            if (_selectedCell)
+                _selectedCell.Select();
         }
+    }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            ActivateRay();
-
-            if (Physics.Raycast(_ray, out _hit, _rayDistance, _layerMaskBoxes))
-            {
-                Box box = _hit.collider.gameObject.GetComponent<Box>();
-
-                //box. нажал на cell в которой есть box, вызов boxOpen
-            }
-        }
+    public void SelectedTank()
+    {
+        _isSelectedTank = true;
+        _oldTankPosition = _selectedCell.transform.position;
     }
 
     private void ActivateRay()
     {
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_ray, out _hit, _rayDistance, _layerMaskCells))
+            _selectedCell = _hit.collider.gameObject.GetComponent<Cell>();
     }
 }

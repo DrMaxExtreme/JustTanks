@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7702980009334961884}
   - component: {fileID: 9120423495605939481}
   - component: {fileID: 4167158955654109069}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tank visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6449998976323183271}
   - component: {fileID: 4584399329504746387}
   - component: {fileID: 7609083722936604570}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7147680298171882613}
   - component: {fileID: 7228435272930185788}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Tank 1 lvl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

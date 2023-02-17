@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(BoxCollider))]
 public class Box : MonoBehaviour
 {
     [SerializeField] private Tank _tankPrefab;
@@ -11,9 +10,6 @@ public class Box : MonoBehaviour
 
     private void Start()
     {
-        var boxCollider = GetComponent<BoxCollider>();
-        SetPreferences(boxCollider);
-
         StartCoroutine(DelayOpen());
     }
 
@@ -30,10 +26,5 @@ public class Box : MonoBehaviour
         yield return WaitForDelaySeconds;
 
         Destroy(gameObject);
-    }
-
-    private void SetPreferences(BoxCollider boxCollider)
-    {
-        boxCollider.isTrigger = true;
     }
 }
