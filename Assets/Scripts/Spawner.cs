@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         while (_isActive)
         {
             var waitForDelaySeconds = new WaitForSeconds(_delayActivate);
-
+            
             GenerateBox();
 
             yield return waitForDelaySeconds;
@@ -49,8 +49,6 @@ public class Spawner : MonoBehaviour
     private void GenerateBox()
     {
         if (TryFindFreeCell())
-        {
             _freeCells[Random.RandomRange(0, _freeCells.Count)].InstantiateBox();
-        }
     }
 }

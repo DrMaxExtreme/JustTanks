@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +25,7 @@ public class Cell : MonoBehaviour
 
     public bool TryFindHaveObject()
     {
-        return _currentBox == null && _currentTank == null;
+        return _currentBox != null || _currentTank != null;
     }
 
     public void InstantiateBox()
@@ -49,6 +50,11 @@ public class Cell : MonoBehaviour
     public Tank GiveTank()
     {
         return _currentTank;
+    }
+
+    public void ClearCell()
+    {
+        _currentTank = null;
     }
 
     public void TakeTank(Tank tank)

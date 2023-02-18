@@ -31,23 +31,28 @@ public class PlayerRay : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
                 Cell newSelectedCell = null;
 
-                if (Physics.Raycast(ray, out hit, RayDistance, _layerMaskCells))
+                if (Physics.Raycast(ray, out var hit, RayDistance, _layerMaskCells))
                     newSelectedCell = hit.collider.gameObject.GetComponent<Cell>();
 
                 if (newSelectedCell != null)
                 {
                     if (newSelectedCell.TryFindHaveObject() == false)
                     {
+                        print(newSelectedCell.TryFindHaveObject());
                         newSelectedCell.TakeTank(_selectedCell.GiveTank());
+                        _selectedCell.ClearCell();
+                        _isSelectedTank = false;
+                    }
+                    else
+                    {
+                        RevertTankOldPosition();
                     }
                 }
                 else
                 {
-                    _selectedCell.SetPositionTank(_oldTankPosition);
-                    _isSelectedTank = false;
+                    RevertTankOldPosition();
                 }
             }
         }
@@ -72,5 +77,11 @@ public class PlayerRay : MonoBehaviour
 
         if (Physics.Raycast(_ray, out _hit, RayDistance, _layerMaskCells))
             _selectedCell = _hit.collider.gameObject.GetComponent<Cell>();
+    }
+
+    private void RevertTankOldPosition()
+    {
+        _selectedCell.SetPositionTank(_oldTankPosition);
+        _isSelectedTank = false;
     }
 }
