@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class SpawnerBoxes : MonoBehaviour
 {
     [SerializeField] private List<Cell> _allCells;
     [SerializeField] private float _delayActivate;
