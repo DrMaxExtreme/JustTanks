@@ -40,10 +40,20 @@ public class PlayerRay : MonoBehaviour
                 {
                     if (newSelectedCell.TryFindHaveObject() == false)
                     {
-                        print(newSelectedCell.TryFindHaveObject());
                         newSelectedCell.TakeTank(_selectedCell.GiveTank());
                         _selectedCell.ClearCell();
-                        _isSelectedTank = false;
+                    }
+                    else if (newSelectedCell.CurrentTank != null)
+                    {
+                        if(newSelectedCell.IsHaveTankForUpgrade(_selectedCell.CurrentTank.Level) && newSelectedCell != _selectedCell)
+                        {
+                            _selectedCell.DestroyTank();
+                            newSelectedCell.UpgradeTank();
+                        }
+                        else
+                        {
+                            RevertTankOldPosition();
+                        }
                     }
                     else
                     {
@@ -54,6 +64,8 @@ public class PlayerRay : MonoBehaviour
                 {
                     RevertTankOldPosition();
                 }
+                
+                _isSelectedTank = false;
             }
         }
         else if (Input.GetMouseButtonDown(0))
@@ -83,5 +95,10 @@ public class PlayerRay : MonoBehaviour
     {
         _selectedCell.SetPositionTank(_oldTankPosition);
         _isSelectedTank = false;
+    }
+
+    private void UpgradeTank()
+    {
+        
     }
 }
