@@ -11,6 +11,7 @@ public class Tank : MonoBehaviour
     [SerializeField] private float _delayBetweenShots;
 
     private bool _isAttacking;
+    private Coroutine _shootJob;
     
     public int Level => _level;
 
@@ -22,11 +23,16 @@ public class Tank : MonoBehaviour
     public void SetAttackMode(bool isAttacking)
     {
         _isAttacking = isAttacking;
-        //сохранить корутину, чтобы проверять работает она или нет
-        if(_isAttacking)
-            StartCoroutine(Shoot());
+
+        if (_shootJob == null)
+        {
+            _shootJob = StartCoroutine(Shoot());
+        }
         else
-            StopCoroutine(Shoot());
+        {
+            StopCoroutine(_shootJob);
+            _shootJob = null;
+        }
     }
 
     private void Shot()
@@ -43,9 +49,9 @@ public class Tank : MonoBehaviour
         {
             var waitForDelaySeconds = new WaitForSeconds(_delayBetweenShots);
             
-            Shot();
-
             yield return waitForDelaySeconds;
+            
+            Shot();
         }
     }
 }

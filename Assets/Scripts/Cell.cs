@@ -84,6 +84,11 @@ public class Cell : MonoBehaviour
         Destroy(_currentTank.gameObject);
         StartCoroutine(DelaySpawnedTank(upgradeTankIndex));
     }
+    
+    public void SetTankAttackMode()
+    {
+        _currentTank.SetAttackMode(_isActivatingAttackingTank);
+    }
 
     private void OpenBox()
     {
@@ -94,6 +99,7 @@ public class Cell : MonoBehaviour
     private void SelectTank()
     {
         _selectedTank?.Invoke();
+        _currentTank.SetAttackMode(false);
     }
 
     private IEnumerator DelaySpawnedTank(int indexSpawnedTank)
@@ -104,10 +110,5 @@ public class Cell : MonoBehaviour
 
         _currentTank = Instantiate(_tankPrefabs[indexSpawnedTank], _spawnPoint);
         SetTankAttackMode();
-    }
-
-    private void SetTankAttackMode()
-    {
-        _currentTank.SetAttackMode(_isActivatingAttackingTank);
     }
 }

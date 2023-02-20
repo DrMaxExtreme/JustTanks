@@ -95,10 +95,6 @@ public class PlayerRay : MonoBehaviour
     {
         _selectedCell.SetPositionTank(_oldTankPosition);
         _isSelectedTank = false;
-    }
-
-    private void UpgradeTank()
-    {
-        
+        _selectedCell.SetTankAttackMode();
     }
 }
