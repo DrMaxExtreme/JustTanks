@@ -422,7 +422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265798816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 20}
+  m_LocalPosition: {x: 2.5, y: 0.5, z: 17}
   m_LocalScale: {x: 6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -449,7 +449,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2746741016360997196, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
       propertyPath: _level
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7936075431982318456, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
       propertyPath: m_RootOrder
@@ -465,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936075431982318456, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7936075431982318456, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1098,7 +1098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4854189908988665228, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _delayActivate
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _isActivatingAttackingTank
