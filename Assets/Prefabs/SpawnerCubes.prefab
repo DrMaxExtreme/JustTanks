@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7936075431982318456}
+  - component: {fileID: 2746741016360997196}
   m_Layer: 0
   m_Name: SpawnerCubes
   m_TagString: Untagged
@@ -160,6 +161,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2746741016360997196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936075431982318459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2edf550f2ddd3f45ac6d7d9de0d0388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - {fileID: 7936075430665325559}
+  - {fileID: 136455897648125733}
+  - {fileID: 435461760209421874}
+  - {fileID: 6303381364742400575}
+  - {fileID: 2357686802266223069}
+  _cubePrefab: {fileID: 3402048138189996445, guid: c4dba68f08504084f8126d45acc3e6b8, type: 3}
+  _level: 0
 --- !u!1 &8214915962584376426
 GameObject:
   m_ObjectHideFlags: 0

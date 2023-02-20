@@ -128,5 +128,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0bc242cc6334d44a699ba1e817a94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tankPrefab: {fileID: 7228435272930185788, guid: dc89dfff6c265634f86060ddf386f9d9, type: 3}
-  _delayDestroy: 8
+  _delayDestroy: 10

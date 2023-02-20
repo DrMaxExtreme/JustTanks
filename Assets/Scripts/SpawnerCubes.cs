@@ -8,23 +8,23 @@ public class SpawnerCubes : MonoBehaviour
     [SerializeField] private Cube _cubePrefab;
     [SerializeField] private int _level;
 
-    private const int MinHealth = 1;
-    private const int MaxHealth = 3;
-    private const int OffsetZ = 1;
-    
+    private Cube _cube;
+
+    private const float MinHealth = 1f;
+    private const float MaxHealth = 3f;
+
     public void Generate()
     {
         for (int i = 0; i < _level; i++)
         {
             foreach (var point in _points)
             {
-                var position = point.position;
-                Vector3 newPoint = new Vector3(position.x, position.y, position.z + 1);
-                
-                //Instantiate(_cubePrefab, newPoint);
+                Vector3 newPoint = point.position;
+                newPoint.z += i;
+
+                _cube = Instantiate(_cubePrefab, newPoint, Quaternion.identity);
+                _cube.SetHealth(Random.RandomRange(MinHealth + i, MaxHealth + i));
             }
-            
-            
         }
     }
 }
