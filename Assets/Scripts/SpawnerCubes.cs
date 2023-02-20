@@ -23,7 +23,7 @@ public class SpawnerCubes : MonoBehaviour
                 newPoint.z += i;
 
                 _cube = Instantiate(_cubePrefab, newPoint, Quaternion.identity);
-                _cube.SetHealth(Random.RandomRange(MinHealth + i, MaxHealth + i));
+                _cube.SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i, MaxHealth + i)));
             }
         }
     }

@@ -12,6 +12,7 @@ public class Cell : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Tank[] _tankPrefabs;
     [SerializeField] private UnityEvent _selectedTank;
+    [SerializeField] private bool _isActivatingAttackingTank;
 
     private Box _currentBox;
     private Tank _currentTank;
@@ -69,6 +70,7 @@ public class Cell : MonoBehaviour
     {
         _currentTank = tank;
         _currentTank.transform.position = _spawnPoint.position;
+        SetTankAttackMode();
     }
 
     public bool IsHaveTankForUpgrade(int newTankLevel)
@@ -101,5 +103,11 @@ public class Cell : MonoBehaviour
         yield return waitForDelaySeconds;
 
         _currentTank = Instantiate(_tankPrefabs[indexSpawnedTank], _spawnPoint);
+        SetTankAttackMode();
+    }
+
+    private void SetTankAttackMode()
+    {
+        _currentTank.SetAttackMode(_isActivatingAttackingTank);
     }
 }

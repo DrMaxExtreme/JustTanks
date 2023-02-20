@@ -16,8 +16,10 @@ public class Cube : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _targetPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z - _distance);
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed);
+        var position = transform.position;
+        _targetPosition = new Vector3(position.x, position.y, position.z - _distance);
+        position = Vector3.MoveTowards(position, _targetPosition, _speed);
+        transform.position = position;
     }
 
     public void SetHealth(float health)
@@ -26,10 +28,11 @@ public class Cube : MonoBehaviour
         TextUpdate();
     }
 
-    public void TankDamage(float damage)
+    public void TakeDamage(float damage)
     {
-        if(damage > 0)
+        if (damage > 0)
             _health -= damage;
+                        
 
         if (_health <= 0)
             Destroy(gameObject);
@@ -39,6 +42,6 @@ public class Cube : MonoBehaviour
 
     private void TextUpdate()
     {
-        _textHealth.text = Convert.ToString(Mathf.Round(_health));
+        _textHealth.text = Convert.ToString(Math.Ceiling(_health));
     }
 }
