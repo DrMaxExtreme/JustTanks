@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerCubes : MonoBehaviour
+public class SpawnerCubes : ObjectPool
 {
     [SerializeField] private Transform[] _points;
     [SerializeField] private Cube _cubePrefab;

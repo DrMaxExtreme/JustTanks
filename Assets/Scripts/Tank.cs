@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour
+public class Tank : ObjectPool
 {
     [SerializeField] private int _level;
     [SerializeField] private Transform[] _bulletSpawnPositions;
@@ -45,10 +45,10 @@ public class Tank : MonoBehaviour
     
     private IEnumerator Shoot()
     {
+        var waitForDelaySeconds = new WaitForSeconds(_delayBetweenShots);
+        
         while (_isAttacking)
         {
-            var waitForDelaySeconds = new WaitForSeconds(_delayBetweenShots);
-            
             yield return waitForDelaySeconds;
             
             Shot();

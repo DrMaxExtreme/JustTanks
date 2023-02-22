@@ -24,10 +24,10 @@ public class SpawnerBoxes : MonoBehaviour
 
     private IEnumerator Activate()
     {
+        var waitForDelaySeconds = new WaitForSeconds(_delayActivate);
+        
         while (_isActive)
         {
-            var waitForDelaySeconds = new WaitForSeconds(_delayActivate);
-            
             GenerateBox();
 
             yield return waitForDelaySeconds;
