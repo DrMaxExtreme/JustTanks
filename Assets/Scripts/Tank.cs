@@ -15,6 +15,11 @@ public class Tank : ObjectPool
     
     public int Level => _level;
 
+    private void Start()
+    {
+        Initialize(_bullet.gameObject);
+    }
+
     private void OnDisable()
     {
         StopCoroutine(Shoot());
@@ -39,7 +44,10 @@ public class Tank : ObjectPool
     {
         foreach (var bulletSpawnPosition in _bulletSpawnPositions)
         {
-            Instantiate(_bullet, bulletSpawnPosition);
+            if(TryGetObject(out var bullet))
+            {
+                SetBullet(bullet, bulletSpawnPosition.position);
+            }
         }
     }
     
@@ -53,5 +61,11 @@ public class Tank : ObjectPool
             
             Shot();
         }
+    }
+
+    private void SetBullet(GameObject bullet, Vector3 spawnPosition)
+    {
+        bullet.SetActive(true);
+        bullet.transform.position = spawnPosition;
     }
 }

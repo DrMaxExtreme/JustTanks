@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         {
             cube.TakeDamage(_damage);
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
