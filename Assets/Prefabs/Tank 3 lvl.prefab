@@ -130,12 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626e8e29e8dc6224aa04acf7f4d05d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 1051151729462381737, guid: 1de15f3fe2af5864ea1df818dc304128, type: 3}
   _capacity: 20
   _level: 3
   _bulletSpawnPositions:
   - {fileID: 2800077884724700691}
-  _bullet: {fileID: 3931665041826364499, guid: d04e1d6b332437f4e9fad40be87484a4, type: 3}
+  _bulletPrefab: {fileID: 3931665041826364499, guid: d04e1d6b332437f4e9fad40be87484a4, type: 3}
   _delayBetweenShots: 0.3
 --- !u!1 &6332106786153553802
 GameObject:

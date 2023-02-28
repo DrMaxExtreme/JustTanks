@@ -7,7 +7,7 @@ public class Tank : ObjectPool
 {
     [SerializeField] private int _level;
     [SerializeField] private Transform[] _bulletSpawnPositions;
-    [SerializeField] private Bullet _bullet;
+    [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
 
     private bool _isAttacking;
@@ -17,7 +17,7 @@ public class Tank : ObjectPool
 
     private void Start()
     {
-        Initialize(_bullet.gameObject);
+        Initialize(_bulletPrefab.gameObject);
     }
 
     private void OnDisable()

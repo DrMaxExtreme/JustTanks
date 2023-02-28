@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnerCubes : ObjectPool
 {
@@ -13,18 +15,34 @@ public class SpawnerCubes : ObjectPool
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
 
+    private void Start()
+    {
+        Initialize(_cubePrefab.gameObject);
+    }
+
     public void Generate()
     {
-        for (int i = 0; i < _level; i++)
+        for (var i = 0; i < _level; i++)
         {
             foreach (var point in _points)
             {
-                Vector3 newPoint = point.position;
+                var newPoint = point.position;
                 newPoint.z += i;
 
-                _cube = Instantiate(_cubePrefab, newPoint, Quaternion.identity);
-                _cube.SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i, MaxHealth + i)));
+                if(TryGetObject(out var cube))
+                {
+                    SetPrefab(cube, newPoint);
+                    cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i, MaxHealth + i)));
+                }
+                
+                //_cube.SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i, MaxHealth + i)));
             }
         }
+    }
+    
+    private void SetPrefab(GameObject cube, Vector3 spawnPosition)
+    {
+        cube.SetActive(true);
+        cube.transform.position = spawnPosition;
     }
 }
