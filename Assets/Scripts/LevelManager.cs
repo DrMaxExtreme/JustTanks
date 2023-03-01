@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private float _delayAnimation;
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private SpawnerCubes _spawnerCubes;
 
     private void Start()
@@ -12,8 +14,21 @@ public class LevelManager : MonoBehaviour
         _spawnerCubes.Generate();
     }
 
+    private void OnDisable()
+    {
+        StopCoroutine(StartNextLevel());
+    }
+
     public void ShowWin()
     {
-        print("Победа");
+        print("Уровень пройден");
+        StartCoroutine(StartNextLevel());
+    }
+    
+    private IEnumerator StartNextLevel()
+    {
+        var waitForDelaySeconds = new WaitForSeconds(_delayAnimation);
+        
+        yield return waitForDelaySeconds;
     }
 }
