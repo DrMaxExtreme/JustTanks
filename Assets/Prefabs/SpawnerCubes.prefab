@@ -158,6 +158,7 @@ Transform:
   - {fileID: 435461760209421874}
   - {fileID: 6303381364742400575}
   - {fileID: 2357686802266223069}
+  - {fileID: 1564691396010044350}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2edf550f2ddd3f45ac6d7d9de0d0388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _capacity: 50
   _points:
   - {fileID: 7936075430665325559}
   - {fileID: 136455897648125733}
@@ -180,7 +182,10 @@ MonoBehaviour:
   - {fileID: 6303381364742400575}
   - {fileID: 2357686802266223069}
   _cubePrefab: {fileID: 3402048138189996445, guid: c4dba68f08504084f8126d45acc3e6b8, type: 3}
-  _level: 0
+  _pool: {fileID: 9156403635493588835}
+  _destroyedAll:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8214915962584376426
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,4 +216,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7936075431982318456}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9156403635493588835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564691396010044350}
+  m_Layer: 0
+  m_Name: Pool cubes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564691396010044350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156403635493588835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7936075431982318456}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

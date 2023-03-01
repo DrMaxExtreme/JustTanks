@@ -31,4 +31,9 @@ public class ObjectPool : MonoBehaviour
 
         return result != null;
     }
+
+    protected bool TryFindObject()
+    {
+        return _pool.All(p => p.activeSelf == false);
+    }
 }

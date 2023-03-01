@@ -13,6 +13,7 @@ public class Cube : MonoBehaviour
 
     private float _health;
     private Vector3 _targetPosition;
+    private SpawnerCubes _spawnerCubes;
 
     private void FixedUpdate()
     {
@@ -22,6 +23,16 @@ public class Cube : MonoBehaviour
         transform.position = position;
     }
 
+    private void OnDisable()
+    {
+        
+    }
+
+    public void SetSpawner(SpawnerCubes spawnerCubes)
+    {
+        _spawnerCubes = spawnerCubes;
+    }
+    
     public void SetHealth(float health)
     {
         _health = health;
@@ -31,11 +42,15 @@ public class Cube : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (damage > 0)
+        {
             _health -= damage;
-                        
-
+        }
+        
         if (_health <= 0)
-            Destroy(gameObject);
+        {
+            gameObject.SetActive(false);
+            _spawnerCubes.TryFinishLevel();
+        }
 
         TextUpdate();
     }
