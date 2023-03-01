@@ -196,14 +196,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626e8e29e8dc6224aa04acf7f4d05d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _capacity: 50
+  _capacity: 200
   _level: 5
   _bulletSpawnPositions:
   - {fileID: 1705148337089247473}
   - {fileID: 4569044803190280304}
   - {fileID: 5970698743018008151}
   _bulletPrefab: {fileID: 3931665041826364499, guid: d04e1d6b332437f4e9fad40be87484a4, type: 3}
-  _delayBetweenShots: 0.6
+  _delayBetweenShots: 0.5
 --- !u!1 &6593879500086082664
 GameObject:
   m_ObjectHideFlags: 0

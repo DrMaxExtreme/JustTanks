@@ -7,13 +7,15 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private int _capacity;
 
-    private GameObject _container;
     private List<GameObject> _pool = new List<GameObject>();
+
+    protected void ClearPool()
+    {
+        _pool = null;
+    }
 
     protected void Initialize(GameObject prefab)
     {
-        _container = Camera.main.gameObject;
-        
         for (int i = 0; i < _capacity; i++)
         {
             GameObject spawned = Instantiate(prefab, Vector3.zero, Quaternion.identity);

@@ -15,7 +15,7 @@ public class SpawnerCubes : ObjectPool
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
 
-    private void Start()
+    private void Awake()
     {
         Initialize(_cubePrefab.gameObject);
     }
@@ -34,8 +34,6 @@ public class SpawnerCubes : ObjectPool
                     SetPrefab(cube, newPoint);
                     cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i, MaxHealth + i)));
                 }
-                
-                //_cube.SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i, MaxHealth + i)));
             }
         }
     }

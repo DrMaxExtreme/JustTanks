@@ -23,6 +23,7 @@ public class Tank : ObjectPool
     private void OnDisable()
     {
         StopCoroutine(Shoot());
+        ClearPool();
     }
 
     public void SetAttackMode(bool isAttacking)

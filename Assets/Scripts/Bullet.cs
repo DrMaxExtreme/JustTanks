@@ -21,9 +21,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.TryGetComponent(out Cube cube))
+        if(collision.gameObject.TryGetComponent(out Cube cube) || collision.gameObject.TryGetComponent(out BulletDestroyer destroyer))
         {
-            cube.TakeDamage(_damage);
+            if (cube != null)
+                cube.TakeDamage(_damage);
 
             gameObject.SetActive(false);
         }
