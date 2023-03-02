@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(StartNextLevel());
         _spawnerCubes.Generate();
     }
 
@@ -22,13 +23,16 @@ public class LevelManager : MonoBehaviour
     public void ShowWin()
     {
         print("Уровень пройден");
-        StartCoroutine(StartNextLevel());
     }
     
     private IEnumerator StartNextLevel()
     {
         var waitForDelaySeconds = new WaitForSeconds(_delayAnimation);
         
+        _canvas.SetVisibleTextStartLevel(true);
+        
         yield return waitForDelaySeconds;
+        
+        _canvas.SetVisibleTextStartLevel(false);
     }
 }
