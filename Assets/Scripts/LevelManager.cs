@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float _delayAnimation;
-    [SerializeField] private Canvas _canvas;
+    [SerializeField] private CanvasComponent _canvas;
     [SerializeField] private SpawnerCubes _spawnerCubes;
 
     private void Start()
