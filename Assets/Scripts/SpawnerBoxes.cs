@@ -8,21 +8,29 @@ public class SpawnerBoxes : MonoBehaviour
     [SerializeField] private List<Cell> _allCells;
     [SerializeField] private float _delayActivate;
 
-    private List<Cell> _freeCells = new List<Cell>();
+    private readonly List<Cell> _freeCells = new List<Cell>();
     private bool _isActive = false;
+    private int _numberOfBoxes;
 
     private void OnDisable()
     {
-        StopCoroutine(Activate());
+        StopCoroutine(GenerateBoxes());
     }
 
-    private void Start()
+    public void Activate(int numberOfBoxes)
     {
         _isActive = true;
-        StartCoroutine(Activate());
+        _numberOfBoxes += numberOfBoxes;
+        StartCoroutine(GenerateBoxes());
+    }
+    
+    private void Stop()
+    {
+        _isActive = false;
+        StopCoroutine(GenerateBoxes());
     }
 
-    private IEnumerator Activate()
+    private IEnumerator GenerateBoxes()
     {
         var waitForDelaySeconds = new WaitForSeconds(_delayActivate);
         
@@ -48,7 +56,15 @@ public class SpawnerBoxes : MonoBehaviour
 
     private void GenerateBox()
     {
-        if (TryFindFreeCell())
+        if (TryFindFreeCell() && _numberOfBoxes > 0)
+        {
             _freeCells[Random.RandomRange(0, _freeCells.Count)].InstantiateBox();
+            _numberOfBoxes--;
+
+            if (_numberOfBoxes == 0)
+            {
+                Stop();
+            }
+        }
     }
 }

@@ -11,21 +11,17 @@ public class SpawnerCubes : ObjectPool
     [SerializeField] private Cube _cubePrefab;
     [SerializeField] private LevelManager _levelManager;
 
-    private int _currentLevel;
-
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
-    private const int Level = 1;
 
     private void Awake()
     {
         Initialize(_cubePrefab.gameObject);
-        _currentLevel = Level;
     }
 
-    public void Generate()
+    public void Generate(int currentLevel)
     {
-        for (var i = 0; i < _currentLevel; i++)
+        for (var i = 0; i < currentLevel; i++)
         {
             foreach (var point in _points)
             {

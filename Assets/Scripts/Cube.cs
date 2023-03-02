@@ -23,11 +23,6 @@ public class Cube : MonoBehaviour
         transform.position = position;
     }
 
-    private void OnDisable()
-    {
-        
-    }
-
     public void SetSpawner(SpawnerCubes spawnerCubes)
     {
         _spawnerCubes = spawnerCubes;
