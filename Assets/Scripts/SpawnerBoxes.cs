@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnerBoxes : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class SpawnerBoxes : MonoBehaviour
     private bool _isActive = false;
     private int _numberOfBoxes;
 
+    private void Start()
+    {
+        StartCoroutine(GenerateBoxes());
+    }
+
     private void OnDisable()
     {
         StopCoroutine(GenerateBoxes());
@@ -21,13 +28,11 @@ public class SpawnerBoxes : MonoBehaviour
     {
         _isActive = true;
         _numberOfBoxes += numberOfBoxes;
-        StartCoroutine(GenerateBoxes());
     }
     
     private void Stop()
     {
         _isActive = false;
-        StopCoroutine(GenerateBoxes());
     }
 
     private IEnumerator GenerateBoxes()
