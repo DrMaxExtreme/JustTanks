@@ -85,9 +85,16 @@ public class Cell : MonoBehaviour
         StartCoroutine(DelaySpawnedTank(upgradeTankIndex));
     }
     
-    public void SetTankAttackMode()
+    public void SetTankAttackMode() //Убрать дублирование
     {
-        _currentTank.SetAttackMode(_isActivatingAttackingTank);
+        if(_currentTank != null)
+            _currentTank.SetAttackMode(_isActivatingAttackingTank);
+    }
+
+    public void SetAttackingMode(bool isActivating)  //Убрать дублирование
+    {
+        if(_currentTank != null)
+            _currentTank.SetAttackMode(isActivating);
     }
 
     private void OpenBox()

@@ -13,26 +13,29 @@ public class SpawnerBoxes : MonoBehaviour
     private readonly List<Cell> _freeCells = new List<Cell>();
     private bool _isActive = false;
     private int _numberOfBoxes;
+    private Coroutine _spawnedJob;
 
     private void Start()
     {
-        StartCoroutine(GenerateBoxes());
+        _spawnedJob = StartCoroutine(GenerateBoxes());
     }
 
     private void OnDisable()
     {
-        StopCoroutine(GenerateBoxes());
+        StopCoroutine(_spawnedJob);
     }
 
     public void Activate(int numberOfBoxes)
     {
         _isActive = true;
         _numberOfBoxes += numberOfBoxes;
+        _spawnedJob = StartCoroutine(GenerateBoxes());
     }
     
     private void Stop()
     {
-        _isActive = false;
+        if(_spawnedJob != null)
+            StopCoroutine(_spawnedJob);
     }
 
     private IEnumerator GenerateBoxes()
