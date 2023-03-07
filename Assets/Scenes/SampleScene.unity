@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &166556136 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3527148129318562838, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
-  m_PrefabInstance: {fileID: 7973123312775485922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19c8e61b83aa70429eb8270bdeddbe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &183614575
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,17 +276,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183614575}
   m_CullTransparentMesh: 1
---- !u!114 &337811871 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5631889014955933734, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
-  m_PrefabInstance: {fileID: 7973123312775485922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19c8e61b83aa70429eb8270bdeddbe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &362013265
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,12 +442,6 @@ MonoBehaviour:
   _canvas: {fileID: 2128691194}
   _spawnerCubes: {fileID: 1737690589}
   _spawnerBoxes: {fileID: 725248290}
-  _AttackTankCells:
-  - {fileID: 166556136}
-  - {fileID: 337811871}
-  - {fileID: 1386144017}
-  - {fileID: 1318868759}
-  - {fileID: 1030877240}
 --- !u!4 &411673769
 Transform:
   m_ObjectHideFlags: 0
@@ -958,17 +930,6 @@ MonoBehaviour:
   _layerMaskCells:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &1030877240 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1992502720542754034, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
-  m_PrefabInstance: {fileID: 7973123312775485922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19c8e61b83aa70429eb8270bdeddbe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1172985238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,17 +1082,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1318868759 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4810585373471985805, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
-  m_PrefabInstance: {fileID: 7973123312775485922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19c8e61b83aa70429eb8270bdeddbe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1326371234
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,17 +1261,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355355968}
   m_CullTransparentMesh: 1
---- !u!114 &1386144017 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
-  m_PrefabInstance: {fileID: 7973123312775485922}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19c8e61b83aa70429eb8270bdeddbe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1438765974
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,6 +2688,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1860980167922852499, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 1860980167922852499, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 963194229}
@@ -2789,6 +2732,10 @@ PrefabInstance:
       value: Cell
       objectReference: {fileID: 0}
     - target: {fileID: 1992502720542754034, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 1992502720542754034, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _isActivatingAttackingTank
       value: 1
       objectReference: {fileID: 0}
@@ -2828,6 +2775,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2299872930155780751, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 2299872930155780751, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2872,6 +2823,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 2782397625986840054, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 2782397625986840054, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2948,6 +2903,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3527148129318562838, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 3527148129318562838, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _isActivatingAttackingTank
       value: 1
@@ -3045,6 +3004,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4347454719723773987, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 4347454719723773987, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 963194229}
@@ -3101,6 +3064,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4810585373471985805, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 4810585373471985805, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _isActivatingAttackingTank
       value: 1
       objectReference: {fileID: 0}
@@ -3136,6 +3103,10 @@ PrefabInstance:
       propertyPath: _delayActivate
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _isActivatingAttackingTank
       value: 1
@@ -3184,6 +3155,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5175342408260231114, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 5175342408260231114, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3277,6 +3252,10 @@ PrefabInstance:
       value: Cell
       objectReference: {fileID: 0}
     - target: {fileID: 5631889014955933734, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 5631889014955933734, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _isActivatingAttackingTank
       value: 1
       objectReference: {fileID: 0}
@@ -3320,6 +3299,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6131535419864621291, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 6131535419864621291, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3385,6 +3368,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: cbb9a93dcdbeb7b46a47a69f970f8927, type: 2}
     - target: {fileID: 6819461424849032609, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 6819461424849032609, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 963194229}
@@ -3400,6 +3387,10 @@ PrefabInstance:
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6879986867061646102, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 6879986867061646102, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3593,6 +3584,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8072766593361956580, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
+    - target: {fileID: 8072766593361956580, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 963194229}
@@ -3636,6 +3631,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8369465497073704237, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: _spawnerCubes
+      value: 
+      objectReference: {fileID: 1737690589}
     - target: {fileID: 8369465497073704237, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _selectedTank.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

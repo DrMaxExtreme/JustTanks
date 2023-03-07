@@ -9,7 +9,7 @@ public class ObjectPool : MonoBehaviour
 
     private List<GameObject> _pool = new List<GameObject>();
 
-    public List<GameObject> Pool => _pool;
+    protected List<GameObject> Pool => _pool;
     
     protected void ClearPool()
     {

@@ -134,6 +134,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _spawnerCubes: {fileID: 2746741016360997196, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
+  _isActivatingAttackingTank: 0
 --- !u!1 &6002047325549261116
 GameObject:
   m_ObjectHideFlags: 0

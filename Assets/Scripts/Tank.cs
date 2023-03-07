@@ -10,7 +10,7 @@ public class Tank : ObjectPool
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
     
-    private SpawnerCubes _spawnerCubes; //получить пул, найти ближайший куб и стрелять в него. Если кубов нет, не стрелять.
+    private List<GameObject> _cubesPool;
     private bool _isAttacking;
     private Coroutine _shootJob;
     
@@ -19,6 +19,8 @@ public class Tank : ObjectPool
     private void Start()
     {
         Initialize(_bulletPrefab.gameObject);
+        
+        
     }
 
     private void OnDisable()
@@ -42,6 +44,12 @@ public class Tank : ObjectPool
         }
     }
 
+    public void TakePool(List<GameObject> cubesPool)
+    {
+        if (_cubesPool == null)
+            _cubesPool = cubesPool;  //Найти ближайший куб и стрелять в него. Если кубов нет, не стрелять.
+    }
+
     private void Shot()
     {
         foreach (var bulletSpawnPosition in _bulletSpawnPositions)
@@ -49,7 +57,6 @@ public class Tank : ObjectPool
             if(TryGetObject(out var bullet))
             {
                 SetBullet(bullet, bulletSpawnPosition.position);
-                print(_spawnerCubes.ShowPool());
             }
         }
     }
