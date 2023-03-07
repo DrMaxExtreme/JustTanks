@@ -43,6 +43,11 @@ public class SpawnerCubes : ObjectPool
         if (TryFindObject())
             _levelManager.ShowWin();
     }
+
+    public List<GameObject> ShowPool()
+    {
+        return Pool;
+    }
     
     private void SetPrefab(GameObject cube, Vector3 spawnPosition)
     {

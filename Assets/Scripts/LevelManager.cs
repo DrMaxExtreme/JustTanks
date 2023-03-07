@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private CanvasComponent _canvas;
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
-    [SerializeField] private Cell[] _AttackTankCells;
 
     private int _currentLevel = 1;
     
@@ -26,22 +25,13 @@ public class LevelManager : MonoBehaviour
     public void ShowWin()
     {
         _currentLevel++;
+        _spawnerBoxes.Stop();
         _canvas.SetVisibleContinueGameIcon(true);
-        SwitchAttackTankCells(false);
     }
 
     public void StartNextLevel()
     {
         StartCoroutine(StartedNextLevel());
-    }
-
-    private void SwitchAttackTankCells(bool isActivating)
-    {
-        foreach (var cell in _AttackTankCells)
-        {
-            cell.SetAttackingMode(isActivating);
-            print(isActivating);
-        }
     }
     
     private IEnumerator StartedNextLevel()
@@ -54,7 +44,6 @@ public class LevelManager : MonoBehaviour
         _canvas.SetVisibleStartLevelLabel(true);
         _canvas.UpdateText(_currentLevel);
         _spawnerBoxes.Activate(_currentLevel);
-        SwitchAttackTankCells(true);
         
         yield return waitForDelaySeconds;
         

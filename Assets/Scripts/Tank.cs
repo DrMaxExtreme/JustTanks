@@ -9,7 +9,8 @@ public class Tank : ObjectPool
     [SerializeField] private Transform[] _bulletSpawnPositions;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
-
+    
+    private SpawnerCubes _spawnerCubes; //получить пул, найти ближайший куб и стрелять в него. Если кубов нет, не стрелять.
     private bool _isAttacking;
     private Coroutine _shootJob;
     
@@ -48,6 +49,7 @@ public class Tank : ObjectPool
             if(TryGetObject(out var bullet))
             {
                 SetBullet(bullet, bulletSpawnPosition.position);
+                print(_spawnerCubes.ShowPool());
             }
         }
     }
