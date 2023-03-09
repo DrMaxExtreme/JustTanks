@@ -19,8 +19,6 @@ public class Tank : ObjectPool
     private void Start()
     {
         Initialize(_bulletPrefab.gameObject);
-        
-        
     }
 
     private void OnDisable()
