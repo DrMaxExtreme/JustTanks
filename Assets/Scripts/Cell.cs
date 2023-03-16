@@ -92,6 +92,12 @@ public class Cell : MonoBehaviour
             _currentTank.SetAttackMode(_isActivatingAttackingTank);
     }
 
+    public void SetActivatingAttackingTank(bool isActivatingAttackingTank)
+    {
+        _isActivatingAttackingTank = isActivatingAttackingTank;
+        SetTankAttackMode();
+    }
+
     private void OpenBox()
     {
         StartCoroutine(DelaySpawnedTank(IndexSpawnedTank));

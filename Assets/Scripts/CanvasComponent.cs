@@ -12,9 +12,12 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private GameObject _continueGameIcon;
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _startLevel;
+    [SerializeField] private MPImage _timerFill;
+    [SerializeField] private TMP_Text _countBoxes;
 
     private const string _currentLevelText = "Lv";
     private const string _startLevelText = "Start Lv: ";
+    private const string _spawnedBoxes = "x";
     
     public void SetVisibleStartLevelLabel(bool isVisible)
     {
@@ -31,9 +34,15 @@ public class CanvasComponent : MonoBehaviour
         _continueGameIcon.SetActive(isVisible);
     }
 
-    public void UpdateText(int currentLevel)
+    public void UpdateTextLevel(int currentLevel)
     {
         _currentLevel.text = _currentLevelText + currentLevel;
         _startLevel.text = _startLevelText + currentLevel;
+    }
+
+    public void UpdateTextCountBoxes(int currentBoxes, float fillValue)
+    {
+        _countBoxes.text = _spawnedBoxes + currentBoxes;
+        _timerFill.fillAmount = fillValue;
     }
 }

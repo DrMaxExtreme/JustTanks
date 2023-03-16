@@ -8,16 +8,39 @@ using Random = UnityEngine.Random;
 public class SpawnerBoxes : MonoBehaviour
 {
     [SerializeField] private List<Cell> _allCells;
-    [SerializeField] private float _delayActivate;
+    [SerializeField] private float _delayBetweenActivate;
+    [SerializeField] private CanvasComponent _canvasComponent;
 
     private readonly List<Cell> _freeCells = new List<Cell>();
     private bool _isActive = true;
+    private float _remainingDelay;
     private int _numberOfBoxes;
-    private Coroutine _isSpawned;
 
     private void Start()
     {
-        _isSpawned = StartCoroutine(GenerateBoxes());
+        UpdateUIIconBoxes();
+    }
+
+    private void Update()
+    {
+        if (_numberOfBoxes == 0)
+        {
+            _isActive = false;
+            UpdateUIIconBoxes();
+            _remainingDelay = 0;
+        }
+        
+        if (_isActive)
+        {
+            _remainingDelay -= Time.deltaTime;
+            UpdateUIIconBoxes();
+
+            if (TryFindFreeCell() && _numberOfBoxes > 0 && _remainingDelay <= 0)
+            {
+                GenerateBox();
+                _remainingDelay = _delayBetweenActivate;
+            }
+        }
     }
 
     private void OnDisable()
@@ -28,26 +51,12 @@ public class SpawnerBoxes : MonoBehaviour
     public void Activate(int numberOfBoxes)
     {
         _numberOfBoxes += numberOfBoxes;
-        _isSpawned = StartCoroutine(GenerateBoxes());
+        _isActive = true;
     }
 
     public void Stop()
     {
-        if(_isSpawned != null)
-            StopCoroutine(_isSpawned);
-    }
-
-    private IEnumerator GenerateBoxes()
-    {
-        var waitForDelaySeconds = new WaitForSeconds(_delayActivate);
-        
-        while (_isActive)
-        {
-            if (TryFindFreeCell() && _numberOfBoxes > 0)
-                GenerateBox();
-
-            yield return waitForDelaySeconds;
-        }
+        _isActive = false;
     }
 
     private bool TryFindFreeCell()
@@ -69,5 +78,11 @@ public class SpawnerBoxes : MonoBehaviour
             _freeCells[Random.RandomRange(0, _freeCells.Count)].InstantiateBox();
             _numberOfBoxes--;
         }
+    }
+
+    private void UpdateUIIconBoxes()
+    {
+        float normalazeDelay = _remainingDelay / _delayBetweenActivate;
+        _canvasComponent.UpdateTextCountBoxes(_numberOfBoxes, normalazeDelay);
     }
 }
