@@ -8,15 +8,10 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
     [SerializeField] private float _damage;
-    
-    private Vector3 _targetPosition;
 
     private void FixedUpdate()
     {
-        var position = transform.position;
-        _targetPosition = new Vector3(position.x, position.y, position.z + _distance);
-        position = Vector3.MoveTowards(position, _targetPosition, _speed);
-        transform.position = position;
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.forward, _speed);
     }
 
     private void OnTriggerEnter(Collider collision)
