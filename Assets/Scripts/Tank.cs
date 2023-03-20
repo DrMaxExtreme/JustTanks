@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class Tank : ObjectPool
     private bool _isAttacking;
     private Coroutine _shootJob;
     private Vector3 _targetPosition;
+    private Vector3 _directoion;
     
     public int Level => _level;
 
@@ -90,25 +92,19 @@ public class Tank : ObjectPool
         {
             if(cube.active == true)
             {
-                Vector3 direction = cube.transform.position - transform.position;
-                distanceMagnitude = direction.magnitude;
+                _directoion = cube.transform.position - transform.position;
+                distanceMagnitude = _directoion.magnitude;
 
                 if (distanceMagnitude < nearestDistance)
                 {
                     nearestDistance = distanceMagnitude;
                     _targetPosition = cube.transform.position;
                     transform.LookAt(_targetPosition);
-                    transform.rotation = Quaternion.Euler(0, CalculateRotation(direction), 0);
                     isSecect = true;
                 }
             }
         }
 
         return isSecect;
-    }
-
-    private float CalculateRotation(Vector3 direction)
-    {
-        return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
     }
 }

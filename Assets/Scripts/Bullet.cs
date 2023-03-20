@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.forward, _speed);
+        Move();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -23,5 +25,10 @@ public class Bullet : MonoBehaviour
 
             gameObject.SetActive(false);
         }
+    }
+
+    private void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.forward, _speed);
     }
 }
