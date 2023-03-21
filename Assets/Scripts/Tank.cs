@@ -59,6 +59,7 @@ public class Tank : ObjectPool
             if(TryGetObject(out var bullet))
             {
                 SetBullet(bullet, bulletSpawnPosition.position);
+                bullet.gameObject.GetComponent<Bullet>().GetTransform(bulletSpawnPosition);
             }
         }
     }

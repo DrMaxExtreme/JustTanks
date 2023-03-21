@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.1
-  _distance: 1
+  _distance: 100
   _damage: 1
 --- !u!65 &633805474243655305
 BoxCollider:

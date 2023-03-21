@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _distance;
     [SerializeField] private float _damage;
 
+    private Transform _directionTransform;
+    
     private void FixedUpdate()
     {
         Move();
@@ -29,6 +31,15 @@ public class Bullet : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.forward, _speed);
+        var position = _directionTransform.localPosition;
+        Vector3 targetPosition = new Vector3(position.x, position.y,position.z + _distance);
+        
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition , _speed);
+    }
+
+    public void GetTransform(Transform directionTransform)
+    {
+        _directionTransform = directionTransform;
+        transform.rotation = directionTransform.localRotation;
     }
 }
