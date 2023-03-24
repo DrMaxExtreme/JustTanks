@@ -9,6 +9,7 @@ public class Tank : ObjectPool
 {
     [SerializeField] private int _level;
     [SerializeField] private Transform[] _bulletSpawnPositions;
+    [SerializeField] private Transform[] _bulletTargetPositions;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
     
@@ -52,16 +53,42 @@ public class Tank : ObjectPool
             _cubesPool = cubesPool;
     }
 
-    private void Shot()
+    private bool TrySelectNearestTarget()
     {
-        foreach (var bulletSpawnPosition in _bulletSpawnPositions)
+        float nearestDistance = float.MaxValue;
+        float distanceMagnitude;
+        bool isSecect = false;
+
+        foreach (var cube in _cubesPool)
         {
-            if(TryGetObject(out var bullet))
+            if (cube.active == true)
             {
-                SetBullet(bullet, bulletSpawnPosition.position);
-                bullet.gameObject.GetComponent<Bullet>().GetTransform(bulletSpawnPosition);
+                _directoion = cube.transform.position - transform.position;
+                distanceMagnitude = _directoion.magnitude;
+
+                if (distanceMagnitude < nearestDistance)
+                {
+                    nearestDistance = distanceMagnitude;
+                    _targetPosition = cube.transform.position;
+                    transform.LookAt(_targetPosition);
+                    isSecect = true;
+                }
             }
         }
+
+        return isSecect;
+    }
+
+    private void Shot()
+    {
+         for (int i = 0; i < _bulletSpawnPositions.Length; i++)
+         {
+             if (TryGetObject(out var bullet))
+             {
+                 SetBullet(bullet, _bulletSpawnPositions[i].position);
+                 bullet.gameObject.GetComponent<Bullet>().GetTargetTransform(_bulletTargetPositions[i].position);
+             }
+         }
     }
     
     private IEnumerator Shoot()
@@ -81,31 +108,5 @@ public class Tank : ObjectPool
     {
         bullet.SetActive(true);
         bullet.transform.position = spawnPosition;
-    }
-
-    private bool TrySelectNearestTarget()
-    {
-        float nearestDistance = float.MaxValue;
-        float distanceMagnitude;
-        bool isSecect = false;
-
-        foreach (var cube in _cubesPool)
-        {
-            if(cube.active == true)
-            {
-                _directoion = cube.transform.position - transform.position;
-                distanceMagnitude = _directoion.magnitude;
-
-                if (distanceMagnitude < nearestDistance)
-                {
-                    nearestDistance = distanceMagnitude;
-                    _targetPosition = cube.transform.position;
-                    transform.LookAt(_targetPosition);
-                    isSecect = true;
-                }
-            }
-        }
-
-        return isSecect;
     }
 }

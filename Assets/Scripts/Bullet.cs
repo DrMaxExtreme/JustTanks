@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _distance;
     [SerializeField] private float _damage;
 
-    private Transform _directionTransform;
+    private Vector3 _targetPoint;
     
     private void FixedUpdate()
     {
@@ -20,26 +20,31 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.TryGetComponent(out Cube cube) || collision.gameObject.TryGetComponent(out BulletDestroyer destroyer))
+        if(collision.gameObject.TryGetComponent(out Cube cube))
         {
             if (cube != null)
                 cube.TakeDamage(_damage);
 
-            gameObject.SetActive(false);
+            Disactivate();
         }
     }
 
     private void Move()
     {
-        var position = _directionTransform.localPosition;
-        Vector3 targetPosition = new Vector3(position.x, position.y,position.z + _distance);
-        
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition , _speed);
+        transform.position = Vector3.MoveTowards(transform.position, _targetPoint, _speed);
+
+        if (transform.position == _targetPoint)
+            Disactivate();
     }
 
-    public void GetTransform(Transform directionTransform)
+    public void GetTargetTransform(Vector3 targetTransform)
     {
-        _directionTransform = directionTransform;
-        transform.rotation = directionTransform.localRotation;
+        _targetPoint = targetTransform;
+        transform.LookAt(_targetPoint);
+    }
+
+    private void Disactivate()
+    {
+        gameObject.SetActive(false);
     }
 }
