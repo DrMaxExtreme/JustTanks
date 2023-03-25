@@ -153,9 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cf87b46b9d4d840a6b22920fcc3467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnerCubes: {fileID: 2746741016360997196, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
   _textHealth: {fileID: 1495798430175975889}
-  _speed: 0.003
+  _speed: 0.005
   _distance: 1
 --- !u!65 &7107017799176326465
 BoxCollider:

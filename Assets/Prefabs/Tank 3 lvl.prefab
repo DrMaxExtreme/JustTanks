@@ -138,7 +138,7 @@ MonoBehaviour:
   _bulletTargetPositions:
   - {fileID: 6401838981726091545}
   _bulletPrefab: {fileID: 3931665041826364499, guid: d04e1d6b332437f4e9fad40be87484a4, type: 3}
-  _delayBetweenShots: 0.35
+  _delayBetweenShots: 0.4
 --- !u!1 &5015653358917204044
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5015653358917204044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 25}
+  m_LocalPosition: {x: 0, y: 0.3, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
