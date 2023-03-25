@@ -3764,7 +3764,7 @@ PrefabInstance:
       objectReference: {fileID: 2128691194}
     - target: {fileID: 4854189908988665228, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _delayBetweenActivate
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _spawnerCubes

@@ -17,7 +17,7 @@ public class Tank : ObjectPool
     private bool _isAttacking;
     private Coroutine _shootJob;
     private Vector3 _targetPosition;
-    private Vector3 _directoion;
+    private Vector3 _direction;
     
     public int Level => _level;
 
@@ -56,27 +56,26 @@ public class Tank : ObjectPool
     private bool TrySelectNearestTarget()
     {
         float nearestDistance = float.MaxValue;
-        float distanceMagnitude;
-        bool isSecect = false;
+        bool isSelect = false;
 
         foreach (var cube in _cubesPool)
         {
             if (cube.active == true)
             {
-                _directoion = cube.transform.position - transform.position;
-                distanceMagnitude = _directoion.magnitude;
+                _direction = cube.transform.position - transform.position;
+                var directionMagnitude = _direction.magnitude;
 
-                if (distanceMagnitude < nearestDistance)
+                if (directionMagnitude < nearestDistance)
                 {
-                    nearestDistance = distanceMagnitude;
+                    nearestDistance = directionMagnitude;
                     _targetPosition = cube.transform.position;
                     transform.LookAt(_targetPosition);
-                    isSecect = true;
+                    isSelect = true;
                 }
             }
         }
 
-        return isSecect;
+        return isSelect;
     }
 
     private void Shot()
