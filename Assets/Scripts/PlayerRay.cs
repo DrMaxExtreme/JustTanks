@@ -41,7 +41,7 @@ public class PlayerRay : MonoBehaviour
                     if (newSelectedCell.TryFindHaveObject() == false)
                     {
                         newSelectedCell.TakeTank(_selectedCell.GiveTank());
-                        _selectedCell.ClearCell();
+                        _selectedCell.ClearTank();
                     }
                     else if (newSelectedCell.CurrentTank != null)
                     {

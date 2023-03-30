@@ -57,7 +57,7 @@ public class Cell : MonoBehaviour
         return _currentTank;
     }
 
-    public void ClearCell()
+    public void ClearTank()
     {
         _currentTank = null;
     }
@@ -96,6 +96,15 @@ public class Cell : MonoBehaviour
     {
         _isActivatingAttackingTank = isActivatingAttackingTank;
         SetTankAttackMode();
+    }
+
+    public void Clear()
+    {
+        if(_currentTank != null )
+            Destroy(_currentTank.gameObject);
+
+        if (_currentBox != null)
+            Destroy(_currentBox.gameObject);
     }
 
     private void OpenBox()
