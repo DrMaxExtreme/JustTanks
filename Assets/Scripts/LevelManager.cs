@@ -1,20 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private float _delayAnimation;
+    [SerializeField] private float _delayStartLevelAnimation;
     [SerializeField] private CanvasComponent _canvas;
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
     [SerializeField] private Cell[] _activateAttackTankCells;
 
     private int _currentLevel = 1;
-    
+    private int _firstLevel = 1;
+    private float _normalTimeScale;
+
     private void Start()
     {
+        _normalTimeScale = Time.timeScale;
         _canvas.SetVisibleStartGameIcon(true);
     }
 
@@ -36,14 +41,24 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(StartedNextLevel());
         SetActivateAttackModeTankCells(true);
     }
+
+    public void ShowGameOver()
+    {
+        _canvas.SetVisibleGameOverIcon(true);
+        _spawnerCubes.ReleasePool();
+        _currentLevel = _firstLevel;
+        Time.timeScale = 0;
+    }
     
     private IEnumerator StartedNextLevel()
     {
-        var waitForDelaySeconds = new WaitForSeconds(_delayAnimation);
-        
+        var waitForDelaySeconds = new WaitForSeconds(_delayStartLevelAnimation);
+
+        Time.timeScale = _normalTimeScale;
         _spawnerCubes.Generate(_currentLevel);
         _canvas.SetVisibleStartGameIcon(false);
         _canvas.SetVisibleContinueGameIcon(false);
+        _canvas.SetVisibleGameOverIcon(false);
         _canvas.SetVisibleStartLevelLabel(true);
         _canvas.UpdateTextLevel(_currentLevel);
         _spawnerBoxes.Activate(_currentLevel);

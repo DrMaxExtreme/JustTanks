@@ -13,7 +13,7 @@ public class ObjectPool : MonoBehaviour
     
     protected void ClearPool()
     {
-        _pool = null;
+        _pool.Clear();
     }
 
     protected void Initialize(GameObject prefab)
@@ -37,5 +37,13 @@ public class ObjectPool : MonoBehaviour
     protected bool TryFindObject()
     {
         return _pool.All(p => p.activeSelf == false);
+    }
+
+    protected void Release()
+    {
+        foreach (var item in _pool)
+        {
+            item.gameObject.SetActive(false);
+        }
     }
 }

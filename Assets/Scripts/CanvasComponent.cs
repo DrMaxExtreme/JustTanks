@@ -10,6 +10,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private GameObject _startLevelLabel;
     [SerializeField] private GameObject _startGameIcon;
     [SerializeField] private GameObject _continueGameIcon;
+    [SerializeField] private GameObject _gameOverIcon;
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _startLevel;
     [SerializeField] private MPImage _timerFill;
@@ -44,5 +45,10 @@ public class CanvasComponent : MonoBehaviour
     {
         _countBoxes.text = _spawnedBoxes + currentBoxes;
         _timerFill.fillAmount = fillValue;
+    }
+
+    public void SetVisibleGameOverIcon(bool isVisible)
+    {
+        _gameOverIcon.SetActive(isVisible);
     }
 }

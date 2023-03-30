@@ -49,7 +49,12 @@ public class SpawnerCubes : ObjectPool
     {
         return Pool;
     }
-    
+
+    public void ReleasePool()
+    {
+        Release();
+    }
+
     private void SetPrefab(GameObject cube, Vector3 spawnPosition)
     {
         cube.SetActive(true);
