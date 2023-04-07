@@ -92,12 +92,6 @@ public class Cell : MonoBehaviour
             _currentTank.SetAttackMode(_isActivatingAttackingTank);
     }
 
-    public void SetActivatingAttackingTank(bool isActivatingAttackingTank)
-    {
-        _isActivatingAttackingTank = isActivatingAttackingTank;
-        SetTankAttackMode();
-    }
-
     public void Clear()
     {
         if(_currentTank != null )

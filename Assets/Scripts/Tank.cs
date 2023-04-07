@@ -5,7 +5,7 @@ using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Tank : ObjectPool
+public class Tank : MonoBehaviour
 {
     [SerializeField] private int _level;
     [SerializeField] private Transform[] _bulletSpawnPositions;
@@ -21,15 +21,9 @@ public class Tank : ObjectPool
     
     public int Level => _level;
 
-    private void Start()
-    {
-        Initialize(_bulletPrefab.gameObject);
-    }
-
     private void OnDisable()
     {
         StopCoroutine(Shoot());
-        ClearPool();
     }
 
     public void SetAttackMode(bool isAttacking)
@@ -82,11 +76,11 @@ public class Tank : ObjectPool
     {
          for (int i = 0; i < _bulletSpawnPositions.Length; i++)
          {
-             if (TryGetObject(out var bullet))
-             {
-                 SetBullet(bullet, _bulletSpawnPositions[i].position);
-                 bullet.gameObject.GetComponent<Bullet>().GetTargetTransform(_bulletTargetPositions[i].position);
-             }
+              Vector3 target = new Vector3(Convert.ToSingle(_bulletTargetPositions[i].position.x), Convert.ToSingle(_bulletTargetPositions[i].position.y), Convert.ToSingle(_bulletTargetPositions[i].position.z));
+
+              Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawnPositions[i].position, Quaternion.identity, null);
+              
+              bullet.gameObject.GetComponent<Bullet>().GetTargetTransform(target);
          }
     }
     
@@ -101,11 +95,5 @@ public class Tank : ObjectPool
             if(TrySelectNearestTarget() == true)
                 Shot();
         }
-    }
-
-    private void SetBullet(GameObject bullet, Vector3 spawnPosition)
-    {
-        bullet.SetActive(true);
-        bullet.transform.position = spawnPosition;
     }
 }

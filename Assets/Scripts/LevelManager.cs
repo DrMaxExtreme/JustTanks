@@ -8,6 +8,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private float _delayStartLevelAnimation;
+    [SerializeField] private BulletDestroyer _bulletDestroyer;
     [SerializeField] private CanvasComponent _canvas;
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
@@ -43,11 +44,11 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0;
         _canvas.SetVisibleGameOverIcon(true);
         _spawnerCubes.ReleasePool();
         _currentLevel = _firstLevel;
         ClearAllCells();
-        Time.timeScale = 0;
     }
     
     private IEnumerator StartedNextLevel()
@@ -62,6 +63,7 @@ public class LevelManager : MonoBehaviour
         _canvas.SetVisibleStartLevelLabel(true);
         _canvas.UpdateTextLevel(_currentLevel);
         _spawnerBoxes.Activate(_currentLevel);
+        _bulletDestroyer.Activate();
         
         yield return waitForDelaySeconds;
         

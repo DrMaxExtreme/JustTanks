@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
             if (cube != null)
                 cube.TakeDamage(_damage);
 
-            Disactivate();
+            Destroy();
         }
     }
 
@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _targetPoint, _speed);
 
         if (transform.position == _targetPoint)
-            Disactivate();
+            Destroy();
     }
 
     public void GetTargetTransform(Vector3 targetTransform)
@@ -43,8 +43,8 @@ public class Bullet : MonoBehaviour
         transform.LookAt(_targetPoint);
     }
 
-    private void Disactivate()
+    private void Destroy()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

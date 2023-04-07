@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayStartLevelAnimation: 2.5
+  _bulletDestroyer: {fileID: 1643195525}
   _canvas: {fileID: 2128691194}
   _spawnerCubes: {fileID: 1737690589}
   _spawnerBoxes: {fileID: 725248290}
@@ -2171,6 +2172,17 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 180, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1643195525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2476553794415952516, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+  m_PrefabInstance: {fileID: 7973123312775485922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9076672722449474d89bd6a0ffbe6979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1659732639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1860980167922852499, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}

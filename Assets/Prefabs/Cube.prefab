@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textHealth: {fileID: 1495798430175975889}
-  _speed: 0.005
+  _speed: 0.003
   _distance: 1
 --- !u!65 &7107017799176326465
 BoxCollider:
