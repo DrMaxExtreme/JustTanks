@@ -401,7 +401,7 @@ MonoBehaviour:
   - {fileID: 9178220240199941028}
   - {fileID: 2761439032862700190}
   _bulletPrefab: {fileID: 3931665041826364499, guid: d04e1d6b332437f4e9fad40be87484a4, type: 3}
-  _delayBetweenShots: 0.6
+  _delayBetweenShots: 0.285
 --- !u!1 &9191277035411056958
 GameObject:
   m_ObjectHideFlags: 0
