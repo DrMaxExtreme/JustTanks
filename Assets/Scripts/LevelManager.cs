@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
     [SerializeField] private Cell[] _allCells;
 
+    private int _bestCurrentLevelTank = -1;
     private int _currentLevel = 1;
     private int _firstLevel = 1;
     private float _normalTimeScale;
@@ -49,6 +50,22 @@ public class LevelManager : MonoBehaviour
         _spawnerCubes.ReleasePool();
         _currentLevel = _firstLevel;
         ClearAllCells();
+    }
+
+    public void CheckTankLevel(int level)
+    {
+        if (level > _bestCurrentLevelTank)
+        {
+            _bestCurrentLevelTank = level;
+            _canvas.SetVisibleNewTankIcon(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    public void CloseNewTankIcon()
+    {
+        Time.timeScale = _normalTimeScale;
+        _canvas.SetVisibleNewTankIcon(false);
     }
     
     private IEnumerator StartedNextLevel()

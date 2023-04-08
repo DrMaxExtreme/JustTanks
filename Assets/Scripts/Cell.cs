@@ -13,6 +13,7 @@ public class Cell : MonoBehaviour
     [SerializeField] private Tank[] _tankPrefabs;
     [SerializeField] private UnityEvent _selectedTank;
     [SerializeField] private SpawnerCubes _spawnerCubes;
+    [SerializeField] private LevelManager _levelManager;
     [SerializeField] private bool _isActivatingAttackingTank;
 
     private Box _currentBox;
@@ -122,5 +123,6 @@ public class Cell : MonoBehaviour
         _currentTank = Instantiate(_tankPrefabs[indexSpawnedTank], _spawnPoint);
         _currentTank.TakePool(_spawnerCubes.ShowPool());
         SetTankAttackMode();
+        _levelManager.CheckTankLevel(indexSpawnedTank);
     }
 }

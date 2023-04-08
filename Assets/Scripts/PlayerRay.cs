@@ -17,38 +17,46 @@ public class PlayerRay : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_isSelectedTank)
+        if (Time.timeScale > 0)
         {
-            if (Input.GetMouseButton(0))
+            if (_isSelectedTank)
             {
-                _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(_ray, out _hit, RayDistance))
-                    _selectedCell.SetPositionTank(_hit.point);
-                else
-                    _selectedCell.SetPositionTank(_oldTankPosition);
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Cell newSelectedCell = null;
-
-                if (Physics.Raycast(ray, out var hit, RayDistance, _layerMaskCells))
-                    newSelectedCell = hit.collider.gameObject.GetComponent<Cell>();
-
-                if (newSelectedCell != null)
+                if (Input.GetMouseButton(0))
                 {
-                    if (newSelectedCell.TryFindHaveObject() == false)
+                    _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(_ray, out _hit, RayDistance))
+                        _selectedCell.SetPositionTank(_hit.point);
+                    else
+                        _selectedCell.SetPositionTank(_oldTankPosition);
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    Cell newSelectedCell = null;
+
+                    if (Physics.Raycast(ray, out var hit, RayDistance, _layerMaskCells))
+                        newSelectedCell = hit.collider.gameObject.GetComponent<Cell>();
+
+                    if (newSelectedCell != null)
                     {
-                        newSelectedCell.TakeTank(_selectedCell.GiveTank());
-                        _selectedCell.ClearTank();
-                    }
-                    else if (newSelectedCell.CurrentTank != null)
-                    {
-                        if(newSelectedCell.IsHaveTankForUpgrade(_selectedCell.CurrentTank.Level) && newSelectedCell != _selectedCell)
+                        if (newSelectedCell.TryFindHaveObject() == false)
                         {
-                            _selectedCell.DestroyTank();
-                            newSelectedCell.UpgradeTank();
+                            newSelectedCell.TakeTank(_selectedCell.GiveTank());
+                            _selectedCell.ClearTank();
+                        }
+                        else if (newSelectedCell.CurrentTank != null)
+                        {
+                            if (newSelectedCell.IsHaveTankForUpgrade(_selectedCell.CurrentTank.Level) &&
+                                newSelectedCell != _selectedCell)
+                            {
+                                _selectedCell.DestroyTank();
+                                newSelectedCell.UpgradeTank();
+                            }
+                            else
+                            {
+                                RevertTankOldPosition();
+                            }
                         }
                         else
                         {
@@ -59,21 +67,17 @@ public class PlayerRay : MonoBehaviour
                     {
                         RevertTankOldPosition();
                     }
-                }
-                else
-                {
-                    RevertTankOldPosition();
-                }
-                
-                _isSelectedTank = false;
-            }
-        }
-        else if (Input.GetMouseButtonDown(0))
-        {
-            ActivateRay();
 
-            if (_selectedCell)
-                _selectedCell.Select();
+                    _isSelectedTank = false;
+                }
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                ActivateRay();
+
+                if (_selectedCell)
+                    _selectedCell.Select();
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private GameObject _startGameIcon;
     [SerializeField] private GameObject _continueGameIcon;
     [SerializeField] private GameObject _gameOverIcon;
+    [SerializeField] private GameObject _newTankIcon;
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _startLevel;
     [SerializeField] private MPImage _timerFill;
@@ -50,5 +51,10 @@ public class CanvasComponent : MonoBehaviour
     public void SetVisibleGameOverIcon(bool isVisible)
     {
         _gameOverIcon.SetActive(isVisible);
+    }
+
+    public void SetVisibleNewTankIcon(bool isVisible)
+    {
+        _newTankIcon.SetActive(isVisible);
     }
 }
