@@ -22,6 +22,8 @@ public class Cell : MonoBehaviour
     private const int IndexSpawnedTank = 0;
     private const float SecondsDelayOpenBox = 0.02f;
 
+    public Tank[] TankPrefabs => _tankPrefabs;
+
     public Tank CurrentTank => _currentTank;
 
     private void OnDisable()

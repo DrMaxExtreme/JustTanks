@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Tank : MonoBehaviour
@@ -47,6 +45,11 @@ public class Tank : MonoBehaviour
             _cubesPool = cubesPool;
     }
 
+    public float ShowPower()
+    {
+        return Convert.ToSingle(Math.Round(_bulletSpawnPositions.Length / _delayBetweenShots, 1));
+    }
+
     private bool TrySelectNearestTarget()
     {
         float nearestDistance = float.MaxValue;
@@ -63,7 +66,10 @@ public class Tank : MonoBehaviour
                 {
                     nearestDistance = directionMagnitude;
                     _targetPosition = cube.transform.position;
+                    
                     transform.LookAt(_targetPosition);
+                    transform.rotation = Quaternion.Euler(0,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+                    
                     isSelect = true;
                 }
             }

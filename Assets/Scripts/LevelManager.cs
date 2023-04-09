@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
     [SerializeField] private Cell[] _allCells;
+    [SerializeField] private int _maxCountNewBoxes;
 
     private int _bestCurrentLevelTank = -1;
     private int _currentLevel = 1;
@@ -58,6 +59,7 @@ public class LevelManager : MonoBehaviour
         {
             _bestCurrentLevelTank = level;
             _canvas.SetVisibleNewTankIcon(true);
+            _canvas.SetTextFeaturesNewTank(level + 1, _allCells[0].TankPrefabs[level].ShowPower());
             Time.timeScale = 0;
         }
     }
@@ -79,12 +81,17 @@ public class LevelManager : MonoBehaviour
         _canvas.SetVisibleGameOverIcon(false);
         _canvas.SetVisibleStartLevelLabel(true);
         _canvas.UpdateTextLevel(_currentLevel);
-        _spawnerBoxes.Activate(_currentLevel);
+        ActivateSpawnerBoxes();
         _bulletDestroyer.Activate();
         
         yield return waitForDelaySeconds;
         
         _canvas.SetVisibleStartLevelLabel(false);
+    }
+
+    private void ActivateSpawnerBoxes()
+    {
+        _spawnerBoxes.Activate(_currentLevel <= _maxCountNewBoxes ? _currentLevel : _maxCountNewBoxes);
     }
 
     private void ClearAllCells()
