@@ -272,6 +272,7 @@ MonoBehaviour:
   - {fileID: 7468408940563099632}
   _bulletPrefab: {fileID: 3931665041826364499, guid: d04e1d6b332437f4e9fad40be87484a4, type: 3}
   _delayBetweenShots: 0.2
+  _render: {fileID: 21300000, guid: be3b1344d5a3c9044b4636b254844586, type: 3}
 --- !u!1 &6593879500086082664
 GameObject:
   m_ObjectHideFlags: 0

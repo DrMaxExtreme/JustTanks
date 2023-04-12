@@ -10,6 +10,7 @@ public class Tank : MonoBehaviour
     [SerializeField] private Transform[] _bulletTargetPositions;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
+    [SerializeField] private Sprite _render;
     
     private List<GameObject> _cubesPool;
     private bool _isAttacking;
@@ -18,6 +19,7 @@ public class Tank : MonoBehaviour
     private Vector3 _direction;
     
     public int Level => _level;
+    public Sprite Render => _render;
 
     private void OnDisable()
     {

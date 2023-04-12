@@ -18,6 +18,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private TMP_Text _countBoxes;
     [SerializeField] private TMP_Text _newTankLevel;
     [SerializeField] private TMP_Text _newTankPower;
+    [SerializeField] private MPImage _tankRender;
 
     private const string _levelText = "Lv";
     private const string _startLevelText = "Start Lv: ";
@@ -64,5 +65,10 @@ public class CanvasComponent : MonoBehaviour
     {
         _newTankLevel.text = _levelText + levelNewTank;
         _newTankPower.text = powerNewTank.ToString();
+    }
+
+    public void SetRenderNewTank(Sprite render)
+    {
+        _tankRender.sprite = render;
     }
 }

@@ -60,6 +60,7 @@ public class LevelManager : MonoBehaviour
             _bestCurrentLevelTank = level;
             _canvas.SetVisibleNewTankIcon(true);
             _canvas.SetTextFeaturesNewTank(level + 1, _allCells[0].TankPrefabs[level].ShowPower());
+            _canvas.SetRenderNewTank(_allCells[0].TankPrefabs[level].Render);
             Time.timeScale = 0;
         }
     }
