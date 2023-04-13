@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+        _bestCurrentLevelTank = -1;
         _canvas.SetVisibleGameOverIcon(true);
         _spawnerCubes.ReleasePool();
         _currentLevel = _firstLevel;
