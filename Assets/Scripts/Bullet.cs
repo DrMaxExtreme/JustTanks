@@ -8,11 +8,17 @@ using static UnityEngine.GraphicsBuffer;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private float _distance;
     [SerializeField] private float _damage;
+    [SerializeField] private ParticleSystem _lifeEffect;
 
     private Vector3 _targetPoint;
-    
+    private ParticleSystem _particle;
+
+    private void Start()
+    {
+        _particle = Instantiate(_lifeEffect, transform.position, Quaternion.identity, null);
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -31,8 +37,11 @@ public class Bullet : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPoint, _speed);
-
+        Vector3 targetPosition = Vector3.MoveTowards(transform.position, _targetPoint, _speed);
+        
+        transform.position = targetPosition;
+        _particle.transform.position = targetPosition;
+        
         if (transform.position == _targetPoint)
             Destroy();
     }

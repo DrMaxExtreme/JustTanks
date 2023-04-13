@@ -14,13 +14,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
     [SerializeField] private Cell[] _allCells;
     [SerializeField] private int _maxCountNewBoxes;
-
+    [SerializeField] private float _offsetSpawnerCubes = 0.5f;
+    [SerializeField] private float _maxOffsetSpawnerCubes = 5f;
+    
     private int _bestCurrentLevelTank = -1;
     private int _currentLevel = 1;
     private int _firstLevel = 1;
     private float _normalTimeScale;
-    private float _delayCleaningScene = 0.02f;
-
+    private float _delayCleaningScene = 0.02f; 
+    private float _currentOffsetSpawnerCubes = 0;
+    
     private void Start()
     {
         _normalTimeScale = Time.timeScale;
@@ -46,12 +49,14 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0;
         _bestCurrentLevelTank = -1;
         _canvas.SetVisibleGameOverIcon(true);
         _spawnerCubes.ReleasePool();
         _currentLevel = _firstLevel;
+        _spawnerCubes.Offset(-_currentOffsetSpawnerCubes);
+        _currentOffsetSpawnerCubes = 0;
         ClearAllCells();
+        Time.timeScale = 0;
     }
 
     public void CheckTankLevel(int level)
@@ -85,6 +90,12 @@ public class LevelManager : MonoBehaviour
         _canvas.UpdateTextLevel(_currentLevel);
         ActivateSpawnerBoxes();
         _bulletDestroyer.Activate();
+
+        if (_currentOffsetSpawnerCubes <= _maxOffsetSpawnerCubes)
+        {
+            _currentOffsetSpawnerCubes += _offsetSpawnerCubes;
+            _spawnerCubes.Offset(_offsetSpawnerCubes);
+        }
         
         yield return waitForDelaySeconds;
         

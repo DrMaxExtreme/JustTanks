@@ -55,6 +55,11 @@ public class SpawnerCubes : ObjectPool
         Release();
     }
 
+    public void Offset(float distance)
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - distance);
+    }
+
     private void SetPrefab(GameObject cube, Vector3 spawnPosition)
     {
         cube.SetActive(true);

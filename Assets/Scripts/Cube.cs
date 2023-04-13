@@ -10,6 +10,7 @@ public class Cube : MonoBehaviour
     [SerializeField] private TextMesh _textHealth;
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
+    [SerializeField] private ParticleSystem _dieEffect;
 
     private float _health;
     private Vector3 _targetPosition;
@@ -43,6 +44,7 @@ public class Cube : MonoBehaviour
         
         if (_health <= 0)
         {
+            Instantiate(_dieEffect, transform.position, Quaternion.Euler(90,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), null);
             gameObject.SetActive(false);
             _spawnerCubes.TryFinishLevel();
         }

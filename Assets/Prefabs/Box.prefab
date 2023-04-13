@@ -129,3 +129,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayDestroy: 15
+  _spawnEffect: {fileID: 19855650, guid: 7d565c936bd43884c97241384a5bf9c3, type: 3}

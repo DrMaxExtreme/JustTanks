@@ -853,6 +853,8 @@ MonoBehaviour:
   - {fileID: 472936753}
   - {fileID: 1525613950}
   _maxCountNewBoxes: 3
+  _offsetSpawnerCubes: 0.5
+  _maxOffsetSpawnerCubes: 5
 --- !u!4 &411673769
 Transform:
   m_ObjectHideFlags: 0
