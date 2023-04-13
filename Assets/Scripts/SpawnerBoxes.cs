@@ -15,6 +15,7 @@ public class SpawnerBoxes : MonoBehaviour
     private bool _isActive = true;
     private float _remainingDelay;
     private int _numberOfBoxes;
+    private float _delaySpawned = 0.03f;
 
     private void Start()
     {
@@ -32,14 +33,7 @@ public class SpawnerBoxes : MonoBehaviour
         
         if (_isActive)
         {
-            _remainingDelay -= Time.deltaTime;
-            UpdateUIIconBoxes();
-
-            if (TryFindFreeCell() && _numberOfBoxes > 0 && _remainingDelay <= 0)
-            {
-                GenerateBox();
-                _remainingDelay = _delayBetweenActivate;
-            }
+            StartCoroutine(Spawned());
         }
     }
 
@@ -57,6 +51,7 @@ public class SpawnerBoxes : MonoBehaviour
     public void Stop()
     {
         _isActive = false;
+        StopCoroutine(Spawned());
     }
 
     private bool TryFindFreeCell()
@@ -84,5 +79,22 @@ public class SpawnerBoxes : MonoBehaviour
     {
         float normalazeDelay = _remainingDelay / _delayBetweenActivate;
         _canvasComponent.UpdateTextCountBoxes(_numberOfBoxes, normalazeDelay);
+    }
+
+    private IEnumerator Spawned()
+    {
+        var waitForDelaySeconds = new WaitForSeconds(_delaySpawned);
+
+        _remainingDelay -= Time.deltaTime;
+        
+        yield return waitForDelaySeconds;
+
+        UpdateUIIconBoxes();
+
+        if (TryFindFreeCell() && _numberOfBoxes > 0 && _remainingDelay <= 0)
+        {
+            GenerateBox();
+            _remainingDelay = _delayBetweenActivate;
+        }
     }
 }
