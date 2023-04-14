@@ -11,15 +11,24 @@ public class Tank : MonoBehaviour
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
     [SerializeField] private Sprite _render;
-    
+    [SerializeField] private Transform _turret;
+
+
     private List<GameObject> _cubesPool;
     private bool _isAttacking;
     private Coroutine _shootJob;
     private Vector3 _targetPosition;
     private Vector3 _direction;
-    
+    private float _turretAngleX = -90;
+
+
     public int Level => _level;
     public Sprite Render => _render;
+
+    private void Start()
+    {
+        
+    }
 
     private void OnDisable()
     {
@@ -68,9 +77,9 @@ public class Tank : MonoBehaviour
                 {
                     nearestDistance = directionMagnitude;
                     _targetPosition = cube.transform.position;
-                    
-                    transform.LookAt(_targetPosition);
-                    transform.rotation = Quaternion.Euler(0,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+                    _turret.transform.LookAt(_targetPosition);
+                    _turret.transform.rotation = Quaternion.Euler(_turretAngleX, _turret.transform.rotation.eulerAngles.y, _turret.transform.rotation.eulerAngles.z);
                     
                     isSelect = true;
                 }
@@ -89,7 +98,7 @@ public class Tank : MonoBehaviour
               Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawnPositions[i].position, Quaternion.identity, null);
               
               bullet.gameObject.GetComponent<Bullet>().GetTargetTransform(target);
-         }
+        }
     }
     
     private IEnumerator Shoot()

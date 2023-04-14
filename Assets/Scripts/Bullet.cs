@@ -21,7 +21,8 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (_particle != null)
+            Move();
     }
 
     private void OnTriggerEnter(Collider collision)
