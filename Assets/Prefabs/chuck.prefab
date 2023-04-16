@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7791653826654701675}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 5}
+  m_LocalScale: {x: 12.5, y: 12.5, z: 12.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519acc291c5141942876eef929d6ac67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.1
-  _damage: 10
+  _speed: 0.15
+  _damage: 50
   _lifeEffect: {fileID: 19852826, guid: 45dc9592116e12e46a57d7925c8e1871, type: 3}
 --- !u!65 &-2327206290652943286
 BoxCollider:

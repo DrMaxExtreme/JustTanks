@@ -58,7 +58,7 @@ public class Tank : MonoBehaviour
 
     public float ShowPower()
     {
-        return Convert.ToSingle(Math.Round(_bulletSpawnPositions.Length / _delayBetweenShots, 1));
+        return Convert.ToSingle(Math.Round(_bulletSpawnPositions.Length / _delayBetweenShots * _bulletPrefab.Damage, 1));
     }
 
     private bool TrySelectNearestTarget()
@@ -96,9 +96,9 @@ public class Tank : MonoBehaviour
               Vector3 target = new Vector3(Convert.ToSingle(_bulletTargetPositions[i].position.x), Convert.ToSingle(_bulletTargetPositions[i].position.y), Convert.ToSingle(_bulletTargetPositions[i].position.z));
 
               Bullet bullet = Instantiate(_bulletPrefab, _bulletSpawnPositions[i].position, Quaternion.identity, null);
-              
+
               bullet.gameObject.GetComponent<Bullet>().GetTargetTransform(target);
-        }
+         }
     }
     
     private IEnumerator Shoot()

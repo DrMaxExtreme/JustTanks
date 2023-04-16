@@ -128,5 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0bc242cc6334d44a699ba1e817a94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayDestroy: 15
+  _delayDestroy: 20
   _spawnEffect: {fileID: 19855650, guid: 7d565c936bd43884c97241384a5bf9c3, type: 3}

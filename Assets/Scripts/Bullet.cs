@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
 
     private Vector3 _targetPoint;
     private ParticleSystem _particle;
+    
+    public float Damage => _damage;
 
     private void Start()
     {
@@ -56,5 +58,6 @@ public class Bullet : MonoBehaviour
     private void Destroy()
     {
         Destroy(gameObject);
+        Destroy(_particle.gameObject);
     }
 }
