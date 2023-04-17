@@ -56,6 +56,7 @@ MonoBehaviour:
   _delayBetweenShots: 3.5
   _render: {fileID: 21300000, guid: 32679841d3b82e74da65d09414a65127, type: 3}
   _turret: {fileID: 3031187188109346933}
+  _spawnEffect: {fileID: 19845752, guid: 46152b2e29e6cab4fb90671026bc7eed, type: 3}
 --- !u!1001 &3856521604976417977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,6 +123,10 @@ PrefabInstance:
     - target: {fileID: 757502181383578692, guid: c06be84f60a4fbb41880cc88b6753c6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944613387890667461, guid: c06be84f60a4fbb41880cc88b6753c6b, type: 3}
+      propertyPath: m_Name
+      value: Text Level
       objectReference: {fileID: 0}
     - target: {fileID: 7389624512747643382, guid: c06be84f60a4fbb41880cc88b6753c6b, type: 3}
       propertyPath: m_LocalPosition.y

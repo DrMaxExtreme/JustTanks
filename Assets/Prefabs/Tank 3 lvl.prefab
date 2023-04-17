@@ -54,6 +54,7 @@ MonoBehaviour:
   _delayBetweenShots: 0.266666
   _render: {fileID: 21300000, guid: e90bc6fe864f074499e6fb0db004568a, type: 3}
   _turret: {fileID: 5894699552029132982}
+  _spawnEffect: {fileID: 19807068, guid: 8de40516a2a66a241b213663b713b2ec, type: 3}
 --- !u!1001 &5282347883020970363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,6 +213,10 @@ PrefabInstance:
     - target: {fileID: 6401838981726091545, guid: c05e39e47737ca949a1262e7624868a2, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844968426698406618, guid: c05e39e47737ca949a1262e7624868a2, type: 3}
+      propertyPath: m_Name
+      value: Text Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c05e39e47737ca949a1262e7624868a2, type: 3}

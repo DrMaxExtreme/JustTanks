@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6de29aa76af105b4c9c1d602198be5aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69d8cfe6b55217045bd6cfe55a393672, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3149,7 +3149,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad7e584af20d1f644bab4a07f4de076b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3626431afa1350c4c818e1954b504269, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5657,6 +5657,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227440669120857407, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287559454020299856, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4287559454020299856, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}

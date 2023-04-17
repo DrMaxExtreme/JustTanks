@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private TextMesh[] _textHealths;
+    [SerializeField] private TMP_Text[] _textHealths;
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
     [SerializeField] private ParticleSystem _dieEffect;

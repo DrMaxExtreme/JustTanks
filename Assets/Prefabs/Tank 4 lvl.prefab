@@ -54,6 +54,7 @@ MonoBehaviour:
   _delayBetweenShots: 3
   _render: {fileID: 21300000, guid: 6fbd3e5962f8eb44f9eb5f360640a7cd, type: 3}
   _turret: {fileID: 4992583288314013038}
+  _spawnEffect: {fileID: 19807068, guid: 8de40516a2a66a241b213663b713b2ec, type: 3}
 --- !u!1001 &3758849324147456845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,6 +81,10 @@ PrefabInstance:
     - target: {fileID: 1466452990865229579, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0267
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444225592730123163, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
+      propertyPath: m_Name
+      value: Text Level
       objectReference: {fileID: 0}
     - target: {fileID: 5880011286582569633, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
       propertyPath: m_RootOrder

@@ -54,6 +54,7 @@ MonoBehaviour:
   _delayBetweenShots: 0.75
   _render: {fileID: 21300000, guid: 37047d99dae09d742a04b92928a8157b, type: 3}
   _turret: {fileID: 2310557728213834885}
+  _spawnEffect: {fileID: 19888532, guid: b70beac0b6914a649b3226e11144d8a6, type: 3}
 --- !u!1001 &3825222682968690629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,6 +62,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7147680298171882613}
     m_Modifications:
+    - target: {fileID: 5246187705893465796, guid: 9523a28e1287d2a4d8d9d09b37e107a3, type: 3}
+      propertyPath: m_Name
+      value: Text Level
+      objectReference: {fileID: 0}
     - target: {fileID: 6579549083378665008, guid: 9523a28e1287d2a4d8d9d09b37e107a3, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.002

@@ -12,6 +12,7 @@ public class Tank : MonoBehaviour
     [SerializeField] private float _delayBetweenShots;
     [SerializeField] private Sprite _render;
     [SerializeField] private Transform _turret;
+    [SerializeField] private ParticleSystem _spawnEffect;
 
 
     private List<GameObject> _cubesPool;
@@ -20,14 +21,14 @@ public class Tank : MonoBehaviour
     private Vector3 _targetPosition;
     private Vector3 _direction;
     private float _turretAngleX = -90;
-
+    private ParticleSystem _particle;
 
     public int Level => _level;
     public Sprite Render => _render;
 
     private void Start()
     {
-        
+        _particle = Instantiate(_spawnEffect, transform.position, Quaternion.identity, null);
     }
 
     private void OnDisable()
