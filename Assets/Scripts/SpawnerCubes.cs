@@ -12,8 +12,8 @@ public class SpawnerCubes : ObjectPool
     [SerializeField] private LevelManager _levelManager;
 
     private const float MinHealth = 1f;
-    private const float MaxHealth = 4f;
-    private const float GrowthHealthUpRow = 4f;
+    private const float MaxHealth = 3f;
+    private const float GrowthHealthUpRow = 2f;
 
     private void Awake()
     {

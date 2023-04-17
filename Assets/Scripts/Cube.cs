@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private TextMesh _textHealth;
+    [SerializeField] private TextMesh[] _textHealths;
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
     [SerializeField] private ParticleSystem _dieEffect;
@@ -54,6 +54,9 @@ public class Cube : MonoBehaviour
 
     private void TextUpdate()
     {
-        _textHealth.text = Convert.ToString(Math.Ceiling(_health));
+        foreach (var textHealth in _textHealths)
+        {
+            textHealth.text = Convert.ToString(Math.Ceiling(_health));
+        }
     }
 }

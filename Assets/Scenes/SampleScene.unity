@@ -853,8 +853,8 @@ MonoBehaviour:
   - {fileID: 472936753}
   - {fileID: 1525613950}
   _maxCountNewBoxes: 3
-  _offsetSpawnerCubes: 0.5
-  _maxOffsetSpawnerCubes: 5
+  _offsetSpawnerCubes: 0.4
+  _maxOffsetSpawnerCubes: 6
 --- !u!4 &411673769
 Transform:
   m_ObjectHideFlags: 0
@@ -5797,7 +5797,7 @@ PrefabInstance:
       objectReference: {fileID: 2128691194}
     - target: {fileID: 4854189908988665228, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _delayBetweenActivate
-      value: 10
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _levelManager
