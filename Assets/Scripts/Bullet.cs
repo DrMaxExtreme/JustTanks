@@ -38,6 +38,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+        Destroy(_particle.gameObject);
+    }
+
     private void Move()
     {
         Vector3 targetPosition = Vector3.MoveTowards(transform.position, _targetPoint, _speed);
@@ -53,11 +59,5 @@ public class Bullet : MonoBehaviour
     {
         _targetPoint = targetTransform;
         transform.LookAt(_targetPoint);
-    }
-
-    private void Destroy()
-    {
-        Destroy(gameObject);
-        Destroy(_particle.gameObject);
     }
 }

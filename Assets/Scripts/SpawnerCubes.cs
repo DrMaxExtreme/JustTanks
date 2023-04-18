@@ -13,7 +13,7 @@ public class SpawnerCubes : ObjectPool
 
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
-    private const float GrowthHealthUpRow = 2f;
+    private const float GrowthHealthUpRow = 3f;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class SpawnerCubes : ObjectPool
                 if(TryGetObject(out var cube))
                 {
                     SetPrefab(cube, newPoint);
-                    cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i * GrowthHealthUpRow, MaxHealth + i * GrowthHealthUpRow + currentLevel)));
+                    cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i * GrowthHealthUpRow, MaxHealth + i * GrowthHealthUpRow + i)));
                     cube.GetComponent<Cube>().SetSpawner(this);
                 }
             }

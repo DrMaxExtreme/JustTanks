@@ -16,12 +16,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int _maxCountNewBoxes;
     [SerializeField] private float _offsetSpawnerCubes = 0.5f;
     [SerializeField] private float _maxOffsetSpawnerCubes = 5f;
-    
+    [SerializeField] private AudioSource _LevelWinSound;
+    [SerializeField] private AudioSource _GameOverSound;
+    [SerializeField] private AudioSource _GameMusic;
+
     private int _bestCurrentLevelTank = -1;
     private int _currentLevel = 1;
     private int _firstLevel = 1;
     private float _normalTimeScale;
-    private float _delayCleaningScene = 0.02f; 
     private float _currentOffsetSpawnerCubes = 0;
     
     private void Start()
@@ -40,6 +42,7 @@ public class LevelManager : MonoBehaviour
         _currentLevel++;
         _spawnerBoxes.Stop();
         _canvas.SetVisibleContinueGameIcon(true);
+        _LevelWinSound.Play();
     }
 
     public void StartNextLevel()
@@ -56,6 +59,7 @@ public class LevelManager : MonoBehaviour
         _spawnerCubes.Offset(-_currentOffsetSpawnerCubes);
         _currentOffsetSpawnerCubes = 0;
         ClearAllCells();
+        _GameOverSound.Play();
         Time.timeScale = 0;
     }
 

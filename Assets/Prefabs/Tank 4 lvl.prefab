@@ -51,10 +51,11 @@ MonoBehaviour:
   _bulletTargetPositions:
   - {fileID: 5437405118656692457}
   _bulletPrefab: {fileID: 654530564428635981, guid: 3c9f72b49f6b53e4bb0506b190f1f7e9, type: 3}
-  _delayBetweenShots: 3
+  _delayBetweenShots: 1
+  _inaccuracyBelayBetweenShots: 0.5
   _render: {fileID: 21300000, guid: 6fbd3e5962f8eb44f9eb5f360640a7cd, type: 3}
   _turret: {fileID: 4992583288314013038}
-  _spawnEffect: {fileID: 19807068, guid: 8de40516a2a66a241b213663b713b2ec, type: 3}
+  _spawnEffect: {fileID: 19845752, guid: 46152b2e29e6cab4fb90671026bc7eed, type: 3}
 --- !u!1001 &3758849324147456845
 PrefabInstance:
   m_ObjectHideFlags: 0

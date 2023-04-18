@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.15
-  _damage: 50
+  _damage: 15
   _lifeEffect: {fileID: 19852826, guid: 45dc9592116e12e46a57d7925c8e1871, type: 3}
 --- !u!65 &-2327206290652943286
 BoxCollider:

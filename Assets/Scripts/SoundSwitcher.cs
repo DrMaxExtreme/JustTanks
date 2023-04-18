@@ -7,9 +7,15 @@ public class SoundSwitcher : MonoBehaviour
     [SerializeField] private AudioMixerGroup _mixer;
     [SerializeField] private Button _soundOff;
     [SerializeField] private Button _soundOn;
-    
+    [SerializeField] private float _soundOnValue;
+
     private string _masterMixerName = "MasterVolume";
     private float _soundOffValue = -80;
+
+    private void Start()
+    {
+        _mixer.audioMixer.SetFloat(_masterMixerName, _soundOnValue);
+    }
 
     public void SwitchOffSound()
     {
@@ -18,7 +24,7 @@ public class SoundSwitcher : MonoBehaviour
     
     public void SwitchOnSound()
     {
-        Switch(0, true, false);
+        Switch(_soundOnValue, true, false);
     }
 
     private void Switch(float soundOffValue, bool isActiveOffButton, bool isActiveOnButton)

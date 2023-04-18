@@ -27,7 +27,7 @@ public class BulletDestroyer : MonoBehaviour
 
             if (obj.GetComponent<Bullet>() != null)
             {
-                Destroy(obj);
+                obj.GetComponent<Bullet>().Destroy();
             }
         }
     }

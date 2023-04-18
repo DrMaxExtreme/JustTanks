@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Tank : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Tank : MonoBehaviour
     [SerializeField] private Transform[] _bulletTargetPositions;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private float _delayBetweenShots;
+    [SerializeField] private float _inaccuracyBelayBetweenShots;
     [SerializeField] private Sprite _render;
     [SerializeField] private Transform _turret;
     [SerializeField] private ParticleSystem _spawnEffect;
@@ -104,10 +106,9 @@ public class Tank : MonoBehaviour
     
     private IEnumerator Shoot()
     {
-        var waitForDelaySeconds = new WaitForSeconds(_delayBetweenShots);
-        
         while (_isAttacking)
         {
+            var waitForDelaySeconds = new WaitForSeconds(Random.RandomRange(_delayBetweenShots, _delayBetweenShots + _inaccuracyBelayBetweenShots));
             yield return waitForDelaySeconds;
 
             if(TrySelectNearestTarget() == true)
