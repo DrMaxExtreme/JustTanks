@@ -857,7 +857,7 @@ MonoBehaviour:
   - {fileID: 1525613950}
   _maxCountNewBoxes: 3
   _offsetSpawnerCubes: 0.4
-  _maxOffsetSpawnerCubes: 4
+  _maxOffsetSpawnerCubes: 6
   _LevelWinSound: {fileID: 411673771}
   _GameOverSound: {fileID: 411673770}
   _GameMusic: {fileID: 411673772}
@@ -984,7 +984,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4488889866261462206, guid: ea7b39ab1b3c8a04b8f245f891884761, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0697ee09e0d00fe4c8eb6ee81d5ba8eb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0

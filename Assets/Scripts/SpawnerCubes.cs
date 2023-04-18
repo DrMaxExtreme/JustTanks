@@ -32,7 +32,7 @@ public class SpawnerCubes : ObjectPool
                 if(TryGetObject(out var cube))
                 {
                     SetPrefab(cube, newPoint);
-                    cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i * GrowthHealthUpRow, MaxHealth + i * GrowthHealthUpRow + i)));
+                    cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i * GrowthHealthUpRow + i, MaxHealth + i * GrowthHealthUpRow + i) + i));
                     cube.GetComponent<Cube>().SetSpawner(this);
                 }
             }
