@@ -18,6 +18,8 @@ public class Cube : MonoBehaviour
     private Vector3 _targetPosition;
     private SpawnerCubes _spawnerCubes;
 
+    private bool _isBoostedDamage = false;
+
     private void FixedUpdate()
     {
         var position = transform.position;
@@ -37,8 +39,16 @@ public class Cube : MonoBehaviour
         TextUpdate();
     }
 
+    public void SetBoostDamageMode(bool isBoosted)
+    {
+        _isBoostedDamage = isBoosted;
+    }
+
     public void TakeDamage(int damage)
     {
+        if (_isBoostedDamage)
+            damage += damage + damage;
+        
         if (damage > 0)
         {
             _health -= damage;

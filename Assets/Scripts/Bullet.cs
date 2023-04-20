@@ -60,4 +60,15 @@ public class Bullet : MonoBehaviour
         _targetPoint = targetTransform;
         transform.LookAt(_targetPoint);
     }
+
+    public int ShowDamage()
+    {
+        int damage = _damage;
+        return damage;
+    }
+
+    public void SetDamage(int damage)
+    {
+        _damage = damage;
+    }
 }
