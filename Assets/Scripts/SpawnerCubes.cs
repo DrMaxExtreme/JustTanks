@@ -10,6 +10,7 @@ public class SpawnerCubes : ObjectPool
     [SerializeField] private Transform[] _points;
     [SerializeField] private Cube _cubePrefab;
     [SerializeField] private LevelManager _levelManager;
+    [SerializeField] private CanvasComponent _canvas;
 
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
@@ -58,6 +59,11 @@ public class SpawnerCubes : ObjectPool
     public void Offset(float distance)
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - distance);
+    }
+
+    public void TakeScore(int score)
+    {
+        _canvas.GetScore(score);
     }
 
     private void SetPrefab(GameObject cube, Vector3 spawnPosition)

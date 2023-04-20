@@ -8,13 +8,13 @@ using static UnityEngine.GraphicsBuffer;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
     [SerializeField] private ParticleSystem _lifeEffect;
 
     private Vector3 _targetPoint;
     private ParticleSystem _particle;
     
-    public float Damage => _damage;
+    public int Damage => _damage;
 
     private void Start()
     {

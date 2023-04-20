@@ -12,8 +12,9 @@ public class Cube : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
     [SerializeField] private ParticleSystem _dieEffect;
+    [SerializeField] private int _scoreForDestroy;
 
-    private float _health;
+    private int _health;
     private Vector3 _targetPosition;
     private SpawnerCubes _spawnerCubes;
 
@@ -30,13 +31,13 @@ public class Cube : MonoBehaviour
         _spawnerCubes = spawnerCubes;
     }
     
-    public void SetHealth(float health)
+    public void SetHealth(int health)
     {
         _health = health;
         TextUpdate();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (damage > 0)
         {
@@ -48,8 +49,10 @@ public class Cube : MonoBehaviour
             Instantiate(_dieEffect, transform.position, Quaternion.Euler(90,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), null);
             gameObject.SetActive(false);
             _spawnerCubes.TryFinishLevel();
+            _spawnerCubes.TakeScore(_scoreForDestroy);
         }
 
+        _spawnerCubes.TakeScore(damage);
         TextUpdate();
     }
 
@@ -57,7 +60,7 @@ public class Cube : MonoBehaviour
     {
         foreach (var textHealth in _textHealths)
         {
-            textHealth.text = Convert.ToString(Math.Ceiling(_health));
+            textHealth.text = Convert.ToString(_health);
         }
     }
 }

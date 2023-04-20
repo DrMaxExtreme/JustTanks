@@ -60,6 +60,7 @@ public class LevelManager : MonoBehaviour
         _currentOffsetSpawnerCubes = 0;
         ClearAllCells();
         _GameOverSound.Play();
+        _canvas.ResetScore();
         Time.timeScale = 0;
     }
 

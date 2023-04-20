@@ -15,12 +15,13 @@ public class Cell : MonoBehaviour
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private LevelManager _levelManager;
     [SerializeField] private bool _isActivatingAttackingTank;
+    [SerializeField] private CanvasComponent _canvas;
 
     private Box _currentBox;
     private Tank _currentTank;
     
     private const int IndexSpawnedTank = 0;
-    private const float SecondsDelayOpenBox = 0.02f;
+    private const float SecondsDelayOpenBox = 0.01f;
 
     public Tank[] TankPrefabs => _tankPrefabs;
 
@@ -62,12 +63,18 @@ public class Cell : MonoBehaviour
 
     public void ClearTank()
     {
+        if (_isActivatingAttackingTank)
+            _canvas.UpdateTextCurrentPowerActiveTanks(-CurrentTank.ShowPower());
+
         _currentTank = null;
     }
 
     public void DestroyTank()
     {
         Destroy(_currentTank.gameObject);
+
+        if(_isActivatingAttackingTank)
+            _canvas.UpdateTextCurrentPowerActiveTanks(- CurrentTank.ShowPower());
     }
 
     public void TakeTank(Tank tank)
@@ -75,6 +82,9 @@ public class Cell : MonoBehaviour
         _currentTank = tank;
         _currentTank.transform.position = _spawnPoint.position;
         SetTankAttackMode();
+
+        if (_isActivatingAttackingTank)
+            _canvas.UpdateTextCurrentPowerActiveTanks(CurrentTank.ShowPower());
     }
 
     public bool IsHaveTankForUpgrade(int newTankLevel)
@@ -87,6 +97,9 @@ public class Cell : MonoBehaviour
         int upgradeTankIndex = _currentTank.Level;
         Destroy(_currentTank.gameObject);
         StartCoroutine(DelaySpawnedTank(upgradeTankIndex));
+
+        if (_isActivatingAttackingTank)
+            _canvas.UpdateTextCurrentPowerActiveTanks(-CurrentTank.ShowPower());
     }
     
     public void SetTankAttackMode()
@@ -126,5 +139,8 @@ public class Cell : MonoBehaviour
         _currentTank.TakePool(_spawnerCubes.ShowPool());
         SetTankAttackMode();
         _levelManager.CheckTankLevel(indexSpawnedTank);
+
+        if (_isActivatingAttackingTank)
+            _canvas.UpdateTextCurrentPowerActiveTanks(CurrentTank.ShowPower());
     }
 }
