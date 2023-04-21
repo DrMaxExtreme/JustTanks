@@ -12,14 +12,15 @@ public class Cube : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _distance;
     [SerializeField] private ParticleSystem _dieEffect;
-    [SerializeField] private int _scoreForDestroy;
     [SerializeField] private MeshRenderer _renderer;
+    [SerializeField] private int _multiplierBoostScore;
 
     private int _health;
     private Vector3 _targetPosition;
     private SpawnerCubes _spawnerCubes;
 
     private bool _isBoostedDamage = false;
+    private bool _isBoostedScore = false;
 
     public float Speed => _speed;
 
@@ -46,14 +47,24 @@ public class Cube : MonoBehaviour
     {
         _isBoostedDamage = isBoosted;
     }
+    
+    public void SetBoostScoreMode(bool isBoosted)
+    {
+        _isBoostedScore = isBoosted;
+    }
 
     public void TakeDamage(int damage)
     {
         if (_isBoostedDamage)
-            damage += damage + damage;
+            damage += damage;
         
         if (damage > 0)
         {
+            if(damage > _health)
+                GetScore(_health);
+            else
+                GetScore(damage);
+            
             _health -= damage;
         }
         
@@ -62,10 +73,8 @@ public class Cube : MonoBehaviour
             Instantiate(_dieEffect, transform.position, Quaternion.Euler(90,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), null);
             gameObject.SetActive(false);
             _spawnerCubes.TryFinishLevel();
-            _spawnerCubes.TakeScore(_scoreForDestroy);
         }
 
-        _spawnerCubes.TakeScore(damage);
         TextUpdate();
     }
 
@@ -77,6 +86,14 @@ public class Cube : MonoBehaviour
     public void SetMaterial(Material material)
     {
         _renderer.material = material;
+    }
+
+    private void GetScore(int score)
+    {
+        if (_isBoostedScore)
+            score *= _multiplierBoostScore;
+            
+        _spawnerCubes.TakeScore(score);
     }
 
     private void TextUpdate()

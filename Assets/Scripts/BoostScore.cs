@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoostScore : MonoBehaviour //Не сделан скрипт. Сделать родительский скрипт Boost
+public class BoostScore : MonoBehaviour
 {
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private int _multiplier;
@@ -12,7 +12,6 @@ public class BoostScore : MonoBehaviour //Не сделан скрипт. Сделать родительский
     private List<GameObject> _cubesPool;
     private bool _isActive = false;
     private float _remainingTime;
-    private int[] _normalDamageBullets;
 
     private const float ActivityTime = 30;
 
@@ -39,20 +38,20 @@ public class BoostScore : MonoBehaviour //Не сделан скрипт. Сделать родительский
     {
         _isActive = true;
         _remainingTime = ActivityTime;
-        SetBoostDamage(true);
+        SetBoostScore(true);
     }
 
     private void Deactivate()
     {
         _isActive = false;
-        SetBoostDamage(false);
+        SetBoostScore(false);
     }
 
-    private void SetBoostDamage(bool isBoosted)
+    private void SetBoostScore(bool isBoosted)
     {
         foreach (var cube in _cubesPool)
         {
-            cube.GetComponent<Cube>().SetBoostDamageMode(isBoosted);
+            cube.GetComponent<Cube>().SetBoostScoreMode(isBoosted);
         }
     }
 

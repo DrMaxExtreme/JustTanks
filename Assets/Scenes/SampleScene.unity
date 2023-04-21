@@ -3130,7 +3130,7 @@ MonoBehaviour:
   _multiplier: 2
   _timerFill: {fileID: 1233070290}
   _normalSpeedMaterial: {fileID: 2100000, guid: 804c14dba3c8c4e45a3e4cc277bf13ff, type: 2}
-  _slowSpeedMaterial: {fileID: 2100000, guid: e70ee5c4576ddb64c8e2cea5d2d97b34, type: 2}
+  _slowSpeedMaterial: {fileID: 2100000, guid: 43d0a8c2742ba08418ac85bb09dd6262, type: 2}
 --- !u!114 &665456837 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4347454719723773987, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
@@ -8029,7 +8029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnerCubes: {fileID: 1737690589}
-  _multiplier: 0
+  _multiplier: 2
   _timerFill: {fileID: 799485366}
 --- !u!114 &1353596484 stripped
 MonoBehaviour:
