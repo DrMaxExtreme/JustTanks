@@ -1,10 +1,9 @@
-using System;
+using MPUIKIT;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MPUIKIT;
 
-public class BoostDamage : MonoBehaviour
+public class BoostScore : MonoBehaviour //Не сделан скрипт. Сделать родительский скрипт Boost
 {
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private int _multiplier;
@@ -14,7 +13,7 @@ public class BoostDamage : MonoBehaviour
     private bool _isActive = false;
     private float _remainingTime;
     private int[] _normalDamageBullets;
-    
+
     private const float ActivityTime = 30;
 
     private void Start()
@@ -35,7 +34,7 @@ public class BoostDamage : MonoBehaviour
             UpdateUIField(_remainingTime / ActivityTime);
         }
     }
-    
+
     public void Activate()
     {
         _isActive = true;
@@ -56,7 +55,7 @@ public class BoostDamage : MonoBehaviour
             cube.GetComponent<Cube>().SetBoostDamageMode(isBoosted);
         }
     }
-    
+
     private void UpdateUIField(float fillValue)
     {
         _timerFill.fillAmount = fillValue;

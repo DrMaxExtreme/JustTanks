@@ -1,26 +1,28 @@
-using System;
+using MPUIKIT;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MPUIKIT;
 
-public class BoostDamage : MonoBehaviour
+public class SlowDownCubes : MonoBehaviour
 {
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private int _multiplier;
     [SerializeField] private MPImage _timerFill;
+    [SerializeField] private Material _normalSpeedMaterial;
+    [SerializeField] private Material _slowSpeedMaterial;
 
     private List<GameObject> _cubesPool;
     private bool _isActive = false;
     private float _remainingTime;
-    private int[] _normalDamageBullets;
-    
+    private float _normalSpeed;
+
     private const float ActivityTime = 30;
 
     private void Start()
     {
         _timerFill.fillAmount = 0;
         _cubesPool = _spawnerCubes.ShowPool();
+        _normalSpeed = _cubesPool[0].GetComponent<Cube>().Speed;
     }
 
     private void Update()
@@ -35,28 +37,29 @@ public class BoostDamage : MonoBehaviour
             UpdateUIField(_remainingTime / ActivityTime);
         }
     }
-    
+
     public void Activate()
     {
         _isActive = true;
         _remainingTime = ActivityTime;
-        SetBoostDamage(true);
+        SetSpeedAndMaterial(_normalSpeed / _multiplier, _slowSpeedMaterial);
     }
 
     private void Deactivate()
     {
         _isActive = false;
-        SetBoostDamage(false);
+        SetSpeedAndMaterial(_normalSpeed, _normalSpeedMaterial);
     }
 
-    private void SetBoostDamage(bool isBoosted)
+    private void SetSpeedAndMaterial(float speed, Material material)
     {
         foreach (var cube in _cubesPool)
         {
-            cube.GetComponent<Cube>().SetBoostDamageMode(isBoosted);
+            cube.GetComponent<Cube>().SetSpeed(speed);
+            cube.GetComponent<Cube>().SetMaterial(material);
         }
     }
-    
+
     private void UpdateUIField(float fillValue)
     {
         _timerFill.fillAmount = fillValue;

@@ -13,12 +13,15 @@ public class Cube : MonoBehaviour
     [SerializeField] private float _distance;
     [SerializeField] private ParticleSystem _dieEffect;
     [SerializeField] private int _scoreForDestroy;
+    [SerializeField] private MeshRenderer _renderer;
 
     private int _health;
     private Vector3 _targetPosition;
     private SpawnerCubes _spawnerCubes;
 
     private bool _isBoostedDamage = false;
+
+    public float Speed => _speed;
 
     private void FixedUpdate()
     {
@@ -64,6 +67,16 @@ public class Cube : MonoBehaviour
 
         _spawnerCubes.TakeScore(damage);
         TextUpdate();
+    }
+
+    public void SetSpeed(float speed)
+    {
+        _speed = speed;
+    }
+
+    public void SetMaterial(Material material)
+    {
+        _renderer.material = material;
     }
 
     private void TextUpdate()

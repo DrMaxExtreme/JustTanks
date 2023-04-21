@@ -54,6 +54,8 @@ MonoBehaviour:
   _distance: 1
   _dieEffect: {fileID: 198129106043806410, guid: a678f6d174b81de4bab8ed6a7e865a1e, type: 3}
   _scoreForDestroy: 25
+  _renderer: {fileID: 8442425631308173422}
+  _slowSpeedMaterial: {fileID: 2100000, guid: e70ee5c4576ddb64c8e2cea5d2d97b34, type: 2}
 --- !u!65 &7107017799176326465
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146,6 +148,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2207254941627887091, guid: 31f8227d9efc4214d8e8f4906509b4f9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 804c14dba3c8c4e45a3e4cc277bf13ff, type: 2}
     - target: {fileID: 5387718769801181606, guid: 31f8227d9efc4214d8e8f4906509b4f9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 90
@@ -181,5 +187,10 @@ MonoBehaviour:
 --- !u!4 &7305588175044946689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1074832472567142044, guid: 31f8227d9efc4214d8e8f4906509b4f9, type: 3}
+  m_PrefabInstance: {fileID: 7748508912570236317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8442425631308173422 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2207254941627887091, guid: 31f8227d9efc4214d8e8f4906509b4f9, type: 3}
   m_PrefabInstance: {fileID: 7748508912570236317}
   m_PrefabAsset: {fileID: 0}
