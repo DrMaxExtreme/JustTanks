@@ -53,8 +53,8 @@ MonoBehaviour:
   _speed: 0.006
   _distance: 1
   _dieEffect: {fileID: 198129106043806410, guid: a678f6d174b81de4bab8ed6a7e865a1e, type: 3}
-  _scoreForDestroy: 0
   _renderer: {fileID: 8442425631308173422}
+  _multiplierBoostScore: 5
 --- !u!65 &7107017799176326465
 BoxCollider:
   m_ObjectHideFlags: 0
