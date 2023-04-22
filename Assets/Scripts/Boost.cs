@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using MPUIKIT;
@@ -13,11 +14,11 @@ public class Boost : MonoBehaviour
     
     protected List<GameObject> CubesPool;
     
-    private const float ActivityTime = 30;
+    private const float ActivityTime = 60;
     
     protected virtual void Start()
     {
-        _timerFill.fillAmount = 0;
+        ResetTimer();
         CubesPool = _spawnerCubes.ShowPool();
     }
 
@@ -32,6 +33,12 @@ public class Boost : MonoBehaviour
 
             UpdateUIField(_remainingTime / ActivityTime);
         }
+    }
+
+    public void ResetTimer()
+    {
+        _remainingTime = 0;
+        UpdateUIField(_remainingTime);
     }
 
     protected virtual void Activate()

@@ -158,9 +158,9 @@ RectTransform:
   m_Father: {fileID: 2128691193}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 930, y: -251}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -150, y: -251}
   m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11628676
@@ -1927,6 +1927,9 @@ MonoBehaviour:
   _LevelWinSound: {fileID: 411673771}
   _GameOverSound: {fileID: 411673770}
   _GameMusic: {fileID: 411673772}
+  _boostDamage: {fileID: 1344218654}
+  _boostScore: {fileID: 2127357924}
+  _slowDownCubes: {fileID: 629757539}
 --- !u!4 &411673769
 Transform:
   m_ObjectHideFlags: 0
@@ -4650,7 +4653,7 @@ GameObject:
   - component: {fileID: 954662630}
   - component: {fileID: 954662629}
   m_Layer: 0
-  m_Name: Background +3 Boxes
+  m_Name: Background +5 Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5812,9 +5815,9 @@ RectTransform:
   m_Father: {fileID: 2128691193}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 930, y: -100}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -150, y: -100}
   m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091708712
@@ -10668,7 +10671,7 @@ GameObject:
   - component: {fileID: 1782273845}
   - component: {fileID: 1782273842}
   m_Layer: 5
-  m_Name: +3 Boxes
+  m_Name: +5 Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10775,7 +10778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b968be0e19bcf7d49ae7354e11eb83d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countAddBoxes: 3
+  _countAddBoxes: 5
   _spawnerBoxes: {fileID: 725248290}
 --- !u!1 &1807572775
 GameObject:

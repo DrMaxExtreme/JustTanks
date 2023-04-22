@@ -19,6 +19,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private AudioSource _LevelWinSound;
     [SerializeField] private AudioSource _GameOverSound;
     [SerializeField] private AudioSource _GameMusic;
+    [SerializeField] private BoostDamage _boostDamage;
+    [SerializeField] private BoostScore _boostScore;
+    [SerializeField] private SlowDownCubes _slowDownCubes;
 
     private int _bestCurrentLevelTank = -1;
     private int _currentLevel = 1;
@@ -61,6 +64,9 @@ public class LevelManager : MonoBehaviour
         ClearAllCells();
         _GameOverSound.Play();
         _canvas.ResetScore();
+        _boostDamage.ResetTimer();
+        _boostScore.ResetTimer();
+        _slowDownCubes.ResetTimer();
         Time.timeScale = 0;
     }
 
