@@ -89,7 +89,7 @@ public class Cell : MonoBehaviour
 
     public bool IsHaveTankForUpgrade(int newTankLevel)
     {
-        return _currentTank.Level == newTankLevel && _currentTank.Level < _tankPrefabs.Length;
+        return _currentTank.Level == newTankLevel && _currentTank.Level < _tankPrefabs.Length - 1;
     }
 
     public void UpgradeTank()

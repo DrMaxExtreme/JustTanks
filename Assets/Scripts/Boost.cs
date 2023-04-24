@@ -41,6 +41,11 @@ public class Boost : MonoBehaviour
         UpdateUIField(_remainingTime);
     }
 
+    public void SetPauseMode(bool isPause)
+    {
+        _isActive = isPause;
+    }
+
     protected virtual void Activate()
     {
         _isActive = true;

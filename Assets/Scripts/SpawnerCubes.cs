@@ -15,6 +15,7 @@ public class SpawnerCubes : ObjectPool
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
     private const float GrowthHealthUpRow = 3f;
+    private int _probability = 33;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class SpawnerCubes : ObjectPool
                     SetPrefab(cube, newPoint);
                     cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i * GrowthHealthUpRow + i, MaxHealth + i * GrowthHealthUpRow + i) + i));
                     cube.GetComponent<Cube>().SetSpawner(this);
+
+                    if (SetRandomHeavyType())
+                        cube.GetComponent<Cube>().SetHeavyType(true);
+                    else
+                        cube.GetComponent<Cube>().SetHeavyType(false);
                 }
             }
         }
@@ -66,9 +72,19 @@ public class SpawnerCubes : ObjectPool
         _canvas.GetScore(score);
     }
 
+    public void DieHeavyCube()
+    {
+        _levelManager.DieHeavyCube();
+    }
+
     private void SetPrefab(GameObject cube, Vector3 spawnPosition)
     {
         cube.SetActive(true);
         cube.transform.position = spawnPosition;
+    }
+
+    private bool SetRandomHeavyType()
+    {
+        return 0 == Random.RandomRange(0, _probability);
     }
 }

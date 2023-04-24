@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour
     private int _firstLevel = 1;
     private float _normalTimeScale;
     private float _currentOffsetSpawnerCubes = 0;
+    private int _addBoxesForDieHeavyCube = 1;
     
     private void Start()
     {
@@ -45,6 +46,7 @@ public class LevelManager : MonoBehaviour
         _currentLevel++;
         _spawnerBoxes.Stop();
         _canvas.SetVisibleContinueGameIcon(true);
+        SetPauseModeBoosts(false);
         _LevelWinSound.Play();
     }
 
@@ -87,6 +89,11 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = _normalTimeScale;
         _canvas.SetVisibleNewTankIcon(false);
     }
+
+    public void DieHeavyCube()
+    {
+        _spawnerBoxes.Activate(_addBoxesForDieHeavyCube);
+    }
     
     private IEnumerator StartedNextLevel()
     {
@@ -101,6 +108,7 @@ public class LevelManager : MonoBehaviour
         _canvas.UpdateTextLevel(_currentLevel);
         ActivateSpawnerBoxes();
         _bulletDestroyer.Activate();
+        SetPauseModeBoosts(true);
 
         if (_currentOffsetSpawnerCubes <= _maxOffsetSpawnerCubes)
         {
@@ -124,5 +132,12 @@ public class LevelManager : MonoBehaviour
         {
             cell.Clear();
         }
+    }
+
+    private void SetPauseModeBoosts(bool isPaube)
+    {
+        _boostDamage.SetPauseMode(isPaube);
+        _boostScore.SetPauseMode(isPaube);
+        _slowDownCubes.SetPauseMode(isPaube);
     }
 }

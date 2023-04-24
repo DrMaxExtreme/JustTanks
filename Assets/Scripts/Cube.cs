@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Cube : MonoBehaviour
@@ -14,6 +15,9 @@ public class Cube : MonoBehaviour
     [SerializeField] private ParticleSystem _dieEffect;
     [SerializeField] private MeshRenderer _renderer;
     [SerializeField] private int _multiplierBoostScore;
+    [SerializeField] private Material _normalMaterial;
+    [SerializeField] private Material _heavyMaterial;
+    [SerializeField] private Material _slowdownMaterial;
 
     private int _health;
     private Vector3 _targetPosition;
@@ -21,8 +25,13 @@ public class Cube : MonoBehaviour
 
     private bool _isBoostedDamage = false;
     private bool _isBoostedScore = false;
+    private bool _isSlowdownSpeed = false;
+    private bool _isHeavy = false;
+
+    private int _multiplierHeavy = 5;
 
     public float Speed => _speed;
+    public bool IsSlowdownSpeed => _isSlowdownSpeed;
 
     private void FixedUpdate()
     {
@@ -30,6 +39,11 @@ public class Cube : MonoBehaviour
         _targetPosition = new Vector3(position.x, position.y, position.z - _distance);
         position = Vector3.MoveTowards(position, _targetPosition, _speed);
         transform.position = position;
+    }
+
+    private void OnEnable()
+    {
+        UpdateMaterial();
     }
 
     public void SetSpawner(SpawnerCubes spawnerCubes)
@@ -70,7 +84,11 @@ public class Cube : MonoBehaviour
         
         if (_health <= 0)
         {
+            if (_isHeavy)
+                _spawnerCubes.DieHeavyCube();
+
             Instantiate(_dieEffect, transform.position, Quaternion.Euler(90,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), null);
+            _isHeavy = false;
             gameObject.SetActive(false);
             _spawnerCubes.TryFinishLevel();
         }
@@ -78,14 +96,29 @@ public class Cube : MonoBehaviour
         TextUpdate();
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float speed, bool isSlowdownSpeed)
     {
         _speed = speed;
+        _isSlowdownSpeed = isSlowdownSpeed;
+
+        UpdateMaterial();
     }
 
     public void SetMaterial(Material material)
     {
-        _renderer.material = material;
+        if(_isHeavy == false)
+            _renderer.material = material;
+    }
+
+    public void SetHeavyType(bool isHeavy)
+    {
+        _isHeavy = isHeavy;
+
+        if (_isHeavy)
+            _health *= _multiplierHeavy;
+
+        UpdateMaterial();
+        TextUpdate();
     }
 
     private void GetScore(int score)
@@ -102,5 +135,15 @@ public class Cube : MonoBehaviour
         {
             textHealth.text = Convert.ToString(_health);
         }
+    }
+
+    private void UpdateMaterial()
+    {
+        if (_isHeavy)
+            _renderer.material = _heavyMaterial;
+        else if (_isSlowdownSpeed)
+            _renderer.material = _slowdownMaterial;
+        else
+            _renderer.material = _normalMaterial;
     }
 }

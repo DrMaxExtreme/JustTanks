@@ -53,7 +53,7 @@ MonoBehaviour:
   - {fileID: 4859124053343720928}
   - {fileID: 5983073474706062671}
   _bulletPrefab: {fileID: 654530564428635981, guid: a9d0d3411eaeb934c8eae83fc76ef7f8, type: 3}
-  _delayBetweenShots: 1.25
+  _delayBetweenShots: 1.1428572
   _inaccuracyBelayBetweenShots: 0.25
   _render: {fileID: 21300000, guid: 32679841d3b82e74da65d09414a65127, type: 3}
   _turret: {fileID: 3031187188109346933}

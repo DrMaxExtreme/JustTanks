@@ -1922,7 +1922,7 @@ MonoBehaviour:
   - {fileID: 472936753}
   - {fileID: 1525613950}
   _maxCountNewBoxes: 3
-  _offsetSpawnerCubes: 0.4
+  _offsetSpawnerCubes: 0.25
   _maxOffsetSpawnerCubes: 6
   _LevelWinSound: {fileID: 411673771}
   _GameOverSound: {fileID: 411673770}
@@ -3132,8 +3132,6 @@ MonoBehaviour:
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1233070290}
   _multiplier: 2
-  _normalSpeedMaterial: {fileID: 2100000, guid: 804c14dba3c8c4e45a3e4cc277bf13ff, type: 2}
-  _slowSpeedMaterial: {fileID: 2100000, guid: e70ee5c4576ddb64c8e2cea5d2d97b34, type: 2}
 --- !u!114 &665456837 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4347454719723773987, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
@@ -13107,6 +13105,10 @@ PrefabInstance:
       propertyPath: _levelManager
       value: 
       objectReference: {fileID: 411673768}
+    - target: {fileID: 2746741016360997196, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
+      propertyPath: _normalCubeMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 804c14dba3c8c4e45a3e4cc277bf13ff, type: 2}
     - target: {fileID: 7936075431982318456, guid: b9176afe35e9bf14c8511465a705f692, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -14010,7 +14012,7 @@ PrefabInstance:
       objectReference: {fileID: 2128691194}
     - target: {fileID: 4854189908988665228, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _delayBetweenActivate
-      value: 1
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4924182850183803613, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _canvas

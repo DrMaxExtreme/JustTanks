@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class SlowDownCubes : Boost
 {
-    [SerializeField] private Material _normalSpeedMaterial;
-    [SerializeField] private Material _slowSpeedMaterial;
-
     private float _normalSpeed;
 
     private const float ActivityTime = 30;
@@ -21,21 +18,20 @@ public class SlowDownCubes : Boost
     protected override void Activate()
     {
         base.Activate();
-        SetSpeedAndMaterial(_normalSpeed / _multiplier, _slowSpeedMaterial);
+        SetSpeedAndMaterial(_normalSpeed / _multiplier, true);
     }
 
     protected override void Deactivate()
     {
         base.Deactivate();
-        SetSpeedAndMaterial(_normalSpeed, _normalSpeedMaterial);
+        SetSpeedAndMaterial(_normalSpeed, false);
     }
 
-    private void SetSpeedAndMaterial(float speed, Material material)
+    private void SetSpeedAndMaterial(float speed, bool isSlow)
     {
         foreach (var cube in CubesPool)
         {
-            cube.GetComponent<Cube>().SetSpeed(speed);
-            cube.GetComponent<Cube>().SetMaterial(material);
+            cube.GetComponent<Cube>().SetSpeed(speed, isSlow);
         }
     }
 }
