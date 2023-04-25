@@ -85,6 +85,11 @@ public class CanvasComponent : MonoBehaviour
         StartCoroutine(UpdatedTextCurrentPowerActiveTanks());
     }
 
+    public void ResetCurrentPowerActiveTanksValue()
+    {
+        _currentPowerActiveTanks = 0;
+    }
+
     public void SetVisibleGameOverIcon(bool isVisible)
     {
         _gameOverIcon.SetActive(isVisible);

@@ -59,6 +59,7 @@ public class LevelManager : MonoBehaviour
     {
         _bestCurrentLevelTank = -1;
         _canvas.SetVisibleGameOverIcon(true);
+        _canvas.ResetCurrentPowerActiveTanksValue();
         _spawnerCubes.ReleasePool();
         _currentLevel = _firstLevel;
         _spawnerCubes.Offset(-_currentOffsetSpawnerCubes);
