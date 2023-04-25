@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
     {
         _normalTimeScale = Time.timeScale;
         _canvas.SetVisibleStartGameIcon(true);
+        _canvas.SetVisibleTutorialIcon(true);
     }
 
     private void OnDisable()
@@ -61,6 +62,7 @@ public class LevelManager : MonoBehaviour
         _canvas.SetVisibleGameOverIcon(true);
         _canvas.ResetCurrentPowerActiveTanksValue();
         _spawnerCubes.ReleasePool();
+        _spawnerBoxes.ResetCount();
         _currentLevel = _firstLevel;
         _spawnerCubes.Offset(-_currentOffsetSpawnerCubes);
         _currentOffsetSpawnerCubes = 0;

@@ -361,10 +361,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128691189}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2128691194}
+        m_TargetAssemblyTypeName: CanvasComponent, Assembly-CSharp
+        m_MethodName: SetVisibleTutorialIcon
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13436,17 +13436,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128691189}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2128691194}
+        m_TargetAssemblyTypeName: CanvasComponent, Assembly-CSharp
+        m_MethodName: SetVisibleTutorialIcon
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2097075539
 MonoBehaviour:
@@ -13743,6 +13743,7 @@ MonoBehaviour:
   _gameOverIcon: {fileID: 1252879621}
   _newTankIcon: {fileID: 1269009188}
   _settingsIcon: {fileID: 1549794423}
+  _settingsTutorial: {fileID: 976159155}
   _currentLevel: {fileID: 1355355970}
   _startLevel: {fileID: 756785356}
   _timerFill: {fileID: 1810439265}

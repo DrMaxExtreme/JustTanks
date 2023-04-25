@@ -15,7 +15,9 @@ public class SpawnerCubes : ObjectPool
     private const float MinHealth = 1f;
     private const float MaxHealth = 3f;
     private const float GrowthHealthUpRow = 3f;
-    private int _probability = 33;
+    private const int Probability = 30;
+    private const int ProbabilityEveryFiveLevel = 8;
+    private const int EveryHardcoreLevel = 4;
 
     private void Awake()
     {
@@ -37,7 +39,14 @@ public class SpawnerCubes : ObjectPool
                     cube.GetComponent<Cube>().SetHealth(Mathf.RoundToInt(Random.RandomRange(MinHealth + i * GrowthHealthUpRow + i, MaxHealth + i * GrowthHealthUpRow + i) + i));
                     cube.GetComponent<Cube>().SetSpawner(this);
 
-                    if (SetRandomHeavyType())
+                    int probability;
+
+                    if (currentLevel % EveryHardcoreLevel == 0)
+                        probability = ProbabilityEveryFiveLevel;
+                    else
+                        probability = Probability;
+
+                    if (SetRandomHeavyType(probability))
                         cube.GetComponent<Cube>().SetHeavyType(true);
                     else
                         cube.GetComponent<Cube>().SetHeavyType(false);
@@ -83,8 +92,8 @@ public class SpawnerCubes : ObjectPool
         cube.transform.position = spawnPosition;
     }
 
-    private bool SetRandomHeavyType()
+    private bool SetRandomHeavyType(int probability)
     {
-        return 0 == Random.RandomRange(0, _probability);
+        return 0 == Random.RandomRange(0, probability);
     }
 }

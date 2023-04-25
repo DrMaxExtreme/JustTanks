@@ -14,6 +14,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private GameObject _gameOverIcon;
     [SerializeField] private GameObject _newTankIcon;
     [SerializeField] private GameObject _settingsIcon;
+    [SerializeField] private GameObject _settingsTutorial;
     [SerializeField] private TMP_Text _currentLevel;
     [SerializeField] private TMP_Text _startLevel;
     [SerializeField] private MPImage _timerFill;
@@ -152,6 +153,11 @@ public class CanvasComponent : MonoBehaviour
     {
         _currentScore = 0;
         UpdateScoreText();
+    }
+
+    public void SetVisibleTutorialIcon(bool isVisible)
+    {
+        _settingsTutorial.SetActive(isVisible);
     }
 
     private void UpdateScoreText()

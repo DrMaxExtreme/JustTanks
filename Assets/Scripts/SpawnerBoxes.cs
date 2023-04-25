@@ -54,6 +54,13 @@ public class SpawnerBoxes : MonoBehaviour
         StopCoroutine(Spawned());
     }
 
+    public void ResetCount()
+    {
+        _numberOfBoxes = 0;
+        _remainingDelay = 0;
+        _isActive = true;
+    }
+
     private bool TryFindFreeCell()
     {
         _freeCells.Clear();
