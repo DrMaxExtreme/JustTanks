@@ -15,7 +15,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private GameObject _newTankIcon;
     [SerializeField] private GameObject _settingsIcon;
     [SerializeField] private GameObject _settingsTutorial;
-    [SerializeField] private TMP_Text _currentLevel;
+    [SerializeField] private TMP_Text _currentLevelText;
     [SerializeField] private TMP_Text _startLevel;
     [SerializeField] private MPImage _timerFill;
     [SerializeField] private TMP_Text _countBoxes;
@@ -24,7 +24,10 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private MPImage _tankRender;
     [SerializeField] private TMP_Text _currentPowerActiveTanksText;
     [SerializeField] private TMP_Text _currentScoreText;
-    [SerializeField] private TMP_Text _recordScoreText;
+    [SerializeField] private TMP_Text _recordScoreTextGameOver;
+    [SerializeField] private TMP_Text _recordLevelTextGameOver;
+    [SerializeField] private TMP_Text _recordScoreTextStart;
+    [SerializeField] private TMP_Text _recordLevelTextStart;
 
     private const string _levelText = "Lv";
     private const string _startLevelText = "Start Lv: ";
@@ -38,14 +41,29 @@ public class CanvasComponent : MonoBehaviour
     private float _currentPowerActiveTanks = 0;
     private float _delayUpdateTextCurrentPowerActiveTanks = 0.02f;
     private int _currentScore;
-    private int _recordScore;
+    private int _currentLevel;
+    private int _recordScore = 0;
+    private int _recordLevel = 0;
+    private int _firstVisibleTutorial = 0;
+
+    private const string _recordScorePrefs = "RecordScorePrefs";
+    private const string _recortLevelPrefs = "RecordLevelPrefs";
+    private const string _firstVisibleTutorialPrefs = "FirstVisibleTutorialPrefs";
 
     private void Start()
     {
+        InitPrefs();
         _normalTimeScale = Time.timeScale;
         _currentPowerActiveTanks = 0;
         UpdateTextCurrentPowerActiveTanks(0);
         UpdateScoreText();
+        UpdateLevelTexts();
+
+        if (_firstVisibleTutorial == 0)
+        {
+            SetVisibleTutorialIcon(true);
+            PlayerPrefs.SetInt(_firstVisibleTutorialPrefs, ++_firstVisibleTutorial);
+        }
     }
 
     private void OnDisable()
@@ -70,8 +88,8 @@ public class CanvasComponent : MonoBehaviour
 
     public void UpdateTextLevel(int currentLevel)
     {
-        _currentLevel.text = _levelText + currentLevel;
-        _startLevel.text = _startLevelText + currentLevel;
+        _currentLevel = currentLevel;
+        UpdateLevelTexts();
     }
 
     public void UpdateTextCountBoxes(int currentBoxes, float fillValue)
@@ -144,7 +162,10 @@ public class CanvasComponent : MonoBehaviour
         _currentScore += score;
 
         if(_recordScore < _currentScore)
+        {
             _recordScore = _currentScore;
+            PlayerPrefs.SetInt(_recordScorePrefs, _recordScore);
+        }
 
         UpdateScoreText();
     }
@@ -160,10 +181,34 @@ public class CanvasComponent : MonoBehaviour
         _settingsTutorial.SetActive(isVisible);
     }
 
+    private void UpdateLevelTexts()
+    {
+        if (_recordLevel < _currentLevel)
+        {
+            _recordLevel = _currentLevel;
+            PlayerPrefs.SetInt(_recortLevelPrefs, _recordLevel);
+        }
+
+        _recordScoreTextStart.text = _recordScore.ToString();
+        _recordScoreTextGameOver.text = _recordScore.ToString();
+        _recordLevelTextStart.text = _recordLevel.ToString();
+        _recordLevelTextGameOver.text = _recordLevel.ToString();
+        _currentLevelText.text = _levelText + _currentLevel;
+        _startLevel.text = _startLevelText + _currentLevel;
+    }
+
     private void UpdateScoreText()
     {
         _currentScoreText.text = _currentScore.ToString();
-        _recordScoreText.text = _recordScore.ToString();
+        _recordScoreTextGameOver.text = _recordScore.ToString();
+        _recordScoreTextStart.text = _recordScore.ToString();
+    }
+
+    private void InitPrefs()
+    {
+        _recordScore = PlayerPrefs.GetInt(_recordScorePrefs);
+        _recordLevel = PlayerPrefs.GetInt(_recortLevelPrefs);
+        _firstVisibleTutorial = PlayerPrefs.GetInt(_firstVisibleTutorialPrefs);
     }
 
     private IEnumerator UpdatedTextCurrentPowerActiveTanks()
