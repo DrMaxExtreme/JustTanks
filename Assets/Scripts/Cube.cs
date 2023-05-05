@@ -84,9 +84,6 @@ public class Cube : MonoBehaviour
         
         if (_health <= 0)
         {
-            if (_isHeavy)
-                _spawnerCubes.DieHeavyCube();
-
             Instantiate(_dieEffect, transform.position, Quaternion.Euler(90,transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), null);
             _isHeavy = false;
             gameObject.SetActive(false);

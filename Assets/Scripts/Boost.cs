@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using MPUIKIT;
+using Agava.YandexGames;
 
 public class Boost : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Boost : MonoBehaviour
     [SerializeField] protected int _multiplier;
 
     private float _remainingTime;
+    private float _normalTimeScale;
     private bool _isActive = false;
     
     protected List<GameObject> CubesPool;
@@ -19,6 +21,7 @@ public class Boost : MonoBehaviour
     protected virtual void Start()
     {
         ResetTimer();
+        _normalTimeScale = Time.timeScale;
         CubesPool = _spawnerCubes.ShowPool();
     }
 
@@ -46,6 +49,11 @@ public class Boost : MonoBehaviour
         _isActive = isPause;
     }
 
+    public void ShowAd()
+    {
+        VideoAd.Show(onOpenCallback: Pause, onRewardedCallback: Activate, onCloseCallback: Continue);
+    }
+
     protected virtual void Activate()
     {
         _isActive = true;
@@ -66,6 +74,17 @@ public class Boost : MonoBehaviour
 
     private void UpdateUIField(float fillValue)
     {
-        _timerFill.fillAmount = fillValue;
+        if(_timerFill != null)
+            _timerFill.fillAmount = fillValue;
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void Continue()
+    {
+        Time.timeScale = _normalTimeScale;
     }
 }

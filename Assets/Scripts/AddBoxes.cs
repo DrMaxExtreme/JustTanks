@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddBoxes : MonoBehaviour
+public class AddBoxes : Boost
 {
     [SerializeField] private int _countAddBoxes;
     [SerializeField] private SpawnerBoxes _spawnerBoxes;
 
-    public void Activate()
+    protected override void SetBoost(bool isBoosted)
     {
-        _spawnerBoxes.Activate(_countAddBoxes);
+        if(isBoosted)
+            _spawnerBoxes.Activate(_countAddBoxes);
     }
 }

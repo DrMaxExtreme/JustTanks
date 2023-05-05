@@ -81,11 +81,6 @@ public class SpawnerCubes : ObjectPool
         _canvas.GetScore(score);
     }
 
-    public void DieHeavyCube()
-    {
-        _levelManager.DieHeavyCube();
-    }
-
     private void SetPrefab(GameObject cube, Vector3 spawnPosition)
     {
         cube.SetActive(true);

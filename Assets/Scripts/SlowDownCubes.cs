@@ -7,8 +7,6 @@ public class SlowDownCubes : Boost
 {
     private float _normalSpeed;
 
-    private const float ActivityTime = 30;
-
     protected override void Start()
     {
         base.Start();

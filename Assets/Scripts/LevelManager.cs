@@ -28,7 +28,6 @@ public class LevelManager : MonoBehaviour
     private int _firstLevel = 1;
     private float _normalTimeScale;
     private float _currentOffsetSpawnerCubes = 0;
-    private int _addBoxesForDieHeavyCube = 1;
     
     private void Start()
     {
@@ -91,11 +90,6 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = _normalTimeScale;
         _canvas.SetVisibleNewTankIcon(false);
-    }
-
-    public void DieHeavyCube()
-    {
-        _spawnerBoxes.Activate(_addBoxesForDieHeavyCube);
     }
     
     private IEnumerator StartedNextLevel()

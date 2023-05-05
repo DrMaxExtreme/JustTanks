@@ -4184,8 +4184,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 629757539}
-        m_TargetAssemblyTypeName: SlowDownCubes, Assembly-CSharp
-        m_MethodName: Activate
+        m_TargetAssemblyTypeName: Boost, Assembly-CSharp
+        m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5888,7 +5888,7 @@ GameObject:
   - component: {fileID: 954662630}
   - component: {fileID: 954662629}
   m_Layer: 0
-  m_Name: Background +5 Boxes
+  m_Name: Background +3 Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9674,8 +9674,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1344218654}
-        m_TargetAssemblyTypeName: BoostDamage, Assembly-CSharp
-        m_MethodName: Activate
+        m_TargetAssemblyTypeName: Boost, Assembly-CSharp
+        m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12060,7 +12060,7 @@ GameObject:
   - component: {fileID: 1782273845}
   - component: {fileID: 1782273842}
   m_Layer: 5
-  m_Name: +5 Boxes
+  m_Name: +3 Boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12136,8 +12136,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1782273845}
-        m_TargetAssemblyTypeName: AddBoxes, Assembly-CSharp
-        m_MethodName: Activate
+        m_TargetAssemblyTypeName: Boost, Assembly-CSharp
+        m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12167,7 +12167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b968be0e19bcf7d49ae7354e11eb83d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countAddBoxes: 5
+  _spawnerCubes: {fileID: 1737690589}
+  _timerFill: {fileID: 0}
+  _multiplier: 0
+  _countAddBoxes: 3
   _spawnerBoxes: {fileID: 725248290}
 --- !u!1 &1807572775
 GameObject:
@@ -13684,7 +13687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +5
+  m_text: +3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14438,8 +14441,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2127357924}
-        m_TargetAssemblyTypeName: BoostScore, Assembly-CSharp
-        m_MethodName: Activate
+        m_TargetAssemblyTypeName: Boost, Assembly-CSharp
+        m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
