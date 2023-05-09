@@ -33,7 +33,6 @@ public class LevelManager : MonoBehaviour
     {
         _normalTimeScale = Time.timeScale;
         _canvas.SetVisibleStartGameIcon(true);
-        _canvas.SetVisibleTutorialIcon(true);
     }
 
     private void OnDisable()

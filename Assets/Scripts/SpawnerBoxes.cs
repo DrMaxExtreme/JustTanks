@@ -15,7 +15,7 @@ public class SpawnerBoxes : MonoBehaviour
     private bool _isActive = true;
     private float _remainingDelay;
     private int _numberOfBoxes;
-    private float _delaySpawned = 0.03f;
+    private float _delaySpawned = 0.001f;
 
     private void Start()
     {
