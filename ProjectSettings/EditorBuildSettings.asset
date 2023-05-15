@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/MPUIKit/Demos/MPUIKit_Shape_Demo.unity
     guid: 0eb232f11bcdcfe4babcf96125bd9f6a
   - enabled: 0
-    path: Assets/Minimalistic Icons Pack/Demo Scene/DemoScene.unity
+    path: 
     guid: 5a92b31d426940049b26b46a3189f39c
   m_configObjects: {}

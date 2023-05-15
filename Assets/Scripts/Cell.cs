@@ -46,7 +46,7 @@ public class Cell : MonoBehaviour
     {
         if(_currentBox != null)
             OpenBox();
-
+        
         if (_currentTank != null)
             SelectTank();
     }

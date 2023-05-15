@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 
 public class CanvasComponent : MonoBehaviour
 {
+    [SerializeField] private GameObject _mainCanvas;
     [SerializeField] private GameObject _startLevelLabel;
     [SerializeField] private GameObject _startGameIcon;
     [SerializeField] private GameObject _continueGameIcon;
@@ -179,6 +180,7 @@ public class CanvasComponent : MonoBehaviour
     public void SetVisibleTutorialIcon(bool isVisible)
     {
         _settingsTutorial.SetActive(isVisible);
+        _mainCanvas.SetActive(!isVisible);
     }
 
     private void UpdateLevelTexts()
