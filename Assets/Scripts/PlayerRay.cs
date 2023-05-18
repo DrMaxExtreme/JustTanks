@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerRay : MonoBehaviour
@@ -76,7 +73,12 @@ public class PlayerRay : MonoBehaviour
                 ActivateRay();
 
                 if (_selectedCell)
+                {
                     _selectedCell.Select();
+
+                    if (_selectedCell.CurrentTank == null)
+                        _selectedCell = null;
+                }
             }
         }
     }
@@ -100,5 +102,6 @@ public class PlayerRay : MonoBehaviour
         _selectedCell.SetPositionTank(_oldTankPosition);
         _isSelectedTank = false;
         _selectedCell.SetTankAttackMode();
+        _selectedCell = null;
     }
 }

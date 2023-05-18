@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using MPUIKIT;
 using UnityEngine;
 using TMPro;
-using System.Linq.Expressions;
 
 public class CanvasComponent : MonoBehaviour
 {

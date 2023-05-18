@@ -1,8 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -130,10 +126,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void SetPauseModeBoosts(bool isPaube)
+    private void SetPauseModeBoosts(bool isPause)
     {
-        _boostDamage.SetPauseMode(isPaube);
-        _boostScore.SetPauseMode(isPaube);
-        _slowDownCubes.SetPauseMode(isPaube);
+        _boostDamage.SetPauseMode(isPause);
+        _boostScore.SetPauseMode(isPause);
+        _slowDownCubes.SetPauseMode(isPause);
     }
 }
