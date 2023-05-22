@@ -1,35 +1,68 @@
+using System;
 using UnityEngine;
 
 public class GameFocusManager : MonoBehaviour
 {
     [SerializeField] private SoundManager _soundManager;
 
-    private float _normalTimeScale;
+    private float _currentTimeScale;
+    private float _currentValueSound;
+    private bool _isPause = false;
+    private bool _isOpenAd = false;
+    
+    private const float SoundOffValue = -100;
 
     private void Awake()
     {
-        _normalTimeScale = Time.timeScale;
+        _currentTimeScale = Time.timeScale;
     }
 
+    private void Start()
+    {
+        _currentValueSound = _soundManager.GetMixerValue();
+    }
+
+    public void SwitchPauseGame(bool isPause)
+    {
+        if (_isOpenAd)
+            isPause = true;
+        
+        if (isPause != _isPause)
+        {
+            _isPause = isPause;
+
+            if (_isPause)
+            {
+                _currentTimeScale = Time.timeScale;
+                _currentValueSound = _soundManager.GetMixerValue();
+            }
+
+            SetTimeScale();
+            SetVolumeSound();
+        }
+    }
+
+    public void SetOpenAdMarker(bool isOpenAd)
+    {
+        _isOpenAd = isOpenAd;
+        SwitchPauseGame(_isOpenAd);
+    }
+    
     private void OnApplicationFocus(bool isApplicationHasFocus)
     {
-        SetTimeScale(isApplicationHasFocus);
-        SetVolumeSound(isApplicationHasFocus);
+        SwitchPauseGame(!isApplicationHasFocus);
     }
-
-    private void SetTimeScale(bool isApplicationHasFocus)
+    
+    private void SetTimeScale()
     {
-        if (isApplicationHasFocus == false)
+        if (_isPause)
             Time.timeScale = 0;
         else
-            Time.timeScale = _normalTimeScale;
+            Time.timeScale = _currentTimeScale;
     }
 
-    private void SetVolumeSound(bool isApplicationHasFocus)
+    private void SetVolumeSound()
     {
-        if (isApplicationHasFocus == false)
-            _soundManager.SwitchOffSound();
-        else
-            _soundManager.SwitchOnSound();
+        _soundManager.SetSoundValueMixer(_isPause ? SoundOffValue : _currentValueSound);
     }
 }

@@ -5,13 +5,13 @@ using Agava.YandexGames;
 
 public class Boost : MonoBehaviour
 {
+    [SerializeField] private LevelManager _levelManager;
+    [SerializeField] private GameFocusManager _gameFocusManager;
     [SerializeField] private SpawnerCubes _spawnerCubes;
     [SerializeField] private MPImage _timerFill;
     [SerializeField] protected int _multiplier;
 
     private float _remainingTime;
-    private float _normalTimeScale;
-    private bool _isActive = false;
     
     protected List<GameObject> CubesPool;
     
@@ -20,21 +20,18 @@ public class Boost : MonoBehaviour
     protected virtual void Start()
     {
         ResetTimer();
-        _normalTimeScale = Time.timeScale;
         CubesPool = _spawnerCubes.ShowPool();
     }
 
     private void Update()
     {
-        if (_isActive)
-        {
+        if (_levelManager.IsPauseBoost == false)
             _remainingTime -= Time.deltaTime;
 
-            if (_remainingTime <= 0)
-                Deactivate();
-
-            UpdateUIField(_remainingTime / ActivityTime);
-        }
+        if (_remainingTime < 0)
+            Deactivate();
+        
+        UpdateUIField(_remainingTime / ActivityTime);
     }
 
     public void ResetTimer()
@@ -43,26 +40,19 @@ public class Boost : MonoBehaviour
         UpdateUIField(_remainingTime);
     }
 
-    public void SetPauseMode(bool isPause)
-    {
-        _isActive = isPause;
-    }
-
     public void ShowAd()
     {
-        VideoAd.Show(onOpenCallback: Pause, onRewardedCallback: Activate, onCloseCallback: Continue);
+        VideoAd.Show(PauseGame, Activate, ContinueGame);
     }
 
     protected virtual void Activate()
     {
-        _isActive = true;
         _remainingTime = ActivityTime;
         SetBoost(true);
     }
 
     protected virtual void Deactivate()
     {
-        _isActive = false;
         SetBoost(false);
     }
 
@@ -77,13 +67,15 @@ public class Boost : MonoBehaviour
             _timerFill.fillAmount = fillValue;
     }
 
-    private void Pause()
+    private void PauseGame()
     {
-        Time.timeScale = 0;
+        _gameFocusManager.SwitchPauseGame(true);
+        _gameFocusManager.SetOpenAdMarker(true);
     }
 
-    private void Continue()
+    private void ContinueGame()
     {
-        Time.timeScale = _normalTimeScale;
+        _gameFocusManager.SwitchPauseGame(false);
+        _gameFocusManager.SetOpenAdMarker(false);
     }
 }
