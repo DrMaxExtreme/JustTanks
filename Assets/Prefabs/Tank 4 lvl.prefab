@@ -87,6 +87,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text Level
       objectReference: {fileID: 0}
+    - target: {fileID: 5323121890528051293, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
+      propertyPath: m_fontSize
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323121890528051293, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
+    - target: {fileID: 5323121890528051293, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
     - target: {fileID: 5880011286582569633, guid: 990ad303a4d7c1f48a73ffe5a9ac321c, type: 3}
       propertyPath: m_RootOrder
       value: 0

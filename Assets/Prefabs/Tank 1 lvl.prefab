@@ -63,6 +63,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7147680298171882613}
     m_Modifications:
+    - target: {fileID: 1708000695247753459, guid: 9523a28e1287d2a4d8d9d09b37e107a3, type: 3}
+      propertyPath: m_fontSize
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708000695247753459, guid: 9523a28e1287d2a4d8d9d09b37e107a3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
+    - target: {fileID: 1708000695247753459, guid: 9523a28e1287d2a4d8d9d09b37e107a3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
     - target: {fileID: 5246187705893465796, guid: 9523a28e1287d2a4d8d9d09b37e107a3, type: 3}
       propertyPath: m_Name
       value: Text Level
