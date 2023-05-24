@@ -544,7 +544,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 15
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
@@ -5180,7 +5180,7 @@ GameObject:
   - component: {fileID: 622929606}
   - component: {fileID: 622929607}
   m_Layer: 0
-  m_Name: New tank lv
+  m_Name: lv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5216,13 +5216,13 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: Turkish
-    Text: sv
+    Text: Sv
     Object: {fileID: 0}
   - Language: English
-    Text: lv
+    Text: Lv
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u0443\u0440"
+    Text: "\u0423\u0440"
     Object: {fileID: 0}
 --- !u!1 &629757534
 GameObject:
@@ -10458,8 +10458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationName: New tank lv
-  FallbackText: lv
+  translationName: lv
+  FallbackText: Lv
 --- !u!1 &1214470260
 GameObject:
   m_ObjectHideFlags: 0
@@ -11578,7 +11578,7 @@ GameObject:
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1269009189
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12461,6 +12461,7 @@ GameObject:
   - component: {fileID: 1355355969}
   - component: {fileID: 1355355971}
   - component: {fileID: 1355355970}
+  - component: {fileID: 1355355972}
   m_Layer: 5
   m_Name: Current level text
   m_TagString: Untagged
@@ -12508,7 +12509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lv
+  m_text: "\u0423\u0440"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
@@ -12585,6 +12586,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355355968}
   m_CullTransparentMesh: 1
+--- !u!114 &1355355972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355355968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: lv
+  FallbackText: Lv
 --- !u!1 &1357023782
 GameObject:
   m_ObjectHideFlags: 0
@@ -13885,7 +13900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.80134606}
   m_AnchorMax: {x: 0.5, y: 0.95731497}
-  m_AnchoredPosition: {x: 75, y: 2.1245}
+  m_AnchoredPosition: {x: 75, y: 2.1245117}
   m_SizeDelta: {x: 150, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582979431
