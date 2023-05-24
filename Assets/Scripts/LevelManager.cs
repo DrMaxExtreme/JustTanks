@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Agava.YandexGames;
 
 public class LevelManager : MonoBehaviour
 {
@@ -70,6 +71,7 @@ public class LevelManager : MonoBehaviour
         _boostScore.ResetTimer();
         _slowDownCubes.ResetTimer();
         Time.timeScale = 0;
+        InterstitialAd.Show();
     }
 
     public void CheckTankLevel(int level)

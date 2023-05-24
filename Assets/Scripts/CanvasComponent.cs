@@ -13,7 +13,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private GameObject _newTankIcon;
     [SerializeField] private GameObject _settingsIcon;
     [SerializeField] private GameObject _settingsTutorial;
-    [SerializeField] private TMP_Text _currentLevelText;
+    [SerializeField] private TMP_Text _currentLevelTextNumber;
     [SerializeField] private TMP_Text _startLevel;
     [SerializeField] private MPImage _timerFill;
     [SerializeField] private TMP_Text _countBoxes;
@@ -26,9 +26,7 @@ public class CanvasComponent : MonoBehaviour
     [SerializeField] private TMP_Text _recordLevelTextGameOver;
     [SerializeField] private TMP_Text _recordScoreTextStart;
     [SerializeField] private TMP_Text _recordLevelTextStart;
-
-    private const string _levelText = "Lv";
-    private const string _startLevelText = "Start Lv: ";
+    
     private const string _spawnedBoxesText = "x";
 
     private bool _isVisibleStartGameIcon;
@@ -119,7 +117,7 @@ public class CanvasComponent : MonoBehaviour
 
     public void SetTextFeaturesNewTank(int levelNewTank, float powerNewTank)
     {
-        _newTankLevel.text = _levelText + levelNewTank;
+        _newTankLevel.text = levelNewTank.ToString();
         _newTankPower.text = powerNewTank.ToString();
     }
 
@@ -192,8 +190,8 @@ public class CanvasComponent : MonoBehaviour
         _recordScoreTextGameOver.text = _recordScore.ToString();
         _recordLevelTextStart.text = _recordLevel.ToString();
         _recordLevelTextGameOver.text = _recordLevel.ToString();
-        _currentLevelText.text = _levelText + _currentLevel;
-        _startLevel.text = _startLevelText + _currentLevel;
+        _currentLevelTextNumber.text = _currentLevel.ToString();
+        _startLevel.text = _currentLevel.ToString();
     }
 
     private void UpdateScoreText()
