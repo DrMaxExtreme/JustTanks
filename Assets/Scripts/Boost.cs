@@ -69,13 +69,11 @@ public class Boost : MonoBehaviour
 
     private void PauseGame()
     {
-        _gameFocusManager.SwitchPauseGame(true);
         _gameFocusManager.SetOpenAdMarker(true);
     }
 
     private void ContinueGame()
     {
-        _gameFocusManager.SwitchPauseGame(false);
         _gameFocusManager.SetOpenAdMarker(false);
     }
 }

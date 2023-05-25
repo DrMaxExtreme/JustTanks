@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private BoostDamage _boostDamage;
     [SerializeField] private BoostScore _boostScore;
     [SerializeField] private SlowDownCubes _slowDownCubes;
+    [SerializeField] private GameFocusManager _gameFocusManager;
 
     private int _bestCurrentLevelTank = -1;
     private int _currentLevel = 1;
@@ -91,11 +92,6 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = _normalTimeScale;
         _canvas.SetVisibleNewTankIcon(false);
     }
-
-    public void SetPauseBoost(bool isPause)
-    {
-        _isPauseBoost = isPause;
-    }
     
     private IEnumerator StartedNextLevel()
     {
@@ -134,5 +130,15 @@ public class LevelManager : MonoBehaviour
         {
             cell.Clear();
         }
+    }
+    
+    private void PauseGame()
+    {
+        _gameFocusManager.SetOpenAdMarker(true);
+    }
+
+    private void ContinueGame()
+    {
+        _gameFocusManager.SetOpenAdMarker(false);
     }
 }
