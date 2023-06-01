@@ -27,6 +27,10 @@ public class LevelManager : MonoBehaviour
     private float _normalTimeScale;
     private float _currentOffsetSpawnerCubes = 0;
     private bool _isPauseBoost = true;
+    
+    private const float LevelsBetweenAd = 3;
+    private const float MinResidue = 0.5f;
+    private const float MaxResidue = 1.5f;
 
     public bool IsPauseBoost => _isPauseBoost;
     
@@ -72,7 +76,6 @@ public class LevelManager : MonoBehaviour
         _boostScore.ResetTimer();
         _slowDownCubes.ResetTimer();
         Time.timeScale = 0;
-        InterstitialAd.Show();
     }
 
     public void CheckTankLevel(int level)
@@ -97,6 +100,9 @@ public class LevelManager : MonoBehaviour
     {
         var waitForDelaySeconds = new WaitForSeconds(_delayStartLevelAnimation);
 
+        if(_currentLevel % LevelsBetweenAd >= MinResidue && _currentLevel % LevelsBetweenAd <= MaxResidue )
+            InterstitialAd.Show(PauseGame, ContinueGame);
+        
         Time.timeScale = _normalTimeScale;
         _spawnerCubes.Generate(_currentLevel);
         _canvas.SetVisibleStartGameIcon(false);
@@ -137,7 +143,7 @@ public class LevelManager : MonoBehaviour
         _gameFocusManager.SetOpenAdMarker(true);
     }
 
-    private void ContinueGame()
+    private void ContinueGame(bool flag)
     {
         _gameFocusManager.SetOpenAdMarker(false);
     }
