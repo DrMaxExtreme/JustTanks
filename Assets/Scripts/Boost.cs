@@ -28,7 +28,7 @@ public class Boost : MonoBehaviour
         if (_levelManager.IsPauseBoost == false)
             _remainingTime -= Time.deltaTime;
 
-        if (_remainingTime < 0)
+        if (_remainingTime <= 0)
             Deactivate();
         
         UpdateUIField(_remainingTime / ActivityTime);
@@ -42,7 +42,10 @@ public class Boost : MonoBehaviour
 
     public void ShowAd()
     {
-        VideoAd.Show(PauseGame, Activate, ContinueGame);
+        if (_remainingTime <= 0)
+            VideoAd.Show(PauseGame, Activate, ContinueGame);
+
+        Activate();
     }
 
     protected virtual void Activate()

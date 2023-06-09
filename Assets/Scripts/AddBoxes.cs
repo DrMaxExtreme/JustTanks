@@ -8,6 +8,6 @@ public class AddBoxes : Boost
     protected override void SetBoost(bool isBoosted)
     {
         if(isBoosted)
-            _spawnerBoxes.Activate(_countAddBoxes);
+            _spawnerBoxes.AddBoxes(_countAddBoxes);
     }
 }

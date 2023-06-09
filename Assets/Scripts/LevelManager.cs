@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
         var waitForDelaySeconds = new WaitForSeconds(_delayStartLevelAnimation);
 
         if(_currentLevel % LevelsBetweenAd >= MinResidue && _currentLevel % LevelsBetweenAd <= MaxResidue )
-            InterstitialAd.Show(PauseGame, ContinueGame);
+            //InterstitialAd.Show(PauseGame, ContinueGame);
         
         Time.timeScale = _normalTimeScale;
         _spawnerCubes.Generate(_currentLevel);
@@ -127,7 +127,8 @@ public class LevelManager : MonoBehaviour
 
     private void ActivateSpawnerBoxes()
     {
-        _spawnerBoxes.Activate(_currentLevel <= _maxCountNewBoxes ? _currentLevel : _maxCountNewBoxes);
+        _spawnerBoxes.AddBoxes(_currentLevel <= _maxCountNewBoxes ? _currentLevel : _maxCountNewBoxes);
+        _spawnerBoxes.Activate();
     }
 
     private void ClearAllCells()

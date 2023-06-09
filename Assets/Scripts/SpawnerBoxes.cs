@@ -42,9 +42,13 @@ public class SpawnerBoxes : MonoBehaviour
         Stop();
     }
 
-    public void Activate(int numberOfBoxes)
+    public void AddBoxes(int numberOfBoxes)
     {
         _numberOfBoxes += numberOfBoxes;
+    }
+    
+    public void Activate()
+    {
         _isActive = true;
     }
 
@@ -75,11 +79,8 @@ public class SpawnerBoxes : MonoBehaviour
 
     private void GenerateBox()
     {
-        if (TryFindFreeCell() && _numberOfBoxes > 0)
-        {
-            _freeCells[Random.RandomRange(0, _freeCells.Count)].InstantiateBox();
-            _numberOfBoxes--;
-        }
+        _freeCells[Random.RandomRange(0, _freeCells.Count)].InstantiateBox();
+        _numberOfBoxes--;
     }
 
     private void UpdateUIIconBoxes()

@@ -20,7 +20,7 @@ public class Cell : MonoBehaviour
     private Box _currentBox;
     private Tank _currentTank;
     
-    private const int IndexSpawnedTank = 0;
+    private const int IndexSpawnedTank = 4;
     private const float SecondsDelayOpenBox = 0.01f;
 
     public Tank[] TankPrefabs => _tankPrefabs;
@@ -74,7 +74,7 @@ public class Cell : MonoBehaviour
         Destroy(_currentTank.gameObject);
 
         if(_isActivatingAttackingTank)
-            _canvas.UpdateTextCurrentPowerActiveTanks(- CurrentTank.ShowPower());
+            _canvas.UpdateTextCurrentPowerActiveTanks(-CurrentTank.ShowPower());
     }
 
     public void TakeTank(Tank tank)
@@ -89,7 +89,7 @@ public class Cell : MonoBehaviour
 
     public bool IsHaveTankForUpgrade(int newTankLevel)
     {
-        return _currentTank.Level == newTankLevel && _currentTank.Level < _tankPrefabs.Length - 1;
+        return _currentTank.Level == newTankLevel && _currentTank.Level < _tankPrefabs.Length;
     }
 
     public void UpgradeTank()
