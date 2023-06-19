@@ -88,9 +88,13 @@ public class CanvasComponent : MonoBehaviour
         UpdateLevelTexts();
     }
 
-    public void UpdateTextCountBoxes(int currentBoxes, float fillValue)
+    public void UpdateTextCountBoxes(int currentBoxes)
     {
         _countBoxes.text = _spawnedBoxesText + currentBoxes;
+    }
+
+    public void UpdateFillDelaySpawnBoxes(float fillValue)
+    {
         _timerFill.fillAmount = fillValue;
     }
 

@@ -16,7 +16,7 @@ public class SpawnerCubes : ObjectPool
     private const float MaxHealth = 3f;
     private const float GrowthHealthUpRow = 3f;
     private const int Probability = 30;
-    private const int ProbabilityEveryFiveLevel = 8;
+    private const int ProbabilityEveryHardcoreLevel = 8;
     private const int EveryHardcoreLevel = 4;
 
     private void Awake()
@@ -42,7 +42,7 @@ public class SpawnerCubes : ObjectPool
                     int probability;
 
                     if (currentLevel % EveryHardcoreLevel == 0)
-                        probability = ProbabilityEveryFiveLevel;
+                        probability = ProbabilityEveryHardcoreLevel;
                     else
                         probability = Probability;
 

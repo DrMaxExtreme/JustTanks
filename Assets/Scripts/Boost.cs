@@ -44,8 +44,6 @@ public class Boost : MonoBehaviour
     {
         if (_remainingTime <= 0)
             VideoAd.Show(PauseGame, Activate, ContinueGame);
-
-        Activate();
     }
 
     protected virtual void Activate()
