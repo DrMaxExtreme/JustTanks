@@ -3587,7 +3587,7 @@ MonoBehaviour:
   - {fileID: 1343250823}
   - {fileID: 472936753}
   - {fileID: 1525613950}
-  _maxCountNewBoxes: 30
+  _maxCountNewBoxes: 3
   _offsetSpawnerCubes: 0.25
   _maxOffsetSpawnerCubes: 6
   _LevelWinSound: {fileID: 411673771}
@@ -22797,7 +22797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4854189908988665228, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _delayBetweenActivate
-      value: 1.5
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4854189908988665228, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
       propertyPath: _allCells.Array.data[0]

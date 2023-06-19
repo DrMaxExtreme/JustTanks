@@ -20,7 +20,7 @@ public class Cell : MonoBehaviour
     private Box _currentBox;
     private Tank _currentTank;
     
-    private const int IndexSpawnedTank = 4;
+    private const int IndexSpawnedTank = 0;
     private const float SecondsDelayOpenBox = 0.01f;
 
     public Tank[] TankPrefabs => _tankPrefabs;
