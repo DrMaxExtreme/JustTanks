@@ -6,13 +6,13 @@ namespace JustTanks.GameLogic
 {
     public class GameOverCollider : MonoBehaviour
     {
-        public event Action Reached;
+        public event Action onReached;
 
         private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject.TryGetComponent(out Cube cube))
             {
-                Reached?.Invoke();
+                onReached?.Invoke();
             }
         }
     }

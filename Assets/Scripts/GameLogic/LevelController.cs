@@ -42,11 +42,8 @@ namespace JustTanks.GameLogic
 
         private void OnEnable()
         {
-            // Подписываемся на событие
             if (_gameOverCollider != null)
-            {
-                _gameOverCollider.Reached += FinishGame;
-            }
+                _gameOverCollider.onReached += FinishGame;
         }
 
         private void Start()
@@ -60,9 +57,7 @@ namespace JustTanks.GameLogic
             StopCoroutine(StartedNextLevel());
 
             if (_gameOverCollider != null)
-            {
-                _gameOverCollider.Reached -= FinishGame;
-            }
+                _gameOverCollider.onReached -= FinishGame;
         }
 
         public void ShowWin()

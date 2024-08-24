@@ -1,7 +1,6 @@
 using Agava.YandexGames;
 using JustTanks.GameLogic;
 using MPUIKIT;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,17 +14,12 @@ namespace JustTanks.Boosts
         [SerializeField] private MPImage _timerFill;
         [SerializeField] private int _multiplier;
 
-        private float _remainingTime;
+        private BoostTimer _boostTimer;
+        private AdManager _adManager;
 
         private const float ActivityTime = 60;
 
         private List<GameObject> _cubesPool;
-
-        protected int Multiplier
-        {
-            get { return _multiplier; }
-            set { _multiplier = value; }
-        }
 
         protected List<GameObject> CubesPool
         {
@@ -33,27 +27,44 @@ namespace JustTanks.Boosts
             set { _cubesPool = value; }
         }
 
-        public void ResetTimer()
+        protected int Multiplier
         {
-            _remainingTime = 0;
-            UpdateUIField(_remainingTime);
-        }
-
-        public void ShowAd()
-        {
-            if (_remainingTime <= 0)
-                VideoAd.Show(PauseGame, Activate, ContinueGame);
+            get { return _multiplier; }
+            set { _multiplier = value; }
         }
 
         protected virtual void Start()
         {
-            ResetTimer();
+            _boostTimer = new BoostTimer(_timerFill);
+            _adManager = new AdManager(_gameFocusManager);
+
             CubesPool = _spawnerCubes.ShowPool();
+        }
+
+        public void ResetTimer()
+        {
+            _boostTimer.ResetTimer();
+        }
+
+        public void ShowAd()
+        {
+            if (_boostTimer.IsTimeOver())
+                _adManager.ShowAd();
+        }
+
+        protected virtual void Update()
+        {
+            if (!_levelController.IsPauseBoost)
+                _boostTimer.UpdateTimer(Time.deltaTime, ActivityTime);
+
+            if (_boostTimer.IsTimeOver())
+                Deactivate();
         }
 
         protected virtual void Activate()
         {
-            _remainingTime = ActivityTime;
+            _boostTimer.ResetTimer();
+            _boostTimer.UpdateTimer(ActivityTime, ActivityTime);
             SetBoostActivity(true);
         }
 
@@ -65,33 +76,6 @@ namespace JustTanks.Boosts
         protected virtual void SetBoostActivity(bool isBoosted)
         {
 
-        }
-
-        private void Update()
-        {
-            if (_levelController.IsPauseBoost == false)
-                _remainingTime -= Time.deltaTime;
-
-            if (_remainingTime <= 0)
-                Deactivate();
-
-            UpdateUIField(_remainingTime / ActivityTime);
-        }
-
-        private void UpdateUIField(float fillValue)
-        {
-            if (_timerFill != null)
-                _timerFill.fillAmount = fillValue;
-        }
-
-        private void PauseGame()
-        {
-            _gameFocusManager.SetOpenAdMarker(true);
-        }
-
-        private void ContinueGame()
-        {
-            _gameFocusManager.SetOpenAdMarker(false);
         }
     }
 }
