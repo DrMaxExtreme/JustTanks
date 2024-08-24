@@ -1,10 +1,15 @@
-public class BoostScore : Boost
+using JustTanks.Gameplay;
+
+namespace JustTanks.Boosts
 {
-    protected override void SetBoost(bool isBoosted)
+    public class BoostScore : Boost
     {
-        foreach (var cube in CubesPool)
+        protected override void SetBoostActivity(bool isBoosted)
         {
-            cube.GetComponent<Cube>().SetBoostScoreMode(isBoosted);
+            foreach (var cube in CubesPool)
+            {
+                cube.GetComponent<Cube>().SetBoostScoreMode(isBoosted);
+            }
         }
     }
 }

@@ -1,31 +1,32 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleLife : MonoBehaviour
+namespace JustTanks.Decorations
 {
-    [SerializeField] private ParticleSystem _particle;
-
-    private float _delayDestroy;
-    
-    private void Start()
+    public class ParticleLife : MonoBehaviour
     {
-        _delayDestroy = _particle.duration;
-        StartCoroutine(DelayDie());
-    }
+        [SerializeField] private ParticleSystem _particle;
 
-    private void OnDisable()
-    {
-        StopCoroutine(DelayDie());
-    }
+        private float _delayDestroy;
 
-    private IEnumerator DelayDie()
-    {
-        var waitForDelaySeconds = new WaitForSeconds(_delayDestroy);
+        private void Start()
+        {
+            _delayDestroy = _particle.duration;
+            StartCoroutine(DelayDie());
+        }
 
-        yield return waitForDelaySeconds;
+        private void OnDisable()
+        {
+            StopCoroutine(DelayDie());
+        }
 
-        Destroy(gameObject);
+        private IEnumerator DelayDie()
+        {
+            var waitForDelaySeconds = new WaitForSeconds(_delayDestroy);
+
+            yield return waitForDelaySeconds;
+
+            Destroy(gameObject);
+        }
     }
 }

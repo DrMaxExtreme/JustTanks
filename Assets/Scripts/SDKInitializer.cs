@@ -1,19 +1,22 @@
+using Agava.YandexGames;
 using System.Collections;
 using UnityEngine;
-using Agava.YandexGames;
 
-public class SDKInitializer : MonoBehaviour
+namespace JustTanks.GameLogic
 {
-    private void Awake()
+    public class SDKInitializer : MonoBehaviour
     {
-        YandexGamesSdk.CallbackLogging = true;
-    }
+        private void Awake()
+        {
+            YandexGamesSdk.CallbackLogging = true;
+        }
 
-    private IEnumerator Start()
-    {
+        private IEnumerator Start()
+        {
 #if !UNITY_EDITOR
         yield return YandexGamesSdk.Initialize();
 #endif
-        yield break;
+            yield break;
+        }
     }
 }

@@ -1,49 +1,51 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+namespace JustTanks.GameLogic
 {
-    [SerializeField] private int _capacity;
-
-    private List<GameObject> _pool = new List<GameObject>();
-
-    protected List<GameObject> Pool => _pool;
-    
-    protected void ClearPool()
+    public class ObjectPool : MonoBehaviour
     {
-        _pool.Clear();
-    }
+        [SerializeField] private int _capacity;
 
-    protected void Initialize(GameObject prefab)
-    {
-        for (int i = 0; i < _capacity; i++)
+        private List<GameObject> _pool = new List<GameObject>();
+
+        protected List<GameObject> Pool => _pool;
+
+        protected void ClearPool()
         {
-            GameObject spawned = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-            spawned.SetActive(false);
-
-            _pool.Add(spawned);
+            _pool.Clear();
         }
-    }
 
-    protected bool TryGetObject(out GameObject result)
-    {
-        result = _pool.FirstOrDefault(p => p.activeSelf == false);
-
-        return result != null;
-    }
-
-    protected bool TryFindObject()
-    {
-        return _pool.All(p => p.activeSelf == false);
-    }
-
-    protected void Release()
-    {
-        foreach (var item in _pool)
+        protected void Initialize(GameObject prefab)
         {
-            item.gameObject.SetActive(false);
+            for (int i = 0; i < _capacity; i++)
+            {
+                GameObject spawned = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                spawned.SetActive(false);
+
+                _pool.Add(spawned);
+            }
+        }
+
+        protected bool TryGetObject(out GameObject result)
+        {
+            result = _pool.FirstOrDefault(p => p.activeSelf == false);
+
+            return result != null;
+        }
+
+        protected bool TryFindObject()
+        {
+            return _pool.All(p => p.activeSelf == false);
+        }
+
+        protected void Release()
+        {
+            foreach (var item in _pool)
+            {
+                item.gameObject.SetActive(false);
+            }
         }
     }
 }

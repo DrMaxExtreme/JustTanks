@@ -3548,7 +3548,7 @@ GameObject:
   - component: {fileID: 411673770}
   - component: {fileID: 411673772}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: LevelController
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3563,7 +3563,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 411673767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80acd5d6e2b56f4d84ba2f98f7120e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5466e13bf59bd514598aa01e4670dc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _delayStartLevelAnimation: 2.5
@@ -3591,12 +3591,13 @@ MonoBehaviour:
   _offsetSpawnerCubes: 0.25
   _maxOffsetSpawnerCubes: 6
   _LevelWinSound: {fileID: 411673771}
-  _GameOverSound: {fileID: 411673770}
-  _GameMusic: {fileID: 411673772}
+  _GameOverSound: {fileID: 411673771}
+  _GameMusic: {fileID: 411673771}
   _boostDamage: {fileID: 1344218654}
   _boostScore: {fileID: 2127357924}
   _slowDownCubes: {fileID: 629757539}
   _gameFocusManager: {fileID: 963194231}
+  _gameOverCollider: {fileID: 2124935942}
 --- !u!4 &411673769
 Transform:
   m_ObjectHideFlags: 0
@@ -5211,9 +5212,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Developer: DrMax
-
-    3D Artist: AnastasaGreen'
+  m_text: "\u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A: \u0411\u043E\u0440\u0438\u0441\u043E\u0432
+    \u041C\u0430\u043A\u0441\u0438\u043C\n3D \u0445\u0443\u0434\u043E\u0436\u043D\u0438\u043A:
+    \u0411\u043E\u0440\u0438\u0441\u043E\u0432\u0430 \u0410\u043D\u0430\u0441\u0442\u0430\u0441\u0438\u044F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
@@ -5240,8 +5241,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 12
@@ -6053,7 +6054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ed928620f0fd4478cf91a4436c0075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 411673768}
+  _levelController: {fileID: 411673768}
   _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1233070290}
@@ -10041,7 +10042,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 02fea1fb776e0ad43a5e684a1ab0ce9e, type: 2}
@@ -13887,7 +13888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d351857a1ab5941bde015d893d342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 411673768}
+  _levelController: {fileID: 411673768}
   _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 799485366}
@@ -17544,7 +17545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b968be0e19bcf7d49ae7354e11eb83d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 411673768}
+  _levelController: {fileID: 411673768}
   _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1636622294}
@@ -21219,6 +21220,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115880873}
   m_CullTransparentMesh: 1
+--- !u!114 &2124935942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6833424376998353438, guid: 22771e61985b17541b4d4c7028c8d8ea, type: 3}
+  m_PrefabInstance: {fileID: 7973123312775485922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdab17c971e437f4b91b472c96616ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127357919
 GameObject:
   m_ObjectHideFlags: 0
@@ -21338,7 +21350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee541bfb4e3e7e4288f1ab5645b26f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 411673768}
+  _levelController: {fileID: 411673768}
   _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1547122398}

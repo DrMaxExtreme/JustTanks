@@ -1,21 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerDecorationsStart : MonoBehaviour
+namespace JustTanks.Decorations
 {
-    [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] private List<GameObject> prefabs;
-
-    private const float MaxRotationY = 360f;
-    
-    private void Start()
+    public class SpawnerDecorationsStart : MonoBehaviour
     {
-        foreach (var point in spawnPoints)
+        private const float MaxRotationY = 360f;
+
+        [SerializeField] private List<Transform> spawnPoints;
+        [SerializeField] private List<GameObject> prefabs;
+
+        private void Start()
         {
-            GameObject randomPrefab = prefabs[Random.Range(0, prefabs.Count)];
-            var obj = Instantiate(randomPrefab, point.position, point.rotation);
-            obj.transform.Rotate(0f, Random.Range(0, MaxRotationY), 0f);
+            foreach (var point in spawnPoints)
+            {
+                GameObject randomPrefab = prefabs[Random.Range(0, prefabs.Count)];
+                var obj = Instantiate(randomPrefab, point.position, point.rotation);
+                obj.transform.Rotate(0f, Random.Range(0, MaxRotationY), 0f);
+            }
         }
     }
 }

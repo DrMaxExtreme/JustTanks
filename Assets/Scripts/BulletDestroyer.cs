@@ -1,33 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(Rigidbody))]
-public class BulletDestroyer : MonoBehaviour
+namespace JustTanks.Gameplay
 {
-    private Collider _triggerCollider;
-
-    private void Start()
+    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Rigidbody))]
+    public class BulletDestroyer : MonoBehaviour
     {
-        _triggerCollider = GetComponent<Collider>();
-        _triggerCollider.isTrigger = true;
-    }
+        private Collider _triggerCollider;
 
-    public void Activate()
-    {
-        var bounds = _triggerCollider.bounds;
-        
-        Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.extents, Quaternion.identity);
-
-        foreach (Collider collider in colliders)
+        private void Start()
         {
-            GameObject obj = collider.gameObject;
+            _triggerCollider = GetComponent<Collider>();
+            _triggerCollider.isTrigger = true;
+        }
 
-            if (obj.GetComponent<Bullet>() != null)
+        public void Activate()
+        {
+            var bounds = _triggerCollider.bounds;
+
+            Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.extents, Quaternion.identity);
+
+            foreach (Collider collider in colliders)
             {
-                obj.GetComponent<Bullet>().Destroy();
+                GameObject obj = collider.gameObject;
+
+                if (obj.GetComponent<Bullet>() != null)
+                {
+                    obj.GetComponent<Bullet>().Destroy();
+                }
             }
         }
     }

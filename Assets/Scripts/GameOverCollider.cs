@@ -1,17 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using JustTanks.Gameplay;
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 
-public class GameOverCollider : MonoBehaviour
+namespace JustTanks.GameLogic
 {
-    [SerializeField] private UnityEvent _reached;
-
-    private void OnTriggerEnter(Collider collision)
+    public class GameOverCollider : MonoBehaviour
     {
-        if (collision.gameObject.TryGetComponent(out Cube cube))
+        public event Action Reached;
+
+        private void OnTriggerEnter(Collider collision)
         {
-            _reached?.Invoke();
+            if (collision.gameObject.TryGetComponent(out Cube cube))
+            {
+                Reached?.Invoke();
+            }
         }
     }
 }

@@ -1,68 +1,71 @@
-using System;
+using JustTanks.Audio;
 using UnityEngine;
 
-public class GameFocusManager : MonoBehaviour
+namespace JustTanks.GameLogic
 {
-    [SerializeField] private SoundManager _soundManager;
-
-    private float _currentTimeScale;
-    private float _currentValueSound;
-    private bool _isPause = false;
-    private bool _isOpenAd = false;
-    
-    private const float SoundOffValue = -100;
-
-    private void Awake()
+    public class GameFocusManager : MonoBehaviour
     {
-        _currentTimeScale = Time.timeScale;
-    }
+        private const float SoundOffValue = -100;
 
-    private void Start()
-    {
-        _currentValueSound = _soundManager.GetMixerValue();
-    }
+        [SerializeField] private SoundManager _soundManager;
 
-    public void SwitchPauseGame(bool isPause)
-    {
-        if (_isOpenAd)
-            isPause = true;
-        
-        if (isPause != _isPause)
+        private float _currentTimeScale;
+        private float _currentValueSound;
+        private bool _isPause = false;
+        private bool _isOpenAd = false;
+
+        private void Awake()
         {
-            _isPause = isPause;
-
-            if (_isPause)
-            {
-                _currentTimeScale = Time.timeScale;
-                _currentValueSound = _soundManager.GetMixerValue();
-            }
-
-            SetTimeScale();
-            SetVolumeSound();
+            _currentTimeScale = Time.timeScale;
         }
-    }
 
-    public void SetOpenAdMarker(bool isOpenAd)
-    {
-        _isOpenAd = isOpenAd;
-        SwitchPauseGame(_isOpenAd);
-    }
-    
-    private void OnApplicationFocus(bool isApplicationHasFocus)
-    {
-        SwitchPauseGame(!isApplicationHasFocus);
-    }
-    
-    private void SetTimeScale()
-    {
-        if (_isPause)
-            Time.timeScale = 0;
-        else
-            Time.timeScale = _currentTimeScale;
-    }
+        private void Start()
+        {
+            _currentValueSound = _soundManager.GetMixerValue();
+        }
 
-    private void SetVolumeSound()
-    {
-        _soundManager.SetSoundValueMixer(_isPause ? SoundOffValue : _currentValueSound);
+        public void SwitchPauseGame(bool isPause)
+        {
+            if (_isOpenAd)
+                isPause = true;
+
+            if (isPause != _isPause)
+            {
+                _isPause = isPause;
+
+                if (_isPause)
+                {
+                    _currentTimeScale = Time.timeScale;
+                    _currentValueSound = _soundManager.GetMixerValue();
+                }
+
+                SetTimeScale();
+                SetVolumeSound();
+            }
+        }
+
+        public void SetOpenAdMarker(bool isOpenAd)
+        {
+            _isOpenAd = isOpenAd;
+            SwitchPauseGame(_isOpenAd);
+        }
+
+        private void OnApplicationFocus(bool isApplicationHasFocus)
+        {
+            SwitchPauseGame(!isApplicationHasFocus);
+        }
+
+        private void SetTimeScale()
+        {
+            if (_isPause)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = _currentTimeScale;
+        }
+
+        private void SetVolumeSound()
+        {
+            _soundManager.SetSoundValueMixer(_isPause ? SoundOffValue : _currentValueSound);
+        }
     }
 }
