@@ -1,3 +1,4 @@
+using JustTanks.GameLogic;
 using MPUIKIT;
 using System.Collections;
 using TMPro;
@@ -8,9 +9,8 @@ namespace JustTanks.UI
     public class CanvasComponent : MonoBehaviour
     {
         private const string _spawnedBoxesText = "x";
-
         private const string _recordScorePrefs = "RecordScorePrefs";
-        private const string _recortLevelPrefs = "RecordLevelPrefs";
+        private const string _recordLevelPrefs = "RecordLevelPrefs";
         private const string _firstVisibleTutorialPrefs = "FirstVisibleTutorialPrefs";
 
         [SerializeField] private GameObject _mainCanvas;
@@ -35,32 +35,44 @@ namespace JustTanks.UI
         [SerializeField] private TMP_Text _recordScoreTextStart;
         [SerializeField] private TMP_Text _recordLevelTextStart;
 
+        private UIVisibilityManager _uiVisibilityManager;
+        private UITextManager _uiTextManager;
+        private GameStateManager _gameStateManager;
+        private PrefsManager _prefsManager;
+        private LevelController _levelController;
+
         private bool _isVisibleStartGameIcon;
         private bool _isVisibleContinueGameIcon;
         private bool _isVisibleGameOverIcon;
-
         private float _normalTimeScale;
-        private float _currentPowerActiveTanks = 0;
         private float _delayUpdateTextCurrentPowerActiveTanks = 0.02f;
-        private int _currentScore;
-        private int _currentLevel;
-        private int _recordScore = 0;
-        private int _recordLevel = 0;
-        private int _firstVisibleTutorial = 0;
+
+        private void Awake()
+        {
+            _uiVisibilityManager = new UIVisibilityManager();
+            _uiTextManager = new UITextManager();
+            _gameStateManager = new GameStateManager();
+            _prefsManager = new PrefsManager();
+            _levelController = new LevelController();
+        }
 
         private void Start()
         {
-            InitPrefs();
-            _normalTimeScale = Time.timeScale;
-            _currentPowerActiveTanks = 0;
-            UpdateTextCurrentPowerActiveTanks(0);
-            UpdateScoreText();
-            UpdateLevelTexts();
+            Init();
+        }
 
-            if (_firstVisibleTutorial == 0)
+        private void Init()
+        {
+            _gameStateManager.ResetCurrentPowerActiveTanks();
+            _normalTimeScale = Time.timeScale;
+
+            UpdateLevelTexts(1);
+            UpdateScoreText();
+
+            if (_prefsManager.LoadInt(_firstVisibleTutorialPrefs) == 0)
             {
                 SetVisibleTutorialIcon(true);
-                PlayerPrefs.SetInt(_firstVisibleTutorialPrefs, ++_firstVisibleTutorial);
+                _prefsManager.SaveInt(_firstVisibleTutorialPrefs, 1);
             }
         }
 
@@ -71,80 +83,88 @@ namespace JustTanks.UI
 
         public void SetVisibleStartLevelLabel(bool isVisible)
         {
-            _startLevelLabel.SetActive(isVisible);
+            _uiVisibilityManager.SetVisible(_startLevelLabel, isVisible);
         }
 
         public void SetVisibleStartGameIcon(bool isVisible)
         {
-            _startGameIcon.SetActive(isVisible);
+            _uiVisibilityManager.SetVisible(_startGameIcon, isVisible);
         }
 
         public void SetVisibleContinueGameIcon(bool isVisible)
         {
-            _continueGameIcon.SetActive(isVisible);
+            _uiVisibilityManager.SetVisible(_continueGameIcon, isVisible);
+        }
+
+        public void SetVisibleGameOverIcon(bool isVisible)
+        {
+            _uiVisibilityManager.SetVisible(_gameOverIcon, isVisible);
+        }
+
+        public void SetVisibleNewTankIcon(bool isVisible)
+        {
+            _uiVisibilityManager.SetVisible(_newTankIcon, isVisible);
+        }
+
+        public void SetVisibleTutorialIcon(bool isVisible)
+        {
+            _uiVisibilityManager.SetVisible(_settingsTutorial, isVisible);
+            _uiVisibilityManager.SetVisible(_mainCanvas, !isVisible);
         }
 
         public void UpdateTextLevel(int currentLevel)
         {
-            _currentLevel = currentLevel;
-            UpdateLevelTexts();
+            if(currentLevel > _prefsManager.LoadInt("RecordLevelPrefs"))
+                _gameStateManager.SaveRecordLevel(currentLevel);
+
+            UpdateLevelTexts(currentLevel);
         }
 
         public void UpdateTextCountBoxes(int currentBoxes)
         {
-            _countBoxes.text = _spawnedBoxesText + currentBoxes;
+            _uiTextManager.UpdateText(_countBoxes, _spawnedBoxesText + currentBoxes);
         }
 
         public void UpdateFillDelaySpawnBoxes(float fillValue)
         {
-            _timerFill.fillAmount = fillValue;
+            _uiTextManager.UpdateFillAmount(_timerFill, fillValue);
         }
 
         public void UpdateTextCurrentPowerActiveTanks(float powerTank)
         {
-            _currentPowerActiveTanks += powerTank;
+            _gameStateManager.AddPowerToTanks(powerTank);
             StartCoroutine(UpdatedTextCurrentPowerActiveTanks());
         }
 
         public void ResetCurrentPowerActiveTanksValue()
         {
-            _currentPowerActiveTanks = 0;
-        }
-
-        public void SetVisibleGameOverIcon(bool isVisible)
-        {
-            _gameOverIcon.SetActive(isVisible);
-        }
-
-        public void SetVisibleNewTankIcon(bool isVisible)
-        {
-            _newTankIcon.SetActive(isVisible);
+            _gameStateManager.ResetCurrentPowerActiveTanks();
         }
 
         public void SetTextFeaturesNewTank(int levelNewTank, float powerNewTank)
         {
-            _newTankLevel.text = levelNewTank.ToString();
-            _newTankPower.text = powerNewTank.ToString();
+            _uiTextManager.UpdateText(_newTankLevel, levelNewTank.ToString());
+            _uiTextManager.UpdateText(_newTankPower, powerNewTank.ToString());
         }
 
         public void SetRenderNewTank(Sprite render)
         {
-            _tankRender.sprite = render;
+            _uiTextManager.SetRender(_tankRender, render);
         }
 
         public void ShowSettings()
         {
-            if (_settingsIcon.active == false)
+            if (!_settingsIcon.activeSelf)
             {
-                _isVisibleStartGameIcon = _startGameIcon.active;
-                _isVisibleContinueGameIcon = _continueGameIcon.active;
-                _isVisibleGameOverIcon = _gameOverIcon.active;
+                _isVisibleStartGameIcon = _startGameIcon.activeSelf;
+                _isVisibleContinueGameIcon = _continueGameIcon.activeSelf;
+                _isVisibleGameOverIcon = _gameOverIcon.activeSelf;
 
                 SetVisibleStartGameIcon(false);
                 SetVisibleContinueGameIcon(false);
                 SetVisibleGameOverIcon(false);
 
-                _settingsIcon.SetActive(true);
+                _uiVisibilityManager.SetVisible(_settingsIcon, true);
                 Time.timeScale = 0;
             }
         }
@@ -155,63 +175,39 @@ namespace JustTanks.UI
             SetVisibleContinueGameIcon(_isVisibleContinueGameIcon);
             SetVisibleGameOverIcon(_isVisibleGameOverIcon);
 
-            _settingsIcon.SetActive(false);
+            _uiVisibilityManager.SetVisible(_settingsIcon, false);
             Time.timeScale = _normalTimeScale;
         }
 
         public void GetScore(int score)
         {
-            _currentScore += score;
-
-            if (_recordScore < _currentScore)
-            {
-                _recordScore = _currentScore;
-                PlayerPrefs.SetInt(_recordScorePrefs, _recordScore);
-            }
-
+            _gameStateManager.AddScore(score);
             UpdateScoreText();
         }
 
         public void ResetScore()
         {
-            _currentScore = 0;
+            _gameStateManager.ResetScore();
             UpdateScoreText();
         }
 
-        public void SetVisibleTutorialIcon(bool isVisible)
+        private void UpdateLevelTexts(int currentLevel)
         {
-            _settingsTutorial.SetActive(isVisible);
-            _mainCanvas.SetActive(!isVisible);
-        }
+            int recordLevel = _gameStateManager.LoadRecordLevel();
 
-        private void UpdateLevelTexts()
-        {
-            if (_recordLevel < _currentLevel)
-            {
-                _recordLevel = _currentLevel;
-                PlayerPrefs.SetInt(_recortLevelPrefs, _recordLevel);
-            }
-
-            _recordScoreTextStart.text = _recordScore.ToString();
-            _recordScoreTextGameOver.text = _recordScore.ToString();
-            _recordLevelTextStart.text = _recordLevel.ToString();
-            _recordLevelTextGameOver.text = _recordLevel.ToString();
-            _currentLevelTextNumber.text = _currentLevel.ToString();
-            _startLevel.text = _currentLevel.ToString();
+            _uiTextManager.UpdateText(_recordScoreTextStart, _gameStateManager.GetRecordScore().ToString());
+            _uiTextManager.UpdateText(_recordScoreTextGameOver, _gameStateManager.GetRecordScore().ToString());
+            _uiTextManager.UpdateText(_recordLevelTextStart, recordLevel.ToString());
+            _uiTextManager.UpdateText(_recordLevelTextGameOver, recordLevel.ToString());
+            _uiTextManager.UpdateText(_currentLevelTextNumber, currentLevel.ToString());
+            _uiTextManager.UpdateText(_startLevel, recordLevel.ToString());
         }
 
         private void UpdateScoreText()
         {
-            _currentScoreText.text = _currentScore.ToString();
-            _recordScoreTextGameOver.text = _recordScore.ToString();
-            _recordScoreTextStart.text = _recordScore.ToString();
-        }
-
-        private void InitPrefs()
-        {
-            _recordScore = PlayerPrefs.GetInt(_recordScorePrefs);
-            _recordLevel = PlayerPrefs.GetInt(_recortLevelPrefs);
-            _firstVisibleTutorial = PlayerPrefs.GetInt(_firstVisibleTutorialPrefs);
+            _uiTextManager.UpdateText(_currentScoreText, _gameStateManager.GetCurrentScore().ToString());
+            _uiTextManager.UpdateText(_recordScoreTextGameOver, _gameStateManager.GetRecordScore().ToString());
+            _uiTextManager.UpdateText(_recordScoreTextStart, _gameStateManager.GetRecordScore().ToString());
         }
 
         private IEnumerator UpdatedTextCurrentPowerActiveTanks()
@@ -219,7 +215,7 @@ namespace JustTanks.UI
             var waitForDelaySeconds = new WaitForSeconds(_delayUpdateTextCurrentPowerActiveTanks);
             yield return waitForDelaySeconds;
 
-            _currentPowerActiveTanksText.text = _currentPowerActiveTanks.ToString();
+            _uiTextManager.UpdateText(_currentPowerActiveTanksText, _gameStateManager.GetCurrentPowerActiveTanks().ToString());
         }
     }
 }
