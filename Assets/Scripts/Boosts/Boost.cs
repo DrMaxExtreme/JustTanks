@@ -1,4 +1,3 @@
-using Agava.YandexGames;
 using JustTanks.GameLogic;
 using MPUIKIT;
 using System.Collections.Generic;
@@ -6,18 +5,18 @@ using UnityEngine;
 
 namespace JustTanks.Boosts
 {
-    public class Boost : MonoBehaviour
+    public abstract class Boost : MonoBehaviour
     {
-        [SerializeField] private LevelController _levelController;
+        private const float ActivityTime = 60;
+
         [SerializeField] private GameFocusManager _gameFocusManager;
+        [SerializeField] private LevelController _levelController;
         [SerializeField] private SpawnerCubes _spawnerCubes;
         [SerializeField] private MPImage _timerFill;
         [SerializeField] private int _multiplier;
 
         private BoostTimer _boostTimer;
         private AdManager _adManager;
-
-        private const float ActivityTime = 60;
 
         private List<GameObject> _cubesPool;
 
@@ -33,12 +32,11 @@ namespace JustTanks.Boosts
             set { _multiplier = value; }
         }
 
-        protected virtual void Start()
+        private void Awake()
         {
+            CubesPool = _spawnerCubes.ShowPool();
             _boostTimer = new BoostTimer(_timerFill);
             _adManager = new AdManager(_gameFocusManager);
-
-            CubesPool = _spawnerCubes.ShowPool();
         }
 
         public void ResetTimer()
@@ -73,9 +71,7 @@ namespace JustTanks.Boosts
             SetBoostActivity(false);
         }
 
-        protected virtual void SetBoostActivity(bool isBoosted)
-        {
+        protected abstract void SetBoostActivity(bool isBoosted);
 
-        }
     }
 }

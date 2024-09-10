@@ -2,15 +2,15 @@ using MPUIKIT;
 
 namespace JustTanks.Boosts
 {
-    public class BoostTimer
+    public class BoostTimer : IBoostTimer
     {
-        private float _remainingTime;
         private MPImage _timerFill;
+        private float _remainingTime;
 
         public BoostTimer(MPImage timerFill)
         {
             _timerFill = timerFill;
-            ResetTimer();
+            _remainingTime = 0;
         }
 
         public void ResetTimer()
@@ -25,7 +25,10 @@ namespace JustTanks.Boosts
             UpdateUIField(_remainingTime / activityTime);
         }
 
-        public bool IsTimeOver() => _remainingTime <= 0;
+        public bool IsTimeOver()
+        {
+            return _remainingTime <= 0;
+        }
 
         private void UpdateUIField(float fillValue)
         {

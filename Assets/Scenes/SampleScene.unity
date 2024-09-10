@@ -6055,7 +6055,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelController: {fileID: 411673768}
-  _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1233070290}
   _multiplier: 2
@@ -13889,7 +13888,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelController: {fileID: 411673768}
-  _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 799485366}
   _multiplier: 2
@@ -17546,7 +17544,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelController: {fileID: 411673768}
-  _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1636622294}
   _multiplier: 0
@@ -21351,7 +21348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelController: {fileID: 411673768}
-  _gameFocusManager: {fileID: 963194231}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1547122398}
   _multiplier: 5

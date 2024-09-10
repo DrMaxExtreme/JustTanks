@@ -200,7 +200,7 @@ namespace JustTanks.UI
             _uiTextManager.UpdateText(_recordLevelTextStart, recordLevel.ToString());
             _uiTextManager.UpdateText(_recordLevelTextGameOver, recordLevel.ToString());
             _uiTextManager.UpdateText(_currentLevelTextNumber, currentLevel.ToString());
-            _uiTextManager.UpdateText(_startLevel, recordLevel.ToString());
+            _uiTextManager.UpdateText(_startLevel, currentLevel.ToString());
         }
 
         private void UpdateScoreText()

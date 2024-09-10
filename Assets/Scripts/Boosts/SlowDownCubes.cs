@@ -1,29 +1,35 @@
+using System;
 using JustTanks.Gameplay;
 
 namespace JustTanks.Boosts
 {
-    using System;
-
     public class SlowDownCubes : Boost
     {
         private float _normalSpeed;
 
-        protected override void Start()
+        private void Start()
         {
-            base.Start();
             _normalSpeed = Convert.ToSingle(CubesPool[0].GetComponent<Cube>().Speed);
         }
 
         protected override void Activate()
         {
             base.Activate();
-            SetSpeedAndMaterial(_normalSpeed / Multiplier, true);
+            SetBoostActivity(true);
         }
 
         protected override void Deactivate()
         {
             base.Deactivate();
-            SetSpeedAndMaterial(_normalSpeed, false);
+            SetBoostActivity(false);
+        }
+
+        protected override void SetBoostActivity(bool isBoosted)
+        {
+            if(isBoosted)
+                SetSpeedAndMaterial(_normalSpeed / Multiplier, true);
+            else
+                SetSpeedAndMaterial(_normalSpeed, false);
         }
 
         private void SetSpeedAndMaterial(float speed, bool isSlow)

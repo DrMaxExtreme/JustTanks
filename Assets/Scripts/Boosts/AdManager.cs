@@ -3,7 +3,7 @@ using JustTanks.GameLogic;
 
 namespace JustTanks.Boosts
 {
-    public class AdManager
+    public class AdManager : IAdManager
     {
         private GameFocusManager _gameFocusManager;
 
