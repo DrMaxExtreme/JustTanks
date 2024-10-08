@@ -20,67 +20,99 @@ namespace JustTanks.Gameplay
             {
                 if (_isSelectedTank)
                 {
-                    if (Input.GetMouseButton(0))
-                    {
-                        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                        if (Physics.Raycast(_ray, out _hit, RayDistance))
-                            _selectedCell.SetPositionTank(_hit.point);
-                        else
-                            _selectedCell.SetPositionTank(_oldTankPosition);
-                    }
-                    else if (Input.GetMouseButtonUp(0))
-                    {
-                        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        Cell newSelectedCell = null;
-
-                        if (Physics.Raycast(ray, out var hit, RayDistance, _layerMaskCells))
-                            newSelectedCell = hit.collider.gameObject.GetComponent<Cell>();
-
-                        if (newSelectedCell != null)
-                        {
-                            if (newSelectedCell.TryFindHaveObject() == false)
-                            {
-                                newSelectedCell.TakeTank(_selectedCell.GiveTank());
-                                _selectedCell.ClearTank();
-                            }
-                            else if (newSelectedCell.CurrentTank != null)
-                            {
-                                if (newSelectedCell.IsHaveTankForUpgrade(_selectedCell.CurrentTank.Level) &&
-                                    newSelectedCell != _selectedCell)
-                                {
-                                    _selectedCell.DestroyTank();
-                                    newSelectedCell.UpgradeTank();
-                                }
-                                else
-                                {
-                                    RevertTankOldPosition();
-                                }
-                            }
-                            else
-                            {
-                                RevertTankOldPosition();
-                            }
-                        }
-                        else
-                        {
-                            RevertTankOldPosition();
-                        }
-
-                        _isSelectedTank = false;
-                    }
+                    HandleTankSelection();
                 }
                 else if (Input.GetMouseButtonDown(0))
                 {
-                    ActivateRay();
+                    SelectTank();
+                }
+            }
+        }
 
-                    if (_selectedCell)
-                    {
-                        _selectedCell.Select();
+        private void HandleTankSelection()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                MoveSelectedTank();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                TryPlaceTank();
+                _isSelectedTank = false;
+            }
+        }
 
-                        if (_selectedCell.CurrentTank == null)
-                            _selectedCell = null;
-                    }
+        private void MoveSelectedTank()
+        {
+            _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(_ray, out _hit, RayDistance))
+            {
+                _selectedCell.SetPositionTank(_hit.point);
+            }
+            else
+            {
+                _selectedCell.SetPositionTank(_oldTankPosition);
+            }
+        }
+
+        private void TryPlaceTank()
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Cell newSelectedCell = null;
+
+            if (Physics.Raycast(ray, out var hit, RayDistance, _layerMaskCells))
+            {
+                newSelectedCell = hit.collider.gameObject.GetComponent<Cell>();
+            }
+
+            if (newSelectedCell != null)
+            {
+                if (newSelectedCell.TryFindHaveObject() == false)
+                {
+                    newSelectedCell.TakeTank(_selectedCell.GiveTank());
+                    _selectedCell.ClearTank();
+                }
+                else if (newSelectedCell.CurrentTank != null)
+                {
+                    HandleTankUpgrade(newSelectedCell);
+                }
+                else
+                {
+                    RevertTankOldPosition();
+                }
+            }
+            else
+            {
+                RevertTankOldPosition();
+            }
+        }
+
+        private void HandleTankUpgrade(Cell newSelectedCell)
+        {
+            if (newSelectedCell.IsHaveTankForUpgrade(_selectedCell.CurrentTank.Level) &&
+                newSelectedCell != _selectedCell)
+            {
+                _selectedCell.DestroyTank();
+                newSelectedCell.UpgradeTank();
+            }
+            else
+            {
+                RevertTankOldPosition();
+            }
+        }
+
+        private void SelectTank()
+        {
+            ActivateRay();
+
+            if (_selectedCell)
+            {
+                _selectedCell.Select();
+
+                if (_selectedCell.CurrentTank == null)
+                {
+                    _selectedCell = null;
                 }
             }
         }
@@ -96,7 +128,9 @@ namespace JustTanks.Gameplay
             _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(_ray, out _hit, RayDistance, _layerMaskCells))
+            {
                 _selectedCell = _hit.collider.gameObject.GetComponent<Cell>();
+            }
         }
 
         private void RevertTankOldPosition()

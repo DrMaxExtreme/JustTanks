@@ -6054,6 +6054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ed928620f0fd4478cf91a4436c0075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameFocusManager: {fileID: 963194231}
   _levelController: {fileID: 411673768}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1233070290}
@@ -13887,6 +13888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d351857a1ab5941bde015d893d342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameFocusManager: {fileID: 963194231}
   _levelController: {fileID: 411673768}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 799485366}
@@ -17543,6 +17545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b968be0e19bcf7d49ae7354e11eb83d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameFocusManager: {fileID: 963194231}
   _levelController: {fileID: 411673768}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1636622294}
@@ -21347,6 +21350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee541bfb4e3e7e4288f1ab5645b26f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameFocusManager: {fileID: 963194231}
   _levelController: {fileID: 411673768}
   _spawnerCubes: {fileID: 1737690589}
   _timerFill: {fileID: 1547122398}
